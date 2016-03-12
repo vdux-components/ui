@@ -28,8 +28,7 @@ function render ({props}) {
 
 ## API - props
 
-  * `justify` - `start/end/center/space-around/space-between`. Sets `justifyContent` style property.
-  * `align` - `start/end/stretch/center/baseline`. Sets `alignItems` style property.
+  * `align` - Sets `justifyContent` and `alignItems`. You separate the two with a space, with `justifyContent` coming first. E.g. `space-around center`.
   * `auto` - Boolean. Sets `flex: 1 1 auto`
   * `wrap` - Boolean. Sets `flex-wrap: wrap`
   * `column` - Boolean. Defaults to false, which means row.

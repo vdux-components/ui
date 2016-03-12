@@ -60,8 +60,12 @@ function render ({props, children}) {
 function getStyle ({justify, align, column, wrap, auto}) {
   const result = {display: 'flex'}
 
-  if (justify) result.justifyContent = flexify(justify)
-  if (align) result.alignItems = flexify(align)
+  if (align) {
+    const [justify, alignItems] = align.split(' ')
+    if (justify) result.justifyContent = flexify(justify)
+    if (align) result.alignItems = flexify(alignItems)
+  }
+
   if (column) result.flexDirection = 'column'
   if (wrap) result.flexWrap = 'wrap'
   if (auto) result.flex = '1 1 auto'

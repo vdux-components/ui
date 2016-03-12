@@ -19,7 +19,7 @@ test('<Flex/> should work', t => {
   t.equal(node.style.display, 'flex')
   t.equal(node.style.flex, '1 1 auto')
 
-  node = render(<Flex column justify='start' align='end'/>)
+  node = render(<Flex column align='start end' />)
   t.equal(node.style.flexDirection, 'column')
   t.equal(node.style.justifyContent, 'flex-start')
   t.equal(node.style.alignItems, 'flex-end')
