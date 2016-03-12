@@ -37,6 +37,8 @@ const filterProps = omit([
   'rounded',
   'style',
   'tag',
+  'wide',
+  'tall',
   'baseStyle',
   '$theme'
 ])
@@ -72,7 +74,7 @@ function render ({props, children}) {
 
 function getStyle (props, borderRadius, scale, colors) {
   const result = {}
-  const {style, baseStyle} = props
+  const {style, baseStyle, wide, tall} = props
 
   extend(result, baseStyle)
 
@@ -80,6 +82,9 @@ function getStyle (props, borderRadius, scale, colors) {
   radius(result, props, borderRadius)
   margin(result, props, scale)
   padding(result, props, scale)
+
+  if (wide) result.width = '100%'
+  if (tall) result.height = '100%'
 
   extend(result, style)
 

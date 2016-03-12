@@ -71,17 +71,26 @@ You can also specify colors in your theme, and then reference those colors by na
 ```javascript
 import Base from 'vdux-base'
 
-Base.setBaseTheme({
-  colors: {
-    ...Base.theme.colors,
-    error: 'red'
-  }
-})
-
 function render ({props}) {
   return <Base color='red'>{props.errorMessage}</Base>
 }
 ```
+
+And then in the root of your file:
+
+```javascript
+const {render} = vdux()
+
+render(<App/>, {uiTheme: {colors: myColors}})
+```
+
+But you may also pass any valid color string and it will be passed on through if there is no corresponding key in the theme's color map.
+
+### Miscellaneous
+
+  * `wide` - Sets `width: 100%`
+  * `tall` - Sets `height: 100%`
+
 
 But you may also pass any valid color string and it will be passed on through if there is no corresponding key in the theme's color map.
 
