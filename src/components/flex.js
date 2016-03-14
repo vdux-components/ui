@@ -28,8 +28,8 @@ const filterProps = omit([
  */
 
 function getProps (props, context = {}) {
-  const {baseTheme = {}} = context
-  props.$theme = pick(themeProps, baseTheme, defaultTheme)
+  const {uiTheme = {}} = context
+  props.$theme = pick(themeProps, uiTheme, defaultTheme)
   return props
 }
 

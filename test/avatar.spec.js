@@ -25,7 +25,7 @@ test('<Avatar/> should work', t => {
   node = render(<Avatar circle={false} src='/images/cat.jpg' />)
   t.equal(node.style.borderRadius, '')
 
-  const baseTheme = {
+  const uiTheme = {
     avatarScale: [
       10,
       20,
@@ -33,7 +33,7 @@ test('<Avatar/> should work', t => {
     ]
   }
 
-  node = render(<Avatar size={1} src='/images/cat.jpg' />, {baseTheme})
+  node = render(<Avatar size={1} src='/images/cat.jpg' />, {uiTheme})
   t.equal(node.style.width, '20px')
 
   t.end()

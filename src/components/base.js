@@ -49,8 +49,8 @@ const filterProps = omit([
  */
 
 function getProps (props, context = {}) {
-  const {baseTheme = {}} = context
-  props.$theme = pick(themeProps, props, baseTheme, defaultTheme)
+  const {uiTheme = {}} = context
+  props.$theme = pick(themeProps, props, uiTheme, defaultTheme)
   return props
 }
 
@@ -63,7 +63,7 @@ function render ({props, children}) {
   const {borderRadius, colors, scale, fontScale} = $theme
 
   return (
-    <Tag {...filterProps(props)} style={getStyle(props, borderRadius, scale, colors)}>
+    <Tag {...filterProps(props)} style={getStyle(props, borderRadius, scale, colors, fontScale)}>
       {children}
     </Tag>
   )

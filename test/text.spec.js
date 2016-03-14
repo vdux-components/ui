@@ -20,8 +20,8 @@ test('<Text/> should work', t => {
   t.equal(node.style.textTransform, 'capitalize')
   t.equal(node.style.fontWeight, 'bold')
 
-  const baseTheme = {fonts: {code: 'monospace'}}
-  node = render(<Text font='code'>test</Text>, {baseTheme})
+  const uiTheme = {fonts: {code: 'monospace'}}
+  node = render(<Text font='code'>test</Text>, {uiTheme})
   t.equal(node.style.fontFamily, 'monospace')
 
   t.end()

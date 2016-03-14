@@ -27,7 +27,7 @@ function render () {
 
 ## Theming
 
-The `<Text/>` component can also be themed by setting the following properties in the `baseTheme` key of your context:
+The `<Text/>` component can also be themed by setting the following properties in the `uiTheme` key of your context:
 
   * `fonts` - A map of keys to font family names. E.g. `{code: 'monospace', ornate: 'serif'}`.
   * `weightScale` - A keyed map of font weights. Can be an object with named keys or a simple array that you index into.

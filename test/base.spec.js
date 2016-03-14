@@ -50,6 +50,9 @@ test('<Base/> should work', t => {
   node = render(<Base fs='10px' />)
   t.equal(node.style.fontSize, '10px')
 
+  node = render(<Base fs={0} />, {uiTheme: {fontScale: [10]}})
+  t.equal(node.style.fontSize, '10px')
+
   t.end()
 })
 
@@ -70,13 +73,13 @@ test('<Base/> allows restyling via context', t => {
   node = render(<Base color='white' />)
   t.equal(node.style.color, 'rgb(255, 255, 255)')
 
-  const baseTheme = {
+  const uiTheme = {
     colors: {
       white: 'rgb(251, 251, 251)'
     }
   }
 
-  node = render(<Base color='white' />, {baseTheme})
-  t.equal(node.style.color, baseTheme.colors.white)
+  node = render(<Base color='white' />, {uiTheme})
+  t.equal(node.style.color, uiTheme.colors.white)
   t.end()
 })
