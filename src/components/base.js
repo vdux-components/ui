@@ -14,6 +14,7 @@ import omit from '@f/omit'
 
 const themeProps = ['borderRadius', 'colors', 'scale', 'fontScale']
 const filterProps = omit([
+  // Padding
   'p',
   'px',
   'py',
@@ -21,6 +22,8 @@ const filterProps = omit([
   'pl',
   'pb',
   'pr',
+
+  // Margin
   'm',
   'mx',
   'my',
@@ -28,18 +31,27 @@ const filterProps = omit([
   'ml',
   'mb',
   'mr',
+
+  // Text
   'fs',
+  'ellipsis',
+
+  // Color
   'color',
   'bgColor',
   'inverted',
   'theme',
+
+  // Shape
   'circle',
   'pill',
   'rounded',
-  'style',
-  'tag',
   'wide',
   'tall',
+
+  // Element / Theme
+  'tag',
+  'style',
   'baseStyle',
   '$theme'
 ])
@@ -75,7 +87,7 @@ function render ({props, children}) {
 
 function getStyle (props, borderRadius, scale, colors, fontScale) {
   const result = {}
-  const {style, baseStyle, wide, tall, fs} = props
+  const {style, baseStyle, wide, tall, fs, ellipsis} = props
 
   extend(result, baseStyle)
 
@@ -86,6 +98,7 @@ function getStyle (props, borderRadius, scale, colors, fontScale) {
 
   if (wide) result.width = '100%'
   if (tall) result.height = '100%'
+  if (ellipsis) result.textOverflow = 'ellipsis'
 
   setScaled(result, 'fontSize', fs, fontScale)
   extend(result, style)

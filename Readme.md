@@ -92,6 +92,7 @@ But you may also pass any valid color string and it will be passed on through if
   * `wide` - Sets `width: 100%`
   * `tall` - Sets `height: 100%`
   * `fs` - Font size. Sets the `font-size` css property. Will grab values from the `fontScale` theme property if available.
+  * `ellipsis` - Boolean. Sets `text-overflow: ellipsis`.
 
 But you may also pass any valid color string and it will be passed on through if there is no corresponding key in the theme's color map.
 

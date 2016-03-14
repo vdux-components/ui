@@ -53,6 +53,9 @@ test('<Base/> should work', t => {
   node = render(<Base fs={0} />, {uiTheme: {fontScale: [10]}})
   t.equal(node.style.fontSize, '10px')
 
+  node = render(<Base ellipsis />)
+  t.equal(node.style.textOverflow, 'ellipsis')
+
   t.end()
 })
 
