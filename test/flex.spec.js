@@ -15,7 +15,7 @@ test('<Flex/> should work', t => {
   const {render} = vdux()
   let node
 
-  node = render(<Flex auto/>)
+  node = render(<Flex flex />)
   t.equal(node.style.display, 'flex')
   t.equal(node.style.flex, '1 1 auto')
 

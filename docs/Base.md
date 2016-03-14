@@ -60,6 +60,7 @@ But you may also pass any valid color string and it will be passed on through if
 
   * `wide` - Sets `width: 100%`
   * `tall` - Sets `height: 100%`
+  * `fs` - Font size. Sets the `font-size` css property.
 
 ### baseStyle
 

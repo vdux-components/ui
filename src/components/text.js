@@ -55,8 +55,8 @@ function render ({props, children}) {
  */
 
 function getStyle (props, theme) {
-  const {fonts, fontScale, weightScale, lineHeightScale} = theme
-  const {italic, bold, weight, transform, font, lh, size} = props
+  const {fonts, weightScale, lineHeightScale} = theme
+  const {italic, bold, weight, transform, font, lh} = props
   const result = {}
 
   if (italic) result.fontStyle = 'italic'
@@ -64,7 +64,6 @@ function getStyle (props, theme) {
   if (bold) result.fontWeight = theme.bold || 'bold'
 
   setScaled(result, 'fontFamily', font, fonts)
-  setScaled(result, 'fontSize', size, fontScale)
   setScaled(result, 'fontWeight', weight, weightScale)
   setScaled(result, 'lineHeight', lh, lineHeightScale)
 

@@ -23,6 +23,7 @@ function render () {
   * `italic` - Set font style to italic.
   * `weight` - Font weight. Will check for `weightScale` in your theme and if found, will index into it using this prop. If nothing is found in the theme, the literal value will be used.
   * `lh` - Line-height. Checks for `lineHeightScale` in your theme and indexes into it if possible, otherwise uses the literal.
+  * `fs` - Font size. Sets the `font-size` css property.
 
 ## Theming
 

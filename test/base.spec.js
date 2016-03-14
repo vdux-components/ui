@@ -11,7 +11,7 @@ import test from 'tape'
  * Tests
  */
 
-test.only('<Base/> should work', t => {
+test('<Base/> should work', t => {
   const {render} = vdux()
   let node
 
@@ -46,6 +46,9 @@ test.only('<Base/> should work', t => {
 
   node = render(<Base tall />)
   t.equal(node.style.height, '100%')
+
+  node = render(<Base fs='10px' />)
+  t.equal(node.style.fontSize, '10px')
 
   t.end()
 })

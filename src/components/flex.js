@@ -20,7 +20,7 @@ const filterProps = omit([
   '$theme',
   'align',
   'wrap',
-  'auto'
+  'flex'
 ])
 
 /**
@@ -46,6 +46,7 @@ function render ({props, children}) {
     extras.mx = -(scale && scale[gutter] ? scale[gutter] : gutter)
   }
 
+
   return (
     <Base baseStyle={getStyle(props)} {...extras} {...filterProps(props)}>
       {children}
@@ -57,7 +58,7 @@ function render ({props, children}) {
  * Helpers
  */
 
-function getStyle ({justify, align, column, wrap, auto}) {
+function getStyle ({justify, align, column, wrap, flex}) {
   const result = {display: 'flex'}
 
   if (align) {
@@ -68,7 +69,24 @@ function getStyle ({justify, align, column, wrap, auto}) {
 
   if (column) result.flexDirection = 'column'
   if (wrap) result.flexWrap = 'wrap'
-  if (auto) result.flex = '1 1 auto'
+  if (flex) {
+    if (flex === true) result.flex = '1 1 auto'
+    else {
+      const n = parseInt(flex)
+
+      if (!isNaN(n)) {
+        result.flex = `1 1 ${n}`
+
+        if (!column) {
+          result.maxWidth = n + '%',
+          result.maxHeight = '100%'
+        } else {
+          result.maxHeight = n + '%'
+          result.maxWidth = '100%'
+        }
+      }
+    }
+  }
 
   return result
 }

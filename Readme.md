@@ -17,6 +17,7 @@ All of the components in vdux-ui are stateless and largely logicless. They are p
   * [Avatar](https://github.com/vdux-components/ui/tree/master/docs/Avatar.md) - Simple circular (by default) component for rendering a user's avatar
   * [Block](https://github.com/vdux-components/ui/tree/master/docs/Block.md) - Renders a box with some default padding/margin and optional borders
   * [Text](https://github.com/vdux-components/ui/tree/master/docs/Text.md) - Render text according to your theme and some convenience options
+  * [Fixed](https://github.com/vdux-components/ui/tree/master/docs/Fixed.md) - Render a fixed position container.
   * [Base](https://github.com/vdux-components/ui/tree/master/docs/Base.md) - The base component out of which all other vdux-ui components are made. Use this to create your own reusable components.
 
 ## Layout
@@ -90,7 +91,7 @@ But you may also pass any valid color string and it will be passed on through if
 
   * `wide` - Sets `width: 100%`
   * `tall` - Sets `height: 100%`
-
+  * `fs` - Font size. Sets the `font-size` css property. Will grab values from the `fontScale` theme property if available.
 
 But you may also pass any valid color string and it will be passed on through if there is no corresponding key in the theme's color map.
 
