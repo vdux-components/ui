@@ -28,6 +28,7 @@ const filterProps = omit([
   'ml',
   'mb',
   'mr',
+  'fs',
   'color',
   'bgColor',
   'inverted',

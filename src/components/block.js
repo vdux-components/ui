@@ -49,22 +49,46 @@ function render ({props, children}) {
  */
 
 function getStyle (props, {colors, scale}) {
-  const {border, borderColor, borderWidth, borderTop, borderBottom, borderLeft, borderRight} = props
+  const {border, borderColor, borderWidth = '1px', borderTop, borderBottom, borderLeft, borderRight} = props
   const result = {}
 
-  if (border) result.borderStyle = bs(border)
-  if (borderTop) result.borderTopStyle = bs(borderTop)
-  if (borderBottom) result.borderBottomStyle = bs(borderBottom)
-  if (borderLeft) result.borderLeftStyle = bs(borderLeft)
-  if (borderRight) result.borderRightStyle = bs(borderRight)
-  if (borderColor) result.borderColor = colors && colors[borderColor] ? colors[border] : borderColor
-  if (borderWidth) result.borderWith = borderWidth
+  if (border) result.borderStyle = 'solid'
+  if (borderTop) {
+    result.borderTopStyle = 'solid'
+    if (typeof borderTop === 'string') {
+      result.borderTopColor = getColor(borderTop, colors)
+    }
+  }
+
+  if (borderBottom) {
+    result.borderBottomStyle = 'solid'
+    if (typeof borderBottom === 'string') {
+      result.borderBottomColor = getColor(borderBottom, colors)
+    }
+  }
+
+  if (borderLeft) {
+    result.borderLeftStyle = 'solid'
+    if (typeof borderLeft === 'string') {
+      result.borderLeftColor = getColor(borderLeft, colors)
+    }
+  }
+
+  if (borderRight) {
+    result.borderRightStyle = 'solid'
+    if (typeof borderRight === 'string') {
+      result.borderRightColor = getColor(borderRight, colors)
+    }
+  }
+
+  if (borderColor) result.borderColor = getColor(borderColor, colors)
+  if (borderWidth) result.borderWidth = borderWidth
 
   return result
 }
 
-function bs (exists) {
-  return exists ? 'solid' : 'none'
+function getColor (color, colorScale) {
+  return colorScale && colorScale[color] ? colorScale[color] : color
 }
 
 /**

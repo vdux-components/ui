@@ -21,12 +21,12 @@ function render () {
 ## API - props
 
   * `border` - Boolean. Sets `borderStyle` to 'solid' if true.
-  * `borderTop` - Sets only the top border to solid.
-  * `borderBottom` - Sets only the bottom border to solid.
-  * `borderLeft` - Sets only the left border to solid.
-  * `borderRight` - Sets only the right border to solid.
+  * `borderTop` - Sets only the top border to solid. If set to a string, sets the color to that string.
+  * `borderBottom` - Sets only the bottom border to solid. If set to a string, sets the color to that string
+  * `borderLeft` - Sets only the left border to solid. If set to a string, sets the color to that string
+  * `borderRight` - Sets only the right border to solid. If set to a string, sets the color to that string
   * `borderColor` - Color of the border. Selects from the `colors` prop of your theme if available.
-  * `borderWidth` - Width of the border.
+  * `borderWidth` - Width of the border. Defaults to `1px`.
 
 ## License
 
