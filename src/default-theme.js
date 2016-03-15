@@ -37,7 +37,7 @@ export default {
     64
   ],
 
-  fontSizes: [
+  fontScale: [
     48,
     32,
     24,
