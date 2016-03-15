@@ -9,7 +9,7 @@ Use this as a convenience for rendering text. It gives you a nice shorthand for 
 ```javascript
 function render () {
   return (
-    <Text bold transform='capitalize'>
+    <Text bold transform='uppercase'>
       this is some text
     </Text>
   )
