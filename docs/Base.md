@@ -39,7 +39,7 @@ You may specify p or m for each of these, but for simplicity i'll just write it 
 You can also specify colors in your theme, and then reference those colors by name in the `color` and `bgColor` props. E.g.
 
 ```javascript
-import Base from 'vdux-base'
+import {Base} from 'vdux-ui'
 
 function render ({props}) {
   return <Base color='red'>{props.errorMessage}</Base>
@@ -56,12 +56,44 @@ render(<App/>, {uiTheme: {colors: myColors}})
 
 But you may also pass any valid color string and it will be passed on through if there is no corresponding key in the theme's color map.
 
+### Positioning
+
+Positioning attributes, inspired by [nib's position mixin](http://nibstyl.us/docs/#position) allow you an expressive shorthand for specifying different types of positioning.
+
+  * `absolute`
+  * `fixed`
+  * `relative`
+
+Each take a string of the form `top|bottom [n] left|right [n]`. For example:
+
+```javascript
+import {Text} from 'vdux-ui'
+
+function render () {
+  return (
+    <Text absolute='bottom left'>Invalid username</Text>
+  )
+}
+```
+
+You may also specify them as boolean attributes to solely set the `position` property. E.g.
+
+`<Text relative>Invalid username</Text>`
+
+Lastly, you can use object syntax if you want as well:
+
+`<Text relative={{right: '5px'}}>Invalid username</Text>`
+
 ### Miscellaneous
 
   * `wide` - Sets `width: 100%`
   * `tall` - Sets `height: 100%`
   * `fs` - Font size. Sets the `font-size` css property.
   * `ellipsis` - Boolean. Sets `text-overflow: ellipsis`.
+  * `clear` - Boolean|String. If `true` sets `clear: both`. Otherwise sets the clear attribute to the value passed.
+  * `cursor` - String. Set cursor.
+  * `pointer` - Boolean - shorthand for `cursor='pointer'`.
+  * `transition` - String. Set `transition` style.
 
 ### baseStyle
 

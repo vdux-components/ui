@@ -27,6 +27,7 @@ function render () {
   * `borderRight` - Sets only the right border to solid. If set to a string, sets the color to that string
   * `borderColor` - Color of the border. Selects from the `colors` prop of your theme if available.
   * `borderWidth` - Width of the border. Defaults to `1px`.
+  * `textAlign` - Set `text-align` css prop.
 
 ## License
 

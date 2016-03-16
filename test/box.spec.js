@@ -15,14 +15,11 @@ test('<Box/> should work', t => {
   const {render} = vdux()
   let node
 
-  node = render(<Box auto />)
+  node = render(<Box flex />)
   t.equal(node.style.flex, '1 1 auto')
 
-  node = render(<Box flex />)
-  t.equal(node.style.display, 'flex')
-
-  node = render(<Box col={2} />)
-  t.equal(node.style.width, '16.6667%')
+  node = render(<Box flex='35%' />)
+  t.equal(node.style.flex, '1 1 35%')
 
   t.end()
 })

@@ -56,7 +56,7 @@ function render ({props, children}) {
 
 function getStyle (props, theme) {
   const {fonts, weightScale, lineHeightScale} = theme
-  const {italic, bold, weight, transform, font, lh} = props
+  const {italic, bold, weight, transform, font, lh, center, left, right} = props
   const result = {}
 
   if (italic) result.fontStyle = 'italic'

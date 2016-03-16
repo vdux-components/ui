@@ -11,9 +11,7 @@ import element from 'vdux/element'
  */
 
 const filterProps = omit([
-  'auto',
-  'flex',
-  'col'
+  'flex'
 ])
 
 /**
@@ -32,12 +30,13 @@ function render ({props, children}) {
  * Helpers
  */
 
-function getStyle ({auto, flex, col}) {
+function getStyle ({auto, flex}) {
   const result = {}
 
-  if (auto) result.flex = '1 1 auto'
-  if (flex) result.display = 'flex'
-  if (col) result.width = result.flexBasis = (col / 12 * 100) + '%'
+  if (flex) {
+    if (flex === true) flex = 'auto'
+    result.flex = `1 1 ${flex}`
+  }
 
   return result
 }

@@ -12,20 +12,20 @@ function colorStyle (result, props, colors) {
   const {color, bgColor, inverted, theme} = props
 
   if (color) {
-    result.color = colors[color] ? colors[color] : color
+    setScaled(result, 'color', color, colors)
   }
 
   if (bgColor) {
-    result.backgroundColor = colors[bgColor] ? colors[bgColor] : bgColor
+    setScaled(result, 'backgroundColor', bgColor, colors)
   }
 
   if (theme && colors[theme]) {
-    const invertedColor = props.inverted
+    const invertedColor = props.inverted === true ? 'white' : invertedColor
     if (inverted) {
-      result.color = invertedColor || colors.white
-      result.bgColor = colors[theme]
+      setScaled(result, 'color', invertedColor, colors)
+      setScaled(result, 'backgroundColor', theme, colors)
     } else {
-      result.color = colors[theme]
+      setScaled(result, 'color', theme, colors)
     }
   }
 
@@ -115,6 +115,51 @@ function posString (pos, n) {
   }
 }
 
+/**
+ *  position(obj, str)
+ *
+ * Set position on a style object
+ *
+ *  * obj - Object. Obj to set style on
+ *  * props - Object with keys absolute|relative|fixed set to position strings of
+ *            the form `bottom right` or `bottom 10px right 5px`.
+ *            i.e. `(top|bottom) (n)? (left|right) (n)?`
+ *  * scale - The scale from which to select sizes
+ */
+const posRe = /^(top|bottom)(?:\s(\d+[a-zA-Z]+))?\s(left|right)(?:\s(\d+[a-zA-Z]+))?$/
+
+function position (obj, {absolute, relative, fixed}, scale) {
+  let str = false
+
+  if (absolute) {
+    str = absolute
+    obj.position = 'absolute'
+  } else if (relative) {
+    str = relative
+    obj.position = 'relative'
+  } else if (fixed) {
+    str = fixed
+    obj.position = 'fixed'
+  }
+
+
+  if (typeof str === 'string') {
+    const parts = posRe.exec(str)
+
+    setScaled(obj, parts[1], parts[2] || 0, scale)
+    setScaled(obj, parts[3], parts[4] || 0, scale)
+  } else if (typeof str === 'object') {
+    const pos = str
+
+    setScaled(obj, 'top', pos.top, scale)
+    setScaled(obj, 'right', pos.right, scale)
+    setScaled(obj, 'bottom', pos.bottom, scale)
+    setScaled(obj, 'left', pos.left, scale)
+  }
+
+  return obj
+}
+
 function extend (dest, src) {
   if (src) {
     for (var key in src) {
@@ -135,5 +180,6 @@ export {
   padding,
   margin,
   extend,
+  position,
   setScaled
 }

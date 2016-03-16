@@ -4,6 +4,7 @@
 
 import defaultTheme from '../default-theme'
 import element from 'vdux/element'
+import {setScaled} from '../util'
 import omit from '@f/omit'
 import pick from '@f/pick'
 import Base from './base'
@@ -27,8 +28,9 @@ const filterProps = omit([
  * getProps
  */
 
-function getProps (props, context) {
-  props.$theme = pick(themeProps, context, defaultTheme)
+function getProps (props, context = {}) {
+  const {uiTheme = {}} = context
+  props.$theme = pick(themeProps, uiTheme, defaultTheme)
   return props
 }
 
@@ -49,46 +51,43 @@ function render ({props, children}) {
  */
 
 function getStyle (props, {colors, scale}) {
-  const {border, borderColor, borderWidth = '1px', borderTop, borderBottom, borderLeft, borderRight} = props
+  const {textAlign, border, borderColor, borderWidth = '1px', borderTop, borderBottom, borderLeft, borderRight} = props
   const result = {}
 
   if (border) result.borderStyle = 'solid'
   if (borderTop) {
     result.borderTopStyle = 'solid'
     if (typeof borderTop === 'string') {
-      result.borderTopColor = getColor(borderTop, colors)
+      setScaled(result, 'borderTopColor', borderTop, colors)
     }
   }
 
   if (borderBottom) {
     result.borderBottomStyle = 'solid'
     if (typeof borderBottom === 'string') {
-      result.borderBottomColor = getColor(borderBottom, colors)
+      setScaled(result, 'borderBottomColor', borderBottom, colors)
     }
   }
 
   if (borderLeft) {
     result.borderLeftStyle = 'solid'
     if (typeof borderLeft === 'string') {
-      result.borderLeftColor = getColor(borderLeft, colors)
+      setScaled(result, 'borderLeftColor', borderLeft, colors)
     }
   }
 
   if (borderRight) {
     result.borderRightStyle = 'solid'
     if (typeof borderRight === 'string') {
-      result.borderRightColor = getColor(borderRight, colors)
+      setScaled(result, 'borderRightColor', borderRight, colors)
     }
   }
 
-  if (borderColor) result.borderColor = getColor(borderColor, colors)
+  if (borderColor) setScaled(result, 'borderColor', borderColor, colors)
   if (borderWidth) result.borderWidth = borderWidth
+  if (textAlign) result.textAlign = textAlign
 
   return result
-}
-
-function getColor (color, colorScale) {
-  return colorScale && colorScale[color] ? colorScale[color] : color
 }
 
 /**

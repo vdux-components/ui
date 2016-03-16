@@ -2,7 +2,7 @@
  * Imports
  */
 
-import {radius, colorStyle, padding, margin, extend, setScaled} from '../util'
+import {radius, colorStyle, padding, margin, position, extend, setScaled} from '../util'
 import defaultTheme from '../default-theme'
 import element from 'vdux/element'
 import pick from '@f/pick'
@@ -12,7 +12,7 @@ import omit from '@f/omit'
  * Constants
  */
 
-const themeProps = ['borderRadius', 'colors', 'scale', 'fontScale']
+const themeProps = ['borderRadius', 'colors', 'scale', 'fontScale', 'zIndex']
 const filterProps = omit([
   // Padding
   'p',
@@ -49,7 +49,24 @@ const filterProps = omit([
   'wide',
   'tall',
 
+  // Position
+  'absolute',
+  'relative',
+  'fixed',
+
+  // Float
+  'clear',
+  'float',
+
+  // Cursor
+  'cursor',
+  'pointer',
+
+  // Transition
+  'transition',
+
   // Element / Theme
+  'zIndex',
   'tag',
   'style',
   'baseStyle',
@@ -72,10 +89,9 @@ function getProps (props, context = {}) {
 
 function render ({props, children}) {
   const {tag: Tag = 'div', $theme} = props
-  const {borderRadius, colors, scale, fontScale} = $theme
 
   return (
-    <Tag {...filterProps(props)} style={getStyle(props, borderRadius, scale, colors, fontScale)}>
+    <Tag {...filterProps(props)} style={getStyle(props, $theme)}>
       {children}
     </Tag>
   )
@@ -85,9 +101,9 @@ function render ({props, children}) {
  * Helpers
  */
 
-function getStyle (props, borderRadius, scale, colors, fontScale) {
+function getStyle (props, {borderRadius, scale, colors, fontScale}) {
   const result = {}
-  const {style, baseStyle, wide, tall, fs, ellipsis} = props
+  const {style, baseStyle, wide, tall, fs, ellipsis, clear, float, cursor, pointer, transition, zIndex} = props
 
   extend(result, baseStyle)
 
@@ -95,10 +111,25 @@ function getStyle (props, borderRadius, scale, colors, fontScale) {
   radius(result, props, borderRadius)
   margin(result, props, scale)
   padding(result, props, scale)
+  position(result, props, scale)
 
   if (wide) result.width = '100%'
   if (tall) result.height = '100%'
-  if (ellipsis) result.textOverflow = 'ellipsis'
+  if (pointer) result.cursor = 'pointer'
+  if (cursor) result.cursor = cursor
+  if (zIndex) result.zIndex = zIndex
+  if (transition) result.transition = transition
+  if (ellipsis) {
+    result.whiteSpace = 'nowrap'
+    result.textOverflow = 'ellipsis'
+    result.overflow = 'hidden'
+  }
+
+  if (clear) {
+    result.clear = clear === true
+      ? 'both'
+      : clear
+  }
 
   setScaled(result, 'fontSize', fs, fontScale)
   extend(result, style)

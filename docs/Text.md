@@ -26,7 +26,6 @@ function render () {
   * `fs` - Font size. Sets the `font-size` css property.
   * `ellipsis` - Boolean. Sets `text-overflow: ellipsis`.
 
-
 ## Theming
 
 The `<Text/>` component can also be themed by setting the following properties in the `uiTheme` key of your context:

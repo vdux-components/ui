@@ -14,7 +14,6 @@ import Base from './base'
 
 const themeProps = ['scale']
 const filterProps = omit([
-  'justify',
   'gutter',
   'column',
   '$theme',
@@ -46,7 +45,6 @@ function render ({props, children}) {
     extras.mx = -(scale && scale[gutter] ? scale[gutter] : gutter)
   }
 
-
   return (
     <Base baseStyle={getStyle(props)} {...extras} {...filterProps(props)}>
       {children}
@@ -58,7 +56,7 @@ function render ({props, children}) {
  * Helpers
  */
 
-function getStyle ({justify, align, column, wrap, flex}) {
+function getStyle ({align, column, wrap, flex}) {
   const result = {display: 'flex'}
 
   if (align) {
@@ -70,22 +68,8 @@ function getStyle ({justify, align, column, wrap, flex}) {
   if (column) result.flexDirection = 'column'
   if (wrap) result.flexWrap = 'wrap'
   if (flex) {
-    if (flex === true) result.flex = '1 1 auto'
-    else {
-      const n = parseInt(flex)
-
-      if (!isNaN(n)) {
-        result.flex = `1 1 ${n}`
-
-        if (!column) {
-          result.maxWidth = n + '%',
-          result.maxHeight = '100%'
-        } else {
-          result.maxHeight = n + '%'
-          result.maxWidth = '100%'
-        }
-      }
-    }
+    if (flex === true) flex = 'auto'
+    result.flex = `1 1 ${flex}`
   }
 
   return result

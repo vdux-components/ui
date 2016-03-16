@@ -18,6 +18,9 @@ All of the components in vdux-ui are stateless and largely logicless. They are p
   * [Block](https://github.com/vdux-components/ui/tree/master/docs/Block.md) - Renders a box with some default padding/margin and optional borders
   * [Text](https://github.com/vdux-components/ui/tree/master/docs/Text.md) - Render text according to your theme and some convenience options
   * [Fixed](https://github.com/vdux-components/ui/tree/master/docs/Fixed.md) - Render a fixed position container.
+  * [Card](https://github.com/vdux-components/ui/tree/master/docs/Card.md) - Block with shadow and some extra styling.
+  * [Icon](https://github.com/vdux-components/ui/tree/master/docs/Icon.md) - Render some font-based icons
+  * [Button](https://github.com/vdux-components/ui/tree/master/docs/Button.md) - Buttons
   * [Base](https://github.com/vdux-components/ui/tree/master/docs/Base.md) - The base component out of which all other vdux-ui components are made. Use this to create your own reusable components.
 
 ## Layout
@@ -87,12 +90,44 @@ render(<App/>, {uiTheme: {colors: myColors}})
 
 But you may also pass any valid color string and it will be passed on through if there is no corresponding key in the theme's color map.
 
+### Positioning
+
+Positioning attributes, inspired by [nib's position mixin](http://nibstyl.us/docs/#position) allow you an expressive shorthand for specifying different types of positioning.
+
+  * `absolute` - Boolean|String|Object
+  * `fixed` - Boolean|String|Object
+  * `relative` - Boolean|String|Object
+
+Each take a string of the form `top|bottom [n] left|right [n]`. For example:
+
+```javascript
+import {Text} from 'vdux-ui'
+
+function render () {
+  return (
+    <Text absolute='bottom left'>Invalid username</Text>
+  )
+}
+```
+
+You may also specify them as boolean attributes to solely set the `position` property. E.g.
+
+`<Text relative>Invalid username</Text>`
+
+Lastly, you can use object syntax if you want as well:
+
+`<Text relative={{right: '5px'}}>Invalid username</Text>`
+
 ### Miscellaneous
 
   * `wide` - Sets `width: 100%`
   * `tall` - Sets `height: 100%`
-  * `fs` - Font size. Sets the `font-size` css property. Will grab values from the `fontScale` theme property if available.
+  * `fs` - Font size. Sets the `font-size` css property.
   * `ellipsis` - Boolean. Sets `text-overflow: ellipsis`.
+  * `clear` - Boolean|String. If `true` sets `clear: both`. Otherwise sets the clear attribute to the value passed.
+  * `cursor` - String. Set cursor.
+  * `pointer` - Boolean - shorthand for `cursor='pointer'`.
+  * `transition` - String. Set `transition` style.
 
 But you may also pass any valid color string and it will be passed on through if there is no corresponding key in the theme's color map.
 

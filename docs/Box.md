@@ -1,4 +1,4 @@
-# Flex
+# Box
 
 Flexbox layout cell (ported to vdux with some modifications from [reflexbox](https://github.com/jxnblk/reflexbox).
 
@@ -28,7 +28,5 @@ function render ({props}) {
 
 ## <Box/> - props
 
-  * `auto` - Boolean. Sets `flex: 1 1 auto`.
-  * `flex` - Boolean. Sets `display: flex`.
-  * `col` - Number. Sets width/flex-basis on a 12 column grid.
+  * `flex` - Boolean|Number. Sets `display: flex`.
   * `...<Base/> props` - All the props you can pass to [base](https://github.com/vdux-components/base).
