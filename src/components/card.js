@@ -32,7 +32,7 @@ function render ({props, children}) {
   const {$theme} = props
 
   return (
-    <Base baseStyle={getStyle(props, $theme)} {...props}>
+    <Base class={[props.class, 'vui-card']} baseStyle={getStyle(props, $theme)} {...props}>
       {children}
     </Base>
   )

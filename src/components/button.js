@@ -31,20 +31,21 @@ function getProps (props, context = {}) {
  */
 
 function render ({props, children}) {
-  const {$theme, type = 'button', bgColor = 'primary', inverted = true, icon} = props
+  const {$theme, type = 'button', inverted = true, icon} = props
   const {scale = []} = $theme
-  let {text} = props
+  let {text, color = 'white', px, py, bgColor = 'primary'} = props
 
   if (icon) {
-    text = <Icon name={icon} />
+    text = <Icon baseStyle={{fontSize: 'inherit'}} name={icon} />
+    bgColor = 'transparent'
   }
 
   return (
     <Base
       tag='button'
-      baseStyle={{margin: 0, border: 0, textDecoration: 'none'}}
-      px={scale[2]}
-      py={scale[1]}
+      class={[props.class, 'vui-button']}
+      baseStyle={{padding: icon ? 0 : null, margin: 0, border: 0, textDecoration: 'none'}}
+      color={color}
       bgColor={bgColor}
       type={type}
       inverted={inverted}

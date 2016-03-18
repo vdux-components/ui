@@ -2,6 +2,8 @@
  * Imports
  */
 
+import DropdownMenu from './components/dropdown-menu'
+import Dropdown from './components/dropdown'
 import defaultTheme from './default-theme'
 import Button from './components/button'
 import Avatar from './components/avatar'
@@ -13,6 +15,7 @@ import Card from './components/card'
 import Text from './components/text'
 import Flex from './components/flex'
 import Icon from './components/icon'
+import Menu from './components/menu'
 import Box from './components/box'
 
 /**
@@ -31,7 +34,10 @@ export {
   Text,
   Fixed,
   Icon,
+  Menu,
   Button,
+  Dropdown,
+  DropdownMenu,
 
   // Default theme
   defaultTheme

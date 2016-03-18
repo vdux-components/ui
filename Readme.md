@@ -14,13 +14,16 @@ All of the components in vdux-ui are stateless and largely logicless. They are p
 
 ## UI Components
 
-  * [Avatar](https://github.com/vdux-components/ui/tree/master/docs/Avatar.md) - Simple circular (by default) component for rendering a user's avatar
-  * [Block](https://github.com/vdux-components/ui/tree/master/docs/Block.md) - Renders a box with some default padding/margin and optional borders
-  * [Text](https://github.com/vdux-components/ui/tree/master/docs/Text.md) - Render text according to your theme and some convenience options
-  * [Fixed](https://github.com/vdux-components/ui/tree/master/docs/Fixed.md) - Render a fixed position container.
+  * [Avatar](https://github.com/vdux-components/ui/tree/master/docs/Avatar.md) - Circular (by default) component for rendering a user's avatar
+  * [Block](https://github.com/vdux-components/ui/tree/master/docs/Block.md) - Box with some default padding/margin and optional borders
+  * [Button](https://github.com/vdux-components/ui/tree/master/docs/Button.md) - Just a button
   * [Card](https://github.com/vdux-components/ui/tree/master/docs/Card.md) - Block with shadow and some extra styling.
-  * [Icon](https://github.com/vdux-components/ui/tree/master/docs/Icon.md) - Render some font-based icons
-  * [Button](https://github.com/vdux-components/ui/tree/master/docs/Button.md) - Buttons
+  * [Dropdown](https://github.com/vdux-components/ui/tree/master/docs/Dropdown.md) - Relatively positioned dropdown container.
+  * [DropdownMenu](https://github.com/vdux-components/ui/tree/master/docs/DropdownMenu.md) - Dropdown menu component
+  * [Fixed](https://github.com/vdux-components/ui/tree/master/docs/Fixed.md) - Fixed position container.
+  * [Icon](https://github.com/vdux-components/ui/tree/master/docs/Icon.md) - Font-based icon component
+  * [Menu](https://github.com/vdux-components/ui/tree/master/docs/Menu.md) - Horizontal/vertical menus with spacing of menu items
+  * [Text](https://github.com/vdux-components/ui/tree/master/docs/Text.md) - Render text according to your theme and some convenience options
   * [Base](https://github.com/vdux-components/ui/tree/master/docs/Base.md) - The base component out of which all other vdux-ui components are made. Use this to create your own reusable components.
 
 ## Layout

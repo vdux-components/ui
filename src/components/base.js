@@ -91,7 +91,7 @@ function render ({props, children}) {
   const {tag: Tag = 'div', $theme} = props
 
   return (
-    <Tag {...filterProps(props)} style={getStyle(props, $theme)}>
+    <Tag {...filterProps(props)} class={props.class} style={getStyle(props, $theme)}>
       {children}
     </Tag>
   )

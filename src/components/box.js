@@ -20,7 +20,7 @@ const filterProps = omit([
 
 function render ({props, children}) {
   return (
-    <Base baseStyle={getStyle(props)} {...filterProps(props)}>
+    <Base class={[props.class, 'vui-box']} baseStyle={getStyle(props)} {...filterProps(props)}>
       {children}
     </Base>
   )

@@ -44,7 +44,7 @@ function render ({props, children}) {
   const {tag = 'span', $theme} = props
 
   return (
-    <Base tag={tag} baseStyle={getStyle(props, $theme)} {...filterProps(props)}>
+    <Base tag={tag} class={[props.class, 'vui-text']} baseStyle={getStyle(props, $theme)} {...filterProps(props)}>
       {children}
     </Base>
   )

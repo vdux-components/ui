@@ -22,6 +22,7 @@ test('<Button/> should work', t => {
   node = render(<Button icon='search' />)
   t.equal(node.tagName, 'BUTTON')
   t.equal(node.firstChild.tagName, 'MD-ICON')
+  t.equal(node.style.backgroundColor, 'transparent')
 
   t.end()
 })

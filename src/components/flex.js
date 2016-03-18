@@ -46,7 +46,7 @@ function render ({props, children}) {
   }
 
   return (
-    <Base baseStyle={getStyle(props)} {...extras} {...filterProps(props)}>
+    <Base class={[props.class, 'vui-flex']} baseStyle={getStyle(props)} {...extras} {...filterProps(props)}>
       {children}
     </Base>
   )

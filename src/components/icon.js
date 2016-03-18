@@ -34,7 +34,7 @@ function render ({props}) {
   const {iconTag, iconClass} = $theme
 
   return (
-    <Text tag={iconTag} {...props} class={[iconClass, props.class]}>
+    <Text class={[props.class, 'vui-icon']} tag={iconTag} {...props} class={[iconClass, props.class]}>
       {props.name}
     </Text>
   )

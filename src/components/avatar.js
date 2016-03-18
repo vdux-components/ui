@@ -42,7 +42,7 @@ function render ({props}) {
   }
 
   return (
-    <Base tag='img' {...filterProps(props)} width={size} height={size} circle={circle} baseStyle={{width: size, height: size}} />
+    <Base tag='img' class={[props.class, 'vui-avatar']} {...filterProps(props)} width={size} height={size} circle={circle} baseStyle={{width: size, height: size}} />
   )
 }
 

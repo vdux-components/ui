@@ -49,12 +49,13 @@ function render ({props}) {
   const filteredProps = filterProps(props)
 
   return (
-    <Block class={['input-container', classes.container]} baseStyle={getRootStyle(props, $theme)} style={containerStyle} {...containerProps}>
+    <Block class='vui-input-container' class={classes.container} baseStyle={getRootStyle(props, $theme)} style={containerStyle} {...containerProps}>
       <label for={name} class={['label', classes.label]} style={labelStyle}>
         {label}
       </label>
       <Base
         tag='input'
+        class={[props.class, 'vui-input']}
         type={type}
         class={['input', classes.input]}
         baseStyle={getStyle(props, props.$theme)}

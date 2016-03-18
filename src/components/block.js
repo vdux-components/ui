@@ -39,8 +39,10 @@ function getProps (props, context = {}) {
  */
 
 function render ({props, children}) {
+  const {baseStyle = {}} = props
+
   return (
-    <Base {...filterProps(props)} baseStyle={getStyle(props, props.$theme)}>
+    <Base {...filterProps(props)} class={[props.class, 'vui-block']} baseStyle={{...getStyle(props, props.$theme), ...baseStyle}}>
       {children}
     </Base>
   )
