@@ -7,7 +7,7 @@ Flexbox layout cell (ported to vdux with some modifications from [reflexbox](htt
 You can use `<Box/>` in conjunction with the `<Flex/>` component to achieve flexbox based layouts:
 
 ```javascript
-import {Flex, Box} from 'vdux-layout'
+import {Flex, Box} from 'vdux-ui'
 
 function render ({props}) {
   const {items} = props

@@ -21,6 +21,7 @@ All of the components in vdux-ui are stateless and largely logicless. They are p
   * [Dropdown](https://github.com/vdux-components/ui/tree/master/docs/Dropdown.md) - Relatively positioned dropdown container.
   * [DropdownMenu](https://github.com/vdux-components/ui/tree/master/docs/DropdownMenu.md) - Dropdown menu component
   * [Fixed](https://github.com/vdux-components/ui/tree/master/docs/Fixed.md) - Fixed position container.
+  * [Grid](https://github.com/vdux-components/ui/tree/master/docs/Grid.md) - Grid, useful for pinterest-style tile feeds, etc.
   * [Icon](https://github.com/vdux-components/ui/tree/master/docs/Icon.md) - Font-based icon component
   * [Menu](https://github.com/vdux-components/ui/tree/master/docs/Menu.md) - Horizontal/vertical menus with spacing of menu items
   * [Text](https://github.com/vdux-components/ui/tree/master/docs/Text.md) - Render text according to your theme and some convenience options

@@ -11,6 +11,7 @@ import Fixed from './components/fixed'
 import Block from './components/block'
 import Input from './components/input'
 import Base from './components/base'
+import Grid from './components/grid'
 import Card from './components/card'
 import Text from './components/text'
 import Flex from './components/flex'
@@ -30,6 +31,7 @@ export {
   Box,
   Card,
   Flex,
+  Grid,
   Input,
   Text,
   Fixed,

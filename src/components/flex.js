@@ -37,7 +37,7 @@ function getProps (props, context = {}) {
  */
 
 function render ({props, children}) {
-  const {gutter, $theme} = props
+  const {gutter, $theme, column} = props
   const {scale} = $theme
   const extras = {}
 
@@ -46,7 +46,7 @@ function render ({props, children}) {
   }
 
   return (
-    <Base class={[props.class, 'vui-flex']} baseStyle={getStyle(props)} {...extras} {...filterProps(props)}>
+    <Base class={[props.class, 'vui-flex', column ? 'vui-flex-column' : 'vui-flex-row']} baseStyle={getStyle(props)} {...extras} {...filterProps(props)}>
       {children}
     </Base>
   )

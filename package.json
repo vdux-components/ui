@@ -15,9 +15,11 @@
     "@f/map": "^1.5.3",
     "@f/noop": "^1.2.0",
     "@f/omit": "^2.2.3",
-    "@f/pick": "^1.1.4"
+    "@f/pick": "^1.1.4",
+    "@f/reduce": "^1.0.0"
   },
   "devDependencies": {
+    "@f/times": "^1.0.0",
     "@f/trigger-event": "^1.0.2",
     "babel-cli": "^6.5.1",
     "babel-core": "^6.5.2",
