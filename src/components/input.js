@@ -7,7 +7,7 @@ import element from 'vdux/element'
 import Block from './block'
 import omit from '@f/omit'
 import pick from '@f/pick'
-import Base from './base'
+import Base from './Base'
 import Text from './text'
 
 /**
@@ -44,14 +44,14 @@ function getProps (props, context = {}) {
  * Input component
  */
 
-function render ({props}) {
+function render ({props, children}) {
   const {label, type = 'text', name, theme, rounded, inverted, bgColor, $theme, message, classes = {}, containerStyle, containerProps = {}, labelStyle} = props
   const filteredProps = filterProps(props)
 
   return (
     <Block class='vui-input-container' class={classes.container} baseStyle={getRootStyle(props, $theme)} style={containerStyle} {...containerProps}>
       <label for={name} class={['label', classes.label]} style={labelStyle}>
-        {label}
+        {label || children}
       </label>
       <Base
         tag='input'

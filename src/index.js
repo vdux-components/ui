@@ -2,22 +2,22 @@
  * Imports
  */
 
-import DropdownMenu from './components/dropdown-menu'
-import Dropdown from './components/dropdown'
+import DropdownMenu from './components/DropdownMenu'
+import Dropdown from './components/Dropdown'
 import defaultTheme from './default-theme'
-import Button from './components/button'
-import Avatar from './components/avatar'
-import Fixed from './components/fixed'
-import Block from './components/block'
-import Input from './components/input'
-import Base from './components/base'
-import Grid from './components/grid'
-import Card from './components/card'
-import Text from './components/text'
-import Flex from './components/flex'
-import Icon from './components/icon'
-import Menu from './components/menu'
-import Box from './components/box'
+import Button from './components/Button'
+import Avatar from './components/Avatar'
+import Fixed from './components/Fixed'
+import Block from './components/Block'
+import Input from './components/Input'
+import Base from './components/Base'
+import Grid from './components/Grid'
+import Card from './components/Card'
+import Text from './components/Text'
+import Flex from './components/Flex'
+import Icon from './components/Icon'
+import Menu from './components/Menu'
+import Box from './components/Box'
 
 /**
  * Exports

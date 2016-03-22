@@ -3,7 +3,7 @@
  */
 
 import element from 'vdux/element'
-import Base from './base'
+import Base from './Base'
 
 /**
  * Dropdown container component

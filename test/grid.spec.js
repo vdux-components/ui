@@ -12,7 +12,7 @@ import test from 'tape'
  * Tests
  */
 
-test.only('<Grid/> should work', t => {
+test('<Grid/> should work', t => {
   const {render} = vdux()
   let node
 

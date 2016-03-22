@@ -18,7 +18,7 @@ function FirstNameField () {
 
   * `rounded` - Boolean|String. Set roundedness.
   * `invalid` - Boolean. Whether the input is in a valid state
-  * `label` - String|VNode. The contents of the label you want
+  * `label` - String|VNode. The contents of the label you want. You can also specify this as the children of the input node.
   * `name` - String. Name of the input
   * `message` - String|VNode. A message to show (e.g. a validation error)
   * `containerStyle` - Style object to be applied to the input container
@@ -32,6 +32,10 @@ function FirstNameField () {
     * `input` - Input class
 
     Each of these properties may be an array/object describing multiple class names to add/remove.
+
+## API - children
+
+  The children of the input will be used as the `label` prop. This is just an alternate syntax for specifying label, there is no other difference.
 
 ## License
 

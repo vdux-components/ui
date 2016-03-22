@@ -7,7 +7,7 @@ import element from 'vdux/element'
 import {setScaled} from '../util'
 import omit from '@f/omit'
 import pick from '@f/pick'
-import Base from './base'
+import Base from './Base'
 
 /**
  * Constants

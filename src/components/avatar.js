@@ -6,7 +6,7 @@ import defaultTheme from '../default-theme'
 import element from 'vdux/element'
 import pick from '@f/pick'
 import omit from '@f/omit'
-import Base from './base'
+import Base from './Base'
 
 /**
  * Constants

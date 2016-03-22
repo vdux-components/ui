@@ -2,7 +2,7 @@
  * Imports
  */
 
-import Base from './base'
+import Base from './Base'
 import omit from '@f/omit'
 import element from 'vdux/element'
 
