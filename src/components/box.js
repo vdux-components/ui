@@ -30,7 +30,7 @@ function render ({props, children}) {
  * Helpers
  */
 
-function getStyle ({auto, flex}) {
+function getStyle ({flex}) {
   const result = {}
 
   if (flex) {

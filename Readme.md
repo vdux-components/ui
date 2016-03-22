@@ -18,6 +18,8 @@ All of the components in vdux-ui are stateless and largely logicless. They are p
   * [Block](https://github.com/vdux-components/ui/tree/master/docs/Block.md) - Box with some default padding/margin and optional borders
   * [Button](https://github.com/vdux-components/ui/tree/master/docs/Button.md) - Just a button
   * [Card](https://github.com/vdux-components/ui/tree/master/docs/Card.md) - Block with shadow and some extra styling.
+  * [Divider](https://github.com/vdux-components/ui/tree/master/docs/Divider.md) - Dividers for menus
+  * [DecoLine](https://github.com/vdux-components/ui/tree/master/docs/DecoLine.md) - Semi-transparent decorative line to put on top of visually rich backgrounds (similar to divider, but looks nicer on top of photos).
   * [Dropdown](https://github.com/vdux-components/ui/tree/master/docs/Dropdown.md) - Relatively positioned dropdown container.
   * [DropdownMenu](https://github.com/vdux-components/ui/tree/master/docs/DropdownMenu.md) - Dropdown menu component
   * [Fixed](https://github.com/vdux-components/ui/tree/master/docs/Fixed.md) - Fixed position container.

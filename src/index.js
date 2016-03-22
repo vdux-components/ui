@@ -4,6 +4,8 @@
 
 import DropdownMenu from './components/DropdownMenu'
 import Dropdown from './components/Dropdown'
+import DecoLine from './components/DecoLine'
+import Divider from './components/Divider'
 import defaultTheme from './default-theme'
 import Button from './components/Button'
 import Avatar from './components/Avatar'
@@ -40,6 +42,8 @@ export {
   Button,
   Dropdown,
   DropdownMenu,
+  DecoLine,
+  Divider,
 
   // Default theme
   defaultTheme

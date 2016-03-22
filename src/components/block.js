@@ -21,7 +21,8 @@ const filterProps = omit([
   'borderTop',
   'borderBottom',
   'borderLeft',
-  'borderRight'
+  'borderRight',
+  'textAlign'
 ])
 
 /**
@@ -53,7 +54,7 @@ function render ({props, children}) {
  */
 
 function getStyle (props, {colors, scale}) {
-  const {textAlign, border, borderColor, borderWidth = '1px', borderTop, borderBottom, borderLeft, borderRight} = props
+  const {textAlign, border, borderColor, borderWidth = '1px', borderTop, borderBottom, borderLeft, borderRight, width, height} = props
   const result = {}
 
   if (border) result.borderStyle = 'solid'

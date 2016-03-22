@@ -48,6 +48,8 @@ const filterProps = omit([
   'rounded',
   'wide',
   'tall',
+  'width',
+  'height',
 
   // Position
   'absolute',
@@ -103,7 +105,7 @@ function render ({props, children}) {
 
 function getStyle (props, {borderRadius, scale, colors, fontScale}) {
   const result = {}
-  const {style, baseStyle, wide, tall, fs, ellipsis, clear, float, cursor, pointer, transition, zIndex} = props
+  const {style, baseStyle, wide, tall, width, height, fs, ellipsis, clear, float, cursor, pointer, transition, zIndex} = props
 
   extend(result, baseStyle)
 
@@ -115,6 +117,8 @@ function getStyle (props, {borderRadius, scale, colors, fontScale}) {
 
   if (wide) result.width = '100%'
   if (tall) result.height = '100%'
+  if (width) result.width = width
+  if (height) result.height = height
   if (pointer) result.cursor = 'pointer'
   if (cursor) result.cursor = cursor
   if (zIndex) result.zIndex = zIndex

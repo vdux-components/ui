@@ -22,7 +22,8 @@ export default {
     info: baseColors.blue,
     success: baseColors.green,
     warning: baseColors.orange,
-    error: baseColors.red
+    error: baseColors.red,
+    divider: baseColors.black
   },
 
   iconTag: 'md-icon',
