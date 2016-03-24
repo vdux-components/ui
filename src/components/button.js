@@ -4,17 +4,17 @@
 
 import defaultTheme from '../default-theme'
 import element from 'vdux/element'
+import Block from './Block'
 import pick from '@f/pick'
 import omit from '@f/omit'
 import Icon from './icon'
-import Base from './Base'
 
 /**
  * Constants
  */
 
 const themeProps = ['scale']
-const filterProps = omit(['bgColor', 'color', 'inverted', 'type', 'text'])
+const filterProps = omit(['bgColor', 'color', 'inverted', 'type', 'text', 'noselect'])
 
 /**
  * getProps
@@ -33,7 +33,7 @@ function getProps (props, context = {}) {
 function render ({props, children}) {
   const {$theme, type = 'button', inverted = true, icon} = props
   const {scale = []} = $theme
-  let {text, color = 'white', px, py, bgColor = 'primary'} = props
+  let {text, color = 'white', bgColor = 'primary'} = props
 
   if (icon) {
     text = <Icon baseStyle={{fontSize: 'inherit'}} name={icon} />
@@ -41,10 +41,10 @@ function render ({props, children}) {
   }
 
   return (
-    <Base
+    <Block
       tag='button'
       class={[props.class, 'vui-button']}
-      baseStyle={{padding: icon ? 0 : null, margin: 0, border: 0, textDecoration: 'none'}}
+      baseStyle={getStyle(props)}
       color={color}
       bgColor={bgColor}
       type={type}
@@ -52,8 +52,24 @@ function render ({props, children}) {
       pointer
       {...filterProps(props)}>
       {text || children}
-    </Base>
+    </Block>
   )
+}
+
+/**
+ * Compute base styles
+ */
+
+function getStyle ({icon, noselect}) {
+  return {
+    cursor: 'pointer',
+    textAlign: 'center',
+    padding: icon ? 0 : null,
+    margin: 0,
+    border: 0,
+    userSelect: noselect ? 'none' : null,
+    textDecoration: 'none'
+  }
 }
 
 /**

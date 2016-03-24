@@ -43,7 +43,7 @@ function render ({props, children}) {
   const {baseStyle = {}} = props
 
   return (
-    <Base {...filterProps(props)} class={[props.class, 'vui-block']} baseStyle={{...getStyle(props, props.$theme), ...baseStyle}}>
+    <Base {...filterProps(props)} class={[props.class, 'vui-block']} baseStyle={{ ...baseStyle, ...getStyle(props, props.$theme)}}>
       {children}
     </Base>
   )
@@ -57,7 +57,13 @@ function getStyle (props, {colors, scale}) {
   const {textAlign, border, borderColor, borderWidth = '1px', borderTop, borderBottom, borderLeft, borderRight, width, height} = props
   const result = {}
 
-  if (border) result.borderStyle = 'solid'
+  if (border) {
+    result.borderStyle = 'solid'
+    if (typeof border === 'string') {
+      setScaled(result, 'borderColor', border, colors)
+    }
+  }
+
   if (borderTop) {
     result.borderTopStyle = 'solid'
     if (typeof borderTop === 'string') {

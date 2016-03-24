@@ -24,6 +24,7 @@ function SearchButton ({props}) {
   * `icon` - An icon name, to be rendered inside of an `<Icon/>` component as the inner contents of the button.
   * `inverted` - Defaults to true - if you set it to false, then `color`/`theme` will be flipped.
   * `theme` - Set the color theme (if inverted is true, this is the background color)
+  * `noselect` - Boolean. Set this to true to set `user-select: none`, and prevent the user from selecting the text.
 
 ## License
 

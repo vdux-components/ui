@@ -88,6 +88,9 @@ Lastly, you can use object syntax if you want as well:
 
   * `wide` - Sets `width: 100%`
   * `tall` - Sets `height: 100%`
+  * `square` - Set width/height simultaneously
+  * `width` - Set width
+  * `height` - Set height
   * `fs` - Font size. Sets the `font-size` css property.
   * `ellipsis` - Boolean. Sets `text-overflow: ellipsis`.
   * `clear` - Boolean|String. If `true` sets `clear: both`. Otherwise sets the clear attribute to the value passed.
