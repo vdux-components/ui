@@ -23,7 +23,9 @@ const filterProps = omit([
   '$theme',
   'weight',
   'italic',
-  'transform'
+  'transform',
+  'antialiased',
+  'letterSpacing'
 ])
 
 /**
@@ -56,12 +58,14 @@ function render ({props, children}) {
 
 function getStyle (props, theme) {
   const {fonts, weightScale, lineHeightScale} = theme
-  const {italic, bold, weight, transform, font, lh, center, left, right} = props
+  const {italic, bold, weight, transform, letterSpacing, font, lh, center, left, right, antialiased} = props
   const result = {}
 
   if (italic) result.fontStyle = 'italic'
   if (transform) result.textTransform = transform
   if (bold) result.fontWeight = theme.bold || 'bold'
+  if (antialiased) result['-webkit-font-smoothing'] = 'antialiased'
+  if (letterSpacing) result.letterSpacing = letterSpacing
 
   setScaled(result, 'fontFamily', font, fonts)
   setScaled(result, 'fontWeight', weight, weightScale)

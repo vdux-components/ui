@@ -41,6 +41,7 @@ const filterProps = omit([
   'bgColor',
   'inverted',
   'theme',
+  'opacity',
 
   // Shape
   'circle',
@@ -48,9 +49,9 @@ const filterProps = omit([
   'rounded',
   'wide',
   'tall',
-  'width',
-  'height',
-  'square',
+  'w',
+  'h',
+  'sq',
 
   // Position
   'absolute',
@@ -106,7 +107,7 @@ function render ({props, children}) {
 
 function getStyle (props, {borderRadius, scale, colors, fontScale}) {
   const result = {}
-  const {style, baseStyle, wide, tall, width, height, square, fs, ellipsis, clear, float, cursor, pointer, transition, zIndex} = props
+  const {style, baseStyle, wide, tall, opacity, w, h, sq, fs, ellipsis, clear, float, cursor, pointer, transition, zIndex} = props
 
   extend(result, baseStyle)
 
@@ -118,13 +119,11 @@ function getStyle (props, {borderRadius, scale, colors, fontScale}) {
 
   if (wide) result.width = '100%'
   if (tall) result.height = '100%'
-  if (width) result.width = width
-  if (height) result.height = height
-  if (square) result.width = result.height = square
   if (pointer) result.cursor = 'pointer'
   if (cursor) result.cursor = cursor
   if (zIndex) result.zIndex = zIndex
   if (transition) result.transition = transition
+  if (opacity !== 'undefined') result.opacity = opacity
   if (ellipsis) {
     result.whiteSpace = 'nowrap'
     result.textOverflow = 'ellipsis'
@@ -137,6 +136,11 @@ function getStyle (props, {borderRadius, scale, colors, fontScale}) {
       ? 'both'
       : clear
   }
+
+  setScaled(result, 'width', sq, scale)
+  setScaled(result, 'height', sq, scale)
+  setScaled(result, 'width', w, scale)
+  setScaled(result, 'height', h, scale)
 
   setScaled(result, 'fontSize', fs, fontScale)
   extend(result, style)

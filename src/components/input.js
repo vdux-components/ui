@@ -3,6 +3,7 @@
  */
 
 import defaultTheme from '../default-theme'
+import inputAttrs from '@f/input-attrs'
 import element from 'vdux/element'
 import Block from './block'
 import omit from '@f/omit'
@@ -15,7 +16,7 @@ import Text from './text'
  */
 
 const themeProps = ['colors', 'scale']
-const filterProps = omit([
+const inputProps = [
   'invalid',
   'label',
   'type',
@@ -24,11 +25,10 @@ const filterProps = omit([
   'inverted',
   'bgColor',
   'theme',
-  'classes',
-  'containerStyle',
   'labelStyle',
-  'border',
-])
+  'border'
+].concat(inputAttrs)
+const filterProps = omit(inputProps)
 
 /**
  * getProps
@@ -45,29 +45,25 @@ function getProps (props, context = {}) {
  */
 
 function render ({props, children}) {
-  const {label, type = 'text', name, theme, rounded, inverted, bgColor, $theme, message, classes = {}, containerStyle, containerProps = {}, labelStyle} = props
+  const {label, type = 'text', $theme, message, name, labelClass, inputClass, labelStyle, inputStyle = {}} = props
   const filteredProps = filterProps(props)
+  const restInputAttrs = pick(inputProps, props)
 
   return (
-    <Block class='vui-input-container' class={classes.container} baseStyle={getRootStyle(props, $theme)} style={containerStyle} {...containerProps}>
-      <label for={name} class={['label', classes.label]} style={labelStyle}>
+    <Block baseStyle={getRootStyle(props, $theme)} class={[props.class, 'vui-input-container']} {...filteredProps}>
+      <label for={name} class={['label', labelClass]} style={labelStyle}>
         {label || children}
       </label>
       <Base
         tag='input'
-        class={[props.class, 'vui-input']}
-        type={type}
-        class={['input', classes.input]}
+        {...restInputAttrs}
         baseStyle={getStyle(props, props.$theme)}
-        name={name}
-        rounded={rounded}
-        inverted={inverted}
-        theme={theme}
-        bgColor={bgColor}
-        {...filteredProps}
+        style={inputStyle}
+        class={['vui-input', inputClass]}
+        type={type}
         />
         {
-          message && <Text fs={1}>{message}</Text>
+          message && <Text fs='s'>{message}</Text>
         }
     </Block>
   )
@@ -79,7 +75,8 @@ function render ({props, children}) {
 
 function getRootStyle ({invalid}, {scale, colors}) {
   return {
-    marginBottom: scale[2],
+    marginBottom: scale.s,
+    position: 'relative',
     color: invalid ? colors.error : null
   }
 }

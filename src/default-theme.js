@@ -35,23 +35,23 @@ export default {
   borderRadius: 2,
   cardShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.2)',
 
-  scale: [
-    0,
-    8,
-    16,
-    32,
-    64
-  ],
+  scale: {
+    z: 0,
+    s: 8,
+    m: 16,
+    l: 32,
+    xl: 64
+  },
 
-  fontScale: [
-    48,
-    32,
-    24,
-    20,
-    16,
-    14,
-    12
-  ],
+  fontScale: {
+    xxl: 48,
+    xl: 32,
+    l: 24,
+    m: 20,
+    s: 16,
+    xs: 14,
+    xxs: 12
+  },
 
   zIndex: [
     0,

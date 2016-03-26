@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@f/has": "^1.0.0",
+    "@f/input-attrs": "^1.0.0",
     "@f/map": "^1.5.3",
     "@f/noop": "^1.2.0",
     "@f/omit": "^2.2.3",

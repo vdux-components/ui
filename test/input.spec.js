@@ -30,7 +30,7 @@ test('<Input/> should work', t => {
   t.equal(label.getAttribute('for'), 'test')
   t.equal(label.textContent, 'some text')
 
-  node = render(<Input classes={{input: 'inpt', label: 'lbl', container: 'cnt'}} />)
+  node = render(<Input class='cnt' inputClass='inpt' labelClass='lbl' />)
   t.ok(node.classList.contains('cnt'))
   t.ok(node.firstChild.classList.contains('lbl'))
   t.ok(node.firstChild.nextSibling.classList.contains('inpt'))

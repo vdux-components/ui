@@ -14,18 +14,18 @@ import Text from './Text'
  */
 
 function render ({props, children}) {
-  const {divider = true, logo, logoSize = '25px', height = '43px', ...btnProps} = props
+  const {divider = true, logo, logoSize = '25px', h = '43px', ...btnProps} = props
 
   return (
-    <Button rounded height={height} px='5px' {...btnProps}>
-      <Flex align='center center' height='100%'>
-        <Base tag='img' square={logoSize} mr='6px' src={logo} />
+    <Button rounded h={h} px='5px' {...btnProps}>
+      <Flex align='start center' tall>
+        <Base tag='img' sq={logoSize} mr='6px' src={logo} />
         {
           divider === true
-            ? <Block height='100%' borderLeft='rgba(52, 52, 52, 0.08)' />
+            ? <Block h='100%' borderLeft='rgba(52, 52, 52, 0.08)' />
             : divider
         }
-        <Text mx='5px'>
+        <Text mx='auto'>
           {children}
         </Text>
       </Flex>

@@ -21,12 +21,12 @@ test('<Base/> should work', t => {
   node = render(<Base bgColor='black'/>)
   t.equal(node.style.backgroundColor, 'rgb(17, 17, 17)')
 
-  node = render(<Base px={1} />)
-  t.equal(node.style.paddingLeft, defaultTheme.scale[1] + 'px')
-  t.equal(node.style.paddingRight, defaultTheme.scale[1] + 'px')
+  node = render(<Base px='s' />)
+  t.equal(node.style.paddingLeft, defaultTheme.scale.s + 'px')
+  t.equal(node.style.paddingRight, defaultTheme.scale.s + 'px')
 
-  node = render(<Base mt={1} />)
-  t.equal(node.style.marginTop, defaultTheme.scale[1] + 'px')
+  node = render(<Base mt='s' />)
+  t.equal(node.style.marginTop, defaultTheme.scale.s + 'px')
   t.equal(node.style.marginBottom, '')
 
   node = render(<Base circle={true} />)

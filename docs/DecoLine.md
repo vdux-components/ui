@@ -10,9 +10,9 @@ function render () {
     <Flex column>
       <Button>Create Account</Button>
       <Flex>
-        <DecoLine width='36%' />
+        <DecoLine w='36%' />
         or
-        <DecoLine width='36%' />
+        <DecoLine w='36%' />
       </Flex>
       <Button>Sign in with Google</Button>
     </Flex>
