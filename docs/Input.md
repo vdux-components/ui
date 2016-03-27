@@ -22,6 +22,7 @@ function FirstNameField () {
   * `name` - String. Name of the input
   * `message` - String|VNode. A message to show (e.g. a validation error)
   * `containerStyle` - Style object to be applied to the input container
+  * `inputStyle` - Style object to be applied to the raw `<input>` tag
   * `labelStyle` - Style object to be applied to the label
   * `containerProps` - Props to pass to the container element
   * `border` - Boolean. Indicates whether or not the input should have a border.
