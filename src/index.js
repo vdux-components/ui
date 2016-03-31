@@ -7,6 +7,7 @@ import LogoButton from './components/LogoButton'
 import Dropdown from './components/Dropdown'
 import DecoLine from './components/DecoLine'
 import Divider from './components/Divider'
+import Tooltip from './components/Tooltip'
 import defaultTheme from './default-theme'
 import Button from './components/Button'
 import Avatar from './components/Avatar'
@@ -46,6 +47,7 @@ export {
   DropdownMenu,
   DecoLine,
   Divider,
+  Tooltip,
 
   // Default theme
   defaultTheme

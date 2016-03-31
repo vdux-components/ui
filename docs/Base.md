@@ -94,7 +94,7 @@ Lastly, you can use object syntax if you want as well:
 
 ### Miscellaneous
 
-  * `fs` - Font size. Sets the `font-size` css property.
+  * `fs` - Font size. Sets the `font-size` css property. This will also be used to select line heights from your `lineHeightScale` theme property, if they share a key. However, you can always explicitly override this by passing an `lh` prop.
   * `ellipsis` - Boolean. Sets `text-overflow: ellipsis`.
   * `clear` - Boolean|String. If `true` sets `clear: both`. Otherwise sets the clear attribute to the value passed.
   * `cursor` - String. Set cursor.

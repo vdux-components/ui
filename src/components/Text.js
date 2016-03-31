@@ -46,7 +46,7 @@ function render ({props, children}) {
   const {tag = 'span', $theme} = props
 
   return (
-    <Base tag={tag} class={[props.class, 'vui-text']} baseStyle={getStyle(props, $theme)} {...filterProps(props)}>
+    <Base tag={tag} baseStyle={getStyle(props, $theme)} {...filterProps(props)} class={[props.class, 'vui-text']}>
       {children}
     </Base>
   )
@@ -58,7 +58,7 @@ function render ({props, children}) {
 
 function getStyle (props, theme) {
   const {fonts, weightScale, lineHeightScale} = theme
-  const {italic, bold, weight, transform, letterSpacing, font, lh, center, left, right, antialiased} = props
+  const {italic, bold, weight, transform, letterSpacing, font, center, left, right, antialiased} = props
   const result = {}
 
   if (italic) result.fontStyle = 'italic'
@@ -69,7 +69,6 @@ function getStyle (props, theme) {
 
   setScaled(result, 'fontFamily', font, fonts)
   setScaled(result, 'fontWeight', weight, weightScale)
-  setScaled(result, 'lineHeight', lh, lineHeightScale)
 
   return result
 }

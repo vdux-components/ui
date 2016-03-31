@@ -30,12 +30,13 @@ function render ({props, children}) {
  * Helpers
  */
 
-function getStyle ({flex}) {
+function getStyle ({flex, col}) {
   const result = {}
 
   if (flex) {
     if (flex === true) flex = 'auto'
     result.flex = `1 1 ${flex}`
+    result['max' + (col ? 'Height' : 'Width')] = flex
   }
 
   return result

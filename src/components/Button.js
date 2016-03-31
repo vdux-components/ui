@@ -13,7 +13,7 @@ import Icon from './icon'
  * Constants
  */
 
-const themeProps = ['scale']
+const themeProps = ['scale', 'colors']
 const filterProps = omit(['bgColor', 'color', 'inverted', 'type', 'text', 'noselect'])
 
 /**
@@ -32,8 +32,8 @@ function getProps (props, context = {}) {
 
 function render ({props, children}) {
   const {$theme, type = 'button', inverted = true, icon} = props
-  const {scale = []} = $theme
-  let {text, color = 'white', bgColor = 'primary'} = props
+  const {scale = {}, colors = {}} = $theme
+  let {text, color = 'white', bgColor = 'primary', hovering} = props
 
   if (icon) {
     text = <Icon baseStyle={{fontSize: 'inherit'}} name={icon} />
@@ -61,7 +61,10 @@ function render ({props, children}) {
  */
 
 function getStyle ({icon, noselect}) {
+
   return {
+    position: 'relative',
+    overflow: 'visible',
     cursor: 'pointer',
     textAlign: 'center',
     padding: icon ? 0 : null,

@@ -17,7 +17,7 @@ function render ({props, children}) {
   const {divider = true, logo, logoSize = '25px', h = '43px', ...btnProps} = props
 
   return (
-    <Button rounded h={h} px='5px' {...btnProps}>
+    <Button class={[props.class, 'vui-logo-button']} rounded h={h} px='5px' {...btnProps}>
       <Flex align='start center' tall>
         <Base tag='img' sq={logoSize} mr='6px' src={logo} />
         {

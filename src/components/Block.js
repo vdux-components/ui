@@ -43,7 +43,7 @@ function render ({props, children}) {
   const {baseStyle = {}} = props
 
   return (
-    <Base {...filterProps(props)} class={[props.class, 'vui-block']} baseStyle={{ ...baseStyle, ...getStyle(props, props.$theme)}}>
+    <Base {...filterProps(props)} class={[props.class, 'vui-block']} baseStyle={{...baseStyle, ...getStyle(props, props.$theme)}}>
       {children}
     </Base>
   )

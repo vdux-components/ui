@@ -37,6 +37,7 @@ export default {
 
   scale: {
     z: 0,
+    xs: 4,
     s: 8,
     m: 16,
     l: 32,
@@ -53,11 +54,16 @@ export default {
     xxs: 12
   },
 
-  zIndex: [
-    0,
-    2,
-    4,
-    8,
-    16
-  ]
+  lineHeightScale: {
+    xxl: '1.2em',
+    xl: '1.2em',
+    l: '1.2em',
+    s: '1.4em',
+    xs: '1.2em',
+    xxs: '1.2em'
+  },
+
+  zIndex: {
+    tooltip: 99999
+  }
 }

@@ -7,12 +7,13 @@ import defaultTheme from '../default-theme'
 import element from 'vdux/element'
 import pick from '@f/pick'
 import omit from '@f/omit'
+import has from '@f/has'
 
 /**
  * Constants
  */
 
-const themeProps = ['borderRadius', 'colors', 'scale', 'fontScale', 'zIndex']
+const themeProps = ['borderRadius', 'colors', 'scale', 'fontScale', 'zIndex', 'lineHeightScale']
 const filterProps = omit([
   // Padding
   'p',
@@ -34,11 +35,13 @@ const filterProps = omit([
 
   // Text
   'fs',
+  'lh',
   'ellipsis',
 
   // Color
   'color',
   'bgColor',
+  'bg',
   'inverted',
   'theme',
   'opacity',
@@ -72,8 +75,10 @@ const filterProps = omit([
   // Element / Theme
   'zIndex',
   'tag',
+  'hidden',
   'style',
   'baseStyle',
+  'inlineBlock',
   '$theme'
 ])
 
@@ -105,9 +110,13 @@ function render ({props, children}) {
  * Helpers
  */
 
-function getStyle (props, {borderRadius, scale, colors, fontScale}) {
+function getStyle (props, {borderRadius, scale, colors, fontScale, lineHeightScale}) {
   const result = {}
-  const {style, baseStyle, wide, tall, opacity, w, h, sq, fs, ellipsis, clear, float, cursor, pointer, transition, zIndex} = props
+  const {
+    style, inlineBlock, baseStyle, wide, tall, hidden, opacity,
+    lh, w, h, sq, fs, ellipsis, clear, float, cursor, pointer,
+    transition, zIndex
+  } = props
 
   extend(result, baseStyle)
 
@@ -123,13 +132,15 @@ function getStyle (props, {borderRadius, scale, colors, fontScale}) {
   if (cursor) result.cursor = cursor
   if (zIndex) result.zIndex = zIndex
   if (transition) result.transition = transition
-  if (opacity !== 'undefined') result.opacity = opacity
+  if (opacity !== undefined) result.opacity = opacity
+  if (hidden) result.visibility = 'hidden'
   if (ellipsis) {
     result.whiteSpace = 'nowrap'
     result.textOverflow = 'ellipsis'
     result.overflow = 'hidden'
   }
 
+  if (inlineBlock) result.display = 'inline-block'
   if (float) result.float = float
   if (clear) {
     result.clear = clear === true
@@ -143,6 +154,12 @@ function getStyle (props, {borderRadius, scale, colors, fontScale}) {
   setScaled(result, 'height', h, scale)
 
   setScaled(result, 'fontSize', fs, fontScale)
+
+  // Use the font-size to set the line-height as well, but
+  // allow it to be overriden by an explicit line-height
+  if (has(fs, lineHeightScale)) result.lineHeight = lineHeightScale[fs]
+  setScaled(result, 'lineHeight', lh, lineHeightScale)
+
   extend(result, style)
 
   return result

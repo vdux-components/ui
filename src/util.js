@@ -9,7 +9,7 @@ import has from '@f/has'
  */
 
 function colorStyle (result, props, colors) {
-  const {color, bgColor, inverted, theme} = props
+  const {color, bg, bgColor, inverted, theme} = props
 
   if (color) {
     setScaled(result, 'color', color, colors)
@@ -17,6 +17,15 @@ function colorStyle (result, props, colors) {
 
   if (bgColor) {
     setScaled(result, 'backgroundColor', bgColor, colors)
+  }
+
+  if (bg) {
+    // Set the color string from our palette if it
+    // exists
+    result.background = bg
+      .split(' ')
+      .map(p => has(p, colors) ? colors[p] : p)
+      .join(' ')
   }
 
   if (theme && colors[theme]) {
