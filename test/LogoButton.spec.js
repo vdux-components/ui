@@ -12,7 +12,7 @@ import test from 'tape'
  */
 
 test('<LogoButton/> should work', t => {
-  const {render, subscribe} = vdux()
+  const {render} = vdux()
   let node
 
   node = render(<LogoButton logo='test/img.jpg' />)

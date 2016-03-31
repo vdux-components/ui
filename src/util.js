@@ -3,6 +3,7 @@
  */
 
 import has from '@f/has'
+import Color from 'color'
 
 /**
  * Style computation utilities
@@ -169,6 +170,15 @@ function position (obj, {absolute, relative, fixed}, scale) {
   return obj
 }
 
+function highlightColor (color, colors = {}, amount = 0.1) {
+  if (color === 'transparent') return color
+  const clr = Color(has(color, colors) ? colors[color] : color)
+
+  return clr.light()
+    ? clr.darken(amount).rgbaString()
+    : clr.lighten(amount).rgbaString()
+}
+
 function extend (dest, src) {
   if (src) {
     for (var key in src) {
@@ -190,5 +200,6 @@ export {
   margin,
   extend,
   position,
-  setScaled
+  setScaled,
+  highlightColor
 }

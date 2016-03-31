@@ -12,7 +12,7 @@ import test from 'tape'
  */
 
 test('<Tooltip/> should work', t => {
-  const {render, subscribe} = vdux()
+  const {render} = vdux()
   let node
 
   node = render(<Tooltip />)
@@ -25,3 +25,21 @@ test('<Tooltip/> should work', t => {
 
   t.end()
 })
+
+test('<Tooltip/> should use theme colors for the arrow', t => {
+  const {render} = vdux()
+  let node
+
+  node = render(<Tooltip show={true} bgColor='blue' />)
+  t.equal($('.vui-tooltip-arrow').style.borderTopColor, 'rgb(0, 136, 238)')
+
+  t.end()
+})
+
+/**
+ * Helpers
+ */
+
+function $ (selector) {
+  return document.querySelector(selector)
+}

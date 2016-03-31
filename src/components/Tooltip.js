@@ -7,19 +7,37 @@ import Position from 'vdux-position'
 import element from 'vdux/element'
 import Block from './Block'
 import omit from '@f/omit'
+import pick from '@f/pick'
+import has from '@f/has'
 
 /**
  * Constants
  */
 
+const themeProps = ['colors']
 const filterProps = omit(['placement', 'space', 'bgColor', 'color', 'show', 'class'])
+
+/**
+ * getProps - Grab theme properties
+ */
+
+function getProps (props, context = {}) {
+  const {uiTheme = {}} = context
+  props.$theme = pick(themeProps, uiTheme, defaultTheme)
+
+  return props
+}
 
 /**
  * Tooltip
  */
 
 function render ({props, children}) {
-  const {placement = 'top', space = 0, bgColor = 'black', color = 'white', show} = props
+  const {placement = 'top', space = 0, color = 'white', show, $theme} = props
+  const {colors = {}} = $theme
+  let {bgColor = 'black'} = props
+
+  bgColor = has(bgColor, colors) ? colors[bgColor] : bgColor
 
   return (
     <Position placement={placement} space={space} disable={!show}>
@@ -109,5 +127,6 @@ function getArrowStyle (placement, color) {
  */
 
 export default {
+  getProps,
   render
 }
