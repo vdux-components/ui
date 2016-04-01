@@ -31,7 +31,7 @@ test('<Fixed/> should work', t => {
   t.equal(node.style.position, 'fixed')
   t.equal(node.style.right, '0px')
 
-  node = render(<Fixed zIndex={2} />)
+  node = render(<Fixed z={2} />)
   t.equal(node.style.position, 'fixed')
   t.equal(node.style.zIndex, '2')
 

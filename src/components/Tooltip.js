@@ -41,9 +41,9 @@ function render ({props, children}) {
 
   return (
     <Position placement={placement} space={space} disable={!show}>
-      <Block baseStyle={getStyle(props)} class={['vui-tooltip', props.class]}>
+      <Block z='tooltip' baseStyle={getStyle(props)} class={['vui-tooltip', props.class]}>
         <Block class='vui-tooltip-arrow' baseStyle={getBaseArrowStyle(props)} style={getArrowStyle(placement, bgColor)} />
-        <Block class='vui-tooltip-inner' baseStyle={{maxWidth: 200}} fs='xxs' py={6} px={9} rounded {...filterProps(props)} bgColor={bgColor} color={color}>
+        <Block class='vui-tooltip-inner' fs='xxs' py={6} px={9} rounded {...filterProps(props)} bgColor={bgColor} color={color}>
           {children}
         </Block>
       </Block>
@@ -68,7 +68,8 @@ function getStyle ({show}) {
     top: -10000,
     opacity: show ? 1 : 0,
     transition: 'opacity .15s linear',
-    '-webkit-transition': 'opacity .15s linear'
+    '-webkit-transition': 'opacity .15s linear',
+    whiteSpace: 'nowrap'
   }
 }
 

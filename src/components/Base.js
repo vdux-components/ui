@@ -13,7 +13,7 @@ import has from '@f/has'
  * Constants
  */
 
-const themeProps = ['borderRadius', 'colors', 'scale', 'fontScale', 'zIndex', 'lineHeightScale']
+const themeProps = ['borderRadius', 'colors', 'scale', 'fontScale', 'zIndexScale', 'lineHeightScale']
 const filterProps = omit([
   // Padding
   'p',
@@ -73,7 +73,7 @@ const filterProps = omit([
   'transition',
 
   // Element / Theme
-  'zIndex',
+  'z',
   'tag',
   'hidden',
   'style',
@@ -110,12 +110,12 @@ function render ({props, children}) {
  * Helpers
  */
 
-function getStyle (props, {borderRadius, scale, colors, fontScale, lineHeightScale}) {
+function getStyle (props, {borderRadius, scale, colors, fontScale, lineHeightScale, zIndexScale}) {
   const result = {}
   const {
     style, inlineBlock, baseStyle, wide, tall, hidden, opacity,
     lh, w, h, sq, fs, ellipsis, clear, float, cursor, pointer,
-    transition, zIndex
+    transition, z
   } = props
 
   extend(result, baseStyle)
@@ -130,7 +130,6 @@ function getStyle (props, {borderRadius, scale, colors, fontScale, lineHeightSca
   if (tall) result.height = '100%'
   if (pointer) result.cursor = 'pointer'
   if (cursor) result.cursor = cursor
-  if (zIndex) result.zIndex = zIndex
   if (transition) result.transition = transition
   if (opacity !== undefined) result.opacity = opacity
   if (hidden) result.visibility = 'hidden'
@@ -153,6 +152,7 @@ function getStyle (props, {borderRadius, scale, colors, fontScale, lineHeightSca
   setScaled(result, 'width', w, scale)
   setScaled(result, 'height', h, scale)
 
+  setScaled(result, 'zIndex', z, zIndexScale)
   setScaled(result, 'fontSize', fs, fontScale)
 
   // Use the font-size to set the line-height as well, but

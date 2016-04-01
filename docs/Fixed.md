@@ -26,7 +26,7 @@ function Nav () {
   * `bottom` - Boolean. Fix it to the bottom of the screen (sets `bottom: 0`)
   * `left` - Boolean. Fix it to the left side of the screen (sets `left: 0`)
   * `right` - Boolean. Fix it to the right side of the screen (sets `right: 0`)
-  * `zIndex` - Set the z-index.
+  * `z` - Set the z-index.
 
 ## License
 

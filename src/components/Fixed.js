@@ -43,7 +43,6 @@ function getStyle ({top, right, bottom, left, zIndex}) {
   if (right) result.right = 0
   if (bottom) result.bottom = 0
   if (left) result.left = 0
-  if (zIndex !== undefined) result.zIndex = zIndex
 
   return result
 }

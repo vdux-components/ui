@@ -63,7 +63,7 @@ export default {
     xxs: '1.2em'
   },
 
-  zIndex: {
+  zIndexScale: {
     tooltip: 99999
   }
 }
