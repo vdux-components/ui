@@ -2,9 +2,8 @@
  * Imports
  */
 
-import defaultTheme from '../default-theme'
+import {getThemeProps} from '../util'
 import element from 'vdux/element'
-import pick from '@f/pick'
 import omit from '@f/omit'
 import Text from './text'
 
@@ -12,18 +11,8 @@ import Text from './text'
  * Constants
  */
 
-const themeProps = ['iconTag', 'iconClass']
+const getProps = getThemeProps(['iconTag', 'iconClass'])
 const filterProps = omit(['name'])
-
-/**
- * getProps
- */
-
-function getProps (props, context = {}) {
-  const {uiTheme = {}} = context
-  props.$theme = pick(themeProps, uiTheme, defaultTheme)
-  return props
-}
 
 /**
  * Icon
@@ -34,7 +23,7 @@ function render ({props}) {
   const {iconTag, iconClass} = $theme
 
   return (
-    <Text class={[props.class, 'vui-icon']} tag={iconTag} {...props} class={[iconClass, props.class]}>
+    <Text tag={iconTag} {...props} class={[iconClass, 'vui-icon', props.class]}>
       {props.name}
     </Text>
   )

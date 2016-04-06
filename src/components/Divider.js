@@ -2,9 +2,8 @@
  * Imports
  */
 
-import defaultTheme from '../default-theme'
+import {getThemeProps} from '../util'
 import element from 'vdux/element'
-import pick from '@f/pick'
 import omit from '@f/omit'
 import Base from './Base'
 
@@ -12,20 +11,10 @@ import Base from './Base'
  * Filter props
  */
 
-const themeProps = ['colors']
+const getProps = getThemeProps(['colors'])
 const filterProps = omit([
   'color'
 ])
-
-/**
- * getProps
- */
-
-function getProps (props, context = {}) {
-  const {uiTheme = {}} = context
-  props.$theme = pick(themeProps, uiTheme, defaultTheme)
-  return props
-}
 
 /**
  * Divider component

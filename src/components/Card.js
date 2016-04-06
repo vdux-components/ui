@@ -2,27 +2,16 @@
  * Imports
  */
 
-import defaultTheme from '../default-theme'
+import {getThemeProps} from '../util'
 import element from 'vdux/element'
-import pick from '@f/pick'
 import omit from '@f/omit'
 import Base from './Base'
 
 /**
- * Prop filtering
+ * Constants
  */
 
-const themeProps = ['cardShadow', 'colors']
-
-/**
- * getProps
- */
-
-function getProps (props, context = {}) {
-  const {uiTheme = {}} = context
-  props.$theme = pick(themeProps, uiTheme, defaultTheme)
-  return props
-}
+const getProps = getThemeProps(['cardShadow', 'colors'])
 
 /**
  * Card component

@@ -2,10 +2,9 @@
  * Imports
  */
 
-import defaultTheme from '../default-theme'
+import {getThemeProps} from '../util'
 import element from 'vdux/element'
 import Block from './block'
-import pick from '@f/pick'
 import omit from '@f/omit'
 import Flex from './flex'
 import map from '@f/map'
@@ -14,30 +13,20 @@ import map from '@f/map'
  * Constants
  */
 
-const themeProps = ['scale']
-const filterProps = omit(['spacing', 'itemStyle'])
-
-/**
- * getProps
- */
-
-function getProps (props, context = {}) {
-  const {uiTheme = {}} = context
-  props.$theme = pick(themeProps, uiTheme, defaultTheme)
-  return props
-}
+const getProps = getThemeProps(['scale'])
+const filterProps = omit(['spacing', 'itemStyle', 'itemProps', 'class'])
 
 /**
  * Menu component
  */
 
 function render ({props, children}) {
-  const {itemStyle, $theme} = props
+  const {itemStyle, itemProps = {}, $theme} = props
 
   return (
-    <Flex class={[props.class, 'vui-menu']} {...filterProps(props)}>
+    <Flex {...filterProps(props)} class={[props.class, 'vui-menu']}>
       {
-        map(child => <Block baseStyle={getBaseItemStyle(props, $theme)} style={itemStyle}>{child}</Block>, children)
+        map(child => <Block {...itemProps} baseStyle={getBaseItemStyle(props, $theme)} style={itemStyle}>{child}</Block>, children)
       }
     </Flex>
   )

@@ -3,7 +3,7 @@
  */
 
 import element from 'vdux/element'
-import {LogoButton} from '../src'
+import {IconButton} from '../src'
 import vdux from 'vdux/dom'
 import test from 'tape'
 
@@ -11,13 +11,16 @@ import test from 'tape'
  * Tests
  */
 
-test('<LogoButton/> should work', t => {
+test('<IconButton/> should work', t => {
   const {render} = vdux()
   let node
 
-  node = render(<LogoButton logo='test/img.jpg' />)
+  node = render(<IconButton img='test/img.jpg' />)
   t.equal($('img').getAttribute('src'), 'test/img.jpg')
-  t.equal($('.vui-logo-button'), node)
+  t.equal($('.vui-icon-button'), node)
+
+  node = render(<IconButton icon='person' />)
+  t.equal($('.vui-icon').innerText, 'person')
 
   t.end()
 })

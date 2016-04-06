@@ -23,17 +23,18 @@ export default {
     success: baseColors.green,
     warning: baseColors.orange,
     error: baseColors.red,
-    divider: baseColors.black
+    divider: baseColors.black,
+    text: baseColors.black
   },
 
   iconTag: 'md-icon',
   iconClass: 'material-icons',
 
   inverted: 'white',
-  textColor: 'black',
 
   borderRadius: 2,
   cardShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.2)',
+  menuShadow: '0 0 20px 0 rgba(52, 52, 52, 0.2)',
 
   scale: {
     z: 0,

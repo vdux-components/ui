@@ -2,9 +2,8 @@
  * Imports
  */
 
-import defaultTheme from '../default-theme'
+import {getThemeProps} from '../util'
 import element from 'vdux/element'
-import pick from '@f/pick'
 import omit from '@f/omit'
 import Base from './Base'
 
@@ -12,32 +11,24 @@ import Base from './Base'
  * Prop filtering
  */
 
-const themeProps = ['scale']
+const getProps = getThemeProps(['scale'])
 const filterProps = omit([
+  'baseStyle',
   'gutter',
   'column',
   '$theme',
+  'class',
   'align',
   'wrap',
   'flex'
 ])
 
 /**
- * getProps
- */
-
-function getProps (props, context = {}) {
-  const {uiTheme = {}} = context
-  props.$theme = pick(themeProps, uiTheme, defaultTheme)
-  return props
-}
-
-/**
  * Flex container component
  */
 
 function render ({props, children}) {
-  const {gutter, $theme, column} = props
+  const {gutter, $theme, column, baseStyle = {}} = props
   const {scale} = $theme
   const extras = {}
 
@@ -46,7 +37,7 @@ function render ({props, children}) {
   }
 
   return (
-    <Base class={[props.class, 'vui-flex', column ? 'vui-flex-column' : 'vui-flex-row']} baseStyle={getStyle(props)} {...extras} {...filterProps(props)}>
+    <Base {...filterProps(props)} class={[props.class, 'vui-flex', column ? 'vui-flex-column' : 'vui-flex-row']} baseStyle={{...getStyle(props), ...baseStyle}} {...extras}>
       {children}
     </Base>
   )
@@ -57,7 +48,9 @@ function render ({props, children}) {
  */
 
 function getStyle ({align, column, wrap, flex}) {
-  const result = {display: 'flex'}
+  const result = {
+    display: 'flex'
+  }
 
   if (align) {
     const [justify, alignItems] = align.split(' ')

@@ -3,7 +3,7 @@
  */
 
 import DropdownMenu from './components/DropdownMenu'
-import LogoButton from './components/LogoButton'
+import IconButton from './components/IconButton'
 import Dropdown from './components/Dropdown'
 import DecoLine from './components/DecoLine'
 import Divider from './components/Divider'
@@ -42,7 +42,7 @@ export {
   Icon,
   Menu,
   Button,
-  LogoButton,
+  IconButton,
   Dropdown,
   DropdownMenu,
   DecoLine,

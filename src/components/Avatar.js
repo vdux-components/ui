@@ -2,9 +2,8 @@
  * Imports
  */
 
-import defaultTheme from '../default-theme'
+import {getThemeProps} from '../util'
 import element from 'vdux/element'
-import pick from '@f/pick'
 import omit from '@f/omit'
 import Base from './Base'
 
@@ -12,18 +11,8 @@ import Base from './Base'
  * Constants
  */
 
-const themeProps = ['avatarScale', 'circularAvatars']
+const getProps = getThemeProps(['avatarScale', 'circularAvatars'])
 const filterProps = omit(['size', 'circle', '$theme'])
-
-/**
- * getProps
- */
-
-function getProps (props, context = {}) {
-  const {uiTheme = {}} = context
-  props.$theme = pick(themeProps, uiTheme, defaultTheme)
-  return props
-}
 
 /**
  * Avatar component

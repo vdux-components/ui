@@ -11,6 +11,7 @@
     "postversion": "git push && git push --tags && npm publish --access=public"
   },
   "dependencies": {
+    "@f/extend": "^1.0.0",
     "@f/has": "^1.0.0",
     "@f/input-attrs": "^1.0.0",
     "@f/map": "^1.5.3",
@@ -19,6 +20,7 @@
     "@f/pick": "^1.1.4",
     "@f/reduce": "^1.0.0",
     "color": "^0.11.1",
+    "vdux-css-emulator": "^2.0.1",
     "vdux-position": "^1.0.2"
   },
   "devDependencies": {

@@ -2,10 +2,8 @@
  * Imports
  */
 
-import defaultTheme from '../default-theme'
+import {setScaled, getThemeProps} from '../util'
 import element from 'vdux/element'
-import {setScaled} from '../util'
-import pick from '@f/pick'
 import omit from '@f/omit'
 import Base from './Base'
 
@@ -13,7 +11,7 @@ import Base from './Base'
  * Constants
  */
 
-const themeProps = ['fonts', 'fontScale', 'weightScale', 'lineHeightScale']
+const getProps = getThemeProps(['fonts', 'fontScale', 'weightScale', 'lineHeightScale'])
 const filterProps = omit([
   'tag',
   'size',
@@ -27,16 +25,6 @@ const filterProps = omit([
   'antialiased',
   'letterSpacing'
 ])
-
-/**
- * getProps
- */
-
-function getProps (props, context = {}) {
-  const {uiTheme = {}} = context
-  props.$theme = pick(themeProps, uiTheme, defaultTheme)
-  return props
-}
 
 /**
  * Text

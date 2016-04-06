@@ -2,10 +2,10 @@
  * Imports
  */
 
-import {radius, colorStyle, padding, margin, position, extend, setScaled} from '../util'
-import defaultTheme from '../default-theme'
+import {radius, colorStyle, padding, margin, position, setScaled, getThemeProps} from '../util'
+import CSSEmulator from 'vdux-css-emulator'
 import element from 'vdux/element'
-import pick from '@f/pick'
+import extend from '@f/extend'
 import omit from '@f/omit'
 import has from '@f/has'
 
@@ -13,7 +13,15 @@ import has from '@f/has'
  * Constants
  */
 
-const themeProps = ['borderRadius', 'colors', 'scale', 'fontScale', 'zIndexScale', 'lineHeightScale']
+const getProps = getThemeProps([
+  'borderRadius',
+  'colors',
+  'scale',
+  'fontScale',
+  'zIndexScale',
+  'lineHeightScale'
+])
+
 const filterProps = omit([
   // Padding
   'p',
@@ -74,8 +82,8 @@ const filterProps = omit([
 
   // Element / Theme
   'z',
-  'tag',
   'hidden',
+  'hide',
   'style',
   'baseStyle',
   'inlineBlock',
@@ -83,26 +91,16 @@ const filterProps = omit([
 ])
 
 /**
- * getProps
- */
-
-function getProps (props, context = {}) {
-  const {uiTheme = {}} = context
-  props.$theme = pick(themeProps, props, uiTheme, defaultTheme)
-  return props
-}
-
-/**
  * Base Component
  */
 
 function render ({props, children}) {
-  const {tag: Tag = 'div', $theme} = props
+  const {$theme} = props
 
   return (
-    <Tag {...filterProps(props)} class={props.class} style={getStyle(props, $theme)}>
+    <CSSEmulator {...filterProps(props)} class={props.class} style={getStyle(props, $theme)}>
       {children}
-    </Tag>
+    </CSSEmulator>
   )
 }
 
@@ -115,7 +113,7 @@ function getStyle (props, {borderRadius, scale, colors, fontScale, lineHeightSca
   const {
     style, inlineBlock, baseStyle, wide, tall, hidden, opacity,
     lh, w, h, sq, fs, ellipsis, clear, float, cursor, pointer,
-    transition, z
+    transition, z, hide
   } = props
 
   extend(result, baseStyle)
@@ -139,6 +137,7 @@ function getStyle (props, {borderRadius, scale, colors, fontScale, lineHeightSca
     result.overflow = 'hidden'
   }
 
+  if (hide) result.display = 'none'
   if (inlineBlock) result.display = 'inline-block'
   if (float) result.float = float
   if (clear) {
@@ -172,8 +171,4 @@ function getStyle (props, {borderRadius, scale, colors, fontScale, lineHeightSca
 export default {
   getProps,
   render
-}
-
-export {
-  defaultTheme
 }

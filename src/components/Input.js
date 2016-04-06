@@ -2,12 +2,12 @@
  * Imports
  */
 
-import defaultTheme from '../default-theme'
+import {getThemeProps} from '../util'
 import inputAttrs from '@f/input-attrs'
 import element from 'vdux/element'
 import Block from './block'
-import omit from '@f/omit'
 import pick from '@f/pick'
+import omit from '@f/omit'
 import Base from './Base'
 import Text from './text'
 
@@ -15,7 +15,7 @@ import Text from './text'
  * Constants
  */
 
-const themeProps = ['colors', 'scale']
+const getProps = getThemeProps(['colors', 'scale'])
 const inputProps = [
   'invalid',
   'label',
@@ -29,16 +29,6 @@ const inputProps = [
   'border'
 ].concat(inputAttrs)
 const filterProps = omit(inputProps)
-
-/**
- * getProps
- */
-
-function getProps (props, context = {}) {
-  const {uiTheme = {}} = context
-  props.$theme = pick(themeProps, uiTheme, defaultTheme)
-  return props
-}
 
 /**
  * Input component

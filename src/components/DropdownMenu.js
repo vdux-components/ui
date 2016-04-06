@@ -2,6 +2,7 @@
  * Imports
  */
 
+import {getThemeProps} from '../util'
 import element from 'vdux/element'
 import Body from 'vdux/body'
 import noop from '@f/noop'
@@ -12,17 +13,18 @@ import Menu from './menu'
  * Constants
  */
 
-const filterProps = omit(['onDismiss', 'column', 'open'])
+const getProps = getThemeProps(['menuShadow'])
+const filterProps = omit(['onDismiss', 'column', 'open', 'bgColor', 'color'])
 
 /**
  * Dropdown container component
  */
 
 function render ({props, children}) {
-  const {column = true, open, onDismiss = noop} = props
+  const {column = true, bgColor = 'white', color = 'text', open, onDismiss = noop} = props
 
   return (
-    <Menu class={[props.class, 'vui-dropdown-menu']} {...filterProps(props)} column={column} baseStyle={getStyle(props)}>
+    <Menu hide={!open} {...filterProps(props)} bgColor={bgColor} color={color} class={[props.class, 'vui-dropdown-menu']} column={column} baseStyle={getStyle(props)}>
       {children}
       {
         open && <Body onClick={onDismiss} onKeypress={{esc: onDismiss}} />
@@ -35,15 +37,15 @@ function render ({props, children}) {
  * Compute style
  */
 
-function getStyle ({open, top, right}) {
+function getStyle ({open, top, right, $theme}) {
   return {
     position: 'absolute',
     boxSizing: 'border-box',
-    display : open ? '' : 'none',
     left: right ? 'auto' : 0,
     right: right ? 0 : 'auto',
     top: top ? 'auto' : '100%',
-    bottom: top ? '100%' : 'auto'
+    bottom: top ? '100%' : 'auto',
+    boxShadow: $theme.menuShadow
   }
 }
 
@@ -52,5 +54,6 @@ function getStyle ({open, top, right}) {
  */
 
 export default {
+  getProps,
   render
 }

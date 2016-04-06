@@ -10,7 +10,9 @@ Collection of [presentational](https://medium.com/@dan_abramov/smart-and-dumb-co
 
 ## Philosophy
 
-All of the components in vdux-ui are stateless and largely logicless. They are pure functions of their arguments (and your contextual theme). This makes them easy to test and easy to think about.
+All of the components in vdux-ui are *statelish** and largely logicless. They are pure functions of their arguments (and your contextual theme). This makes them easy to test and easy to think about.
+
+**They do depend on [css-emulator](https://github.com/vdux-components/css-emulator), which adds local state for simulating `hover`, `active`, and `focus` states. However, they are otherwise stateless.
 
 ## UI Components
 
@@ -25,7 +27,7 @@ All of the components in vdux-ui are stateless and largely logicless. They are p
   * [Fixed](https://github.com/vdux-components/ui/tree/master/docs/Fixed.md) - Fixed position container.
   * [Grid](https://github.com/vdux-components/ui/tree/master/docs/Grid.md) - Grid, useful for pinterest-style tile feeds, etc.
   * [Icon](https://github.com/vdux-components/ui/tree/master/docs/Icon.md) - Font-based icon component
-  * [LogoButton](https://github.com/vdux-components/ui/tree/master/docs/LogoButton.md) - Button with an image in it (useful for OAuth style buttons).
+  * [IconButton](https://github.com/vdux-components/ui/tree/master/docs/IconButton.md) - Button with an image/icon in it (useful for OAuth style buttons).
   * [Menu](https://github.com/vdux-components/ui/tree/master/docs/Menu.md) - Horizontal/vertical menus with spacing of menu items
   * [Text](https://github.com/vdux-components/ui/tree/master/docs/Text.md) - Render text according to your theme and some convenience options
   * [Tooltip](https://github.com/vudx-components/ui/tree/master/docs/Tooltip.md) - Stateless tooltip component

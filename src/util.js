@@ -2,8 +2,10 @@
  * Imports
  */
 
-import has from '@f/has'
+import defaultTheme from './default-theme'
+import pick from '@f/pick'
 import Color from 'color'
+import has from '@f/has'
 
 /**
  * Style computation utilities
@@ -179,14 +181,12 @@ function highlightColor (color, colors = {}, amount = 0.1) {
     : clr.lighten(amount).rgbaString()
 }
 
-function extend (dest, src) {
-  if (src) {
-    for (var key in src) {
-      dest[key] = src[key]
-    }
+function getThemeProps (themeProps) {
+  return (props, context = {}) => {
+    const {uiTheme = {}} = context
+    props.$theme = pick(themeProps, uiTheme, defaultTheme)
+    return props
   }
-
-  return dest
 }
 
 /**
@@ -198,8 +198,8 @@ export {
   radius,
   padding,
   margin,
-  extend,
   position,
   setScaled,
-  highlightColor
+  highlightColor,
+  getThemeProps
 }

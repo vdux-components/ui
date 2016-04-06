@@ -2,31 +2,19 @@
  * Imports
  */
 
-import defaultTheme from '../default-theme'
+import {getThemeProps} from '../util'
 import Position from 'vdux-position'
 import element from 'vdux/element'
 import Block from './Block'
 import omit from '@f/omit'
-import pick from '@f/pick'
 import has from '@f/has'
 
 /**
  * Constants
  */
 
-const themeProps = ['colors']
+const getProps = getThemeProps(['colors'])
 const filterProps = omit(['placement', 'space', 'bgColor', 'color', 'show', 'class'])
-
-/**
- * getProps - Grab theme properties
- */
-
-function getProps (props, context = {}) {
-  const {uiTheme = {}} = context
-  props.$theme = pick(themeProps, uiTheme, defaultTheme)
-
-  return props
-}
 
 /**
  * Tooltip

@@ -2,11 +2,9 @@
  * Imports
  */
 
-import defaultTheme from '../default-theme'
-import {highlightColor} from '../util'
+import {highlightColor, getThemeProps} from '../util'
 import element from 'vdux/element'
 import Block from './Block'
-import pick from '@f/pick'
 import omit from '@f/omit'
 import Icon from './icon'
 
@@ -14,18 +12,8 @@ import Icon from './icon'
  * Constants
  */
 
-const themeProps = ['scale', 'colors']
+const getProps = getThemeProps(['scale', 'colors'])
 const filterProps = omit(['bgColor', 'color', 'inverted', 'type', 'text', 'noselect', 'highlight'])
-
-/**
- * getProps
- */
-
-function getProps (props, context = {}) {
-  const {uiTheme = {}} = context
-  props.$theme = pick(themeProps, uiTheme, defaultTheme)
-  return props
-}
 
 /**
  * Button
@@ -33,12 +21,19 @@ function getProps (props, context = {}) {
 
 function render ({props, children}) {
   const {$theme, type = 'button', inverted = true, icon, highlight} = props
+  let {text, color = 'white', bgColor = 'primary', hoverStyle = {}} = props
   const {scale = {}, colors = {}} = $theme
-  let {text, color = 'white', bgColor = 'primary', hovering} = props
 
   if (icon) {
     text = <Icon baseStyle={{fontSize: 'inherit'}} name={icon} />
     bgColor = 'transparent'
+  }
+
+  if (highlight) {
+    hoverStyle = {
+      ...hoverStyle,
+      backgroundColor: highlightColor(bgColor, colors)
+    }
   }
 
   return (
@@ -47,6 +42,8 @@ function render ({props, children}) {
       class={[props.class, 'vui-button']}
       baseStyle={getStyle(props)}
       color={color}
+      bgColor={bgColor}
+      hoverStyle={hoverStyle}
       bgColor={highlight ? highlightColor(bgColor, colors) : bgColor}
       type={type}
       inverted={inverted}

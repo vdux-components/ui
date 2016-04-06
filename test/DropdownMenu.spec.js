@@ -35,7 +35,7 @@ test('<DropdownMenu /> should change display when open', t => {
   node = render(<DropdownMenu open={false} />)
   t.equal(node.style.display, 'none')
   node = render(<DropdownMenu open={true} />)
-  t.equal(node.style.display, '')
+  t.equal(node.style.display, 'flex')
 
   t.end()
 })
