@@ -4,6 +4,7 @@
 
 import {highlightColor, getThemeProps} from '../util'
 import element from 'vdux/element'
+import Tooltip from './Tooltip'
 import Block from './Block'
 import omit from '@f/omit'
 import Icon from './icon'
@@ -22,6 +23,8 @@ const filterProps = omit(['bgColor', 'color', 'inverted', 'type', 'text', 'nosel
 function render ({props, children}) {
   const {$theme, type = 'button', inverted = true, icon, highlight} = props
   let {text, color = 'white', bgColor = 'primary', hoverStyle = {}} = props
+
+  const {ttUi: TtUi = Tooltip, tooltip, ttPlacement = 'top', ttShown} = props
   const {scale = {}, colors = {}} = $theme
 
   if (icon) {
@@ -35,6 +38,12 @@ function render ({props, children}) {
       backgroundColor: highlightColor(bgColor, colors)
     }
   }
+
+  const tt = tooltip && (
+    <TtUi show={ttShown} placement={ttPlacement}>
+      {tooltip}
+    </TtUi>
+  )
 
   return (
     <Block
@@ -50,6 +59,7 @@ function render ({props, children}) {
       pointer
       {...filterProps(props)}>
       {text || children}
+      {tt}
     </Block>
   )
 }

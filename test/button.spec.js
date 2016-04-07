@@ -40,3 +40,15 @@ test('<Button/> should highlight its background color', t => {
   t.equal(next.slice(3, -1) + ', 1)', highlightColor(prev).slice(4))
   t.end()
 })
+
+test('<Button/> should show tooltip when requested', t => {
+  const {render} = vdux()
+  let node
+
+  node = render(<Button tooltip='message' />)
+  t.equal(node.querySelector('.vui-tooltip').style.opacity, '0')
+  node = render(<Button tooltip='message' ttShown />)
+  t.equal(node.querySelector('.vui-tooltip').style.opacity, '1')
+
+  t.end()
+})
