@@ -29,6 +29,7 @@ All of the components in vdux-ui are *statelish** and largely logicless. They ar
   * [Icon](https://github.com/vdux-components/ui/tree/master/docs/Icon.md) - Font-based icon component
   * [IconButton](https://github.com/vdux-components/ui/tree/master/docs/IconButton.md) - Button with an image/icon in it (useful for OAuth style buttons).
   * [Menu](https://github.com/vdux-components/ui/tree/master/docs/Menu.md) - Horizontal/vertical menus with spacing of menu items
+  * [MenuItem](https://github.com/vdux-components/ui/tree/master/docs/MenuItem.md) - Menu items for use inside of Menu
   * [Text](https://github.com/vdux-components/ui/tree/master/docs/Text.md) - Render text according to your theme and some convenience options
   * [Tooltip](https://github.com/vudx-components/ui/tree/master/docs/Tooltip.md) - Stateless tooltip component
   * [Base](https://github.com/vdux-components/ui/tree/master/docs/Base.md) - The base component out of which all other vdux-ui components are made. Use this to create your own reusable components.

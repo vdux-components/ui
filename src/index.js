@@ -5,6 +5,7 @@
 import DropdownMenu from './components/DropdownMenu'
 import IconButton from './components/IconButton'
 import Dropdown from './components/Dropdown'
+import MenuItem from './components/MenuItem'
 import DecoLine from './components/DecoLine'
 import Divider from './components/Divider'
 import Tooltip from './components/Tooltip'
@@ -41,6 +42,7 @@ export {
   Fixed,
   Icon,
   Menu,
+  MenuItem,
   Button,
   IconButton,
   Dropdown,

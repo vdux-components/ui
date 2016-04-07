@@ -22,7 +22,7 @@ const filterProps = omit(['bgColor', 'color', 'inverted', 'type', 'text', 'nosel
 
 function render ({props, children}) {
   const {$theme, type = 'button', inverted = true, icon, highlight} = props
-  let {text, color = 'white', bgColor = 'primary', hoverStyle = {}} = props
+  let {text, color = 'white', bgColor = 'primary'} = props
 
   const {ttUi: TtUi = Tooltip, tooltip, ttPlacement = 'top', ttShown} = props
   const {scale = {}, colors = {}} = $theme
@@ -30,13 +30,6 @@ function render ({props, children}) {
   if (icon) {
     text = <Icon baseStyle={{fontSize: 'inherit'}} name={icon} />
     bgColor = 'transparent'
-  }
-
-  if (highlight) {
-    hoverStyle = {
-      ...hoverStyle,
-      backgroundColor: highlightColor(bgColor, colors)
-    }
   }
 
   const tt = tooltip && (
@@ -51,8 +44,6 @@ function render ({props, children}) {
       class={[props.class, 'vui-button']}
       baseStyle={getStyle(props)}
       color={color}
-      bgColor={bgColor}
-      hoverStyle={hoverStyle}
       bgColor={highlight ? highlightColor(bgColor, colors) : bgColor}
       type={type}
       inverted={inverted}
