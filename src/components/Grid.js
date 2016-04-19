@@ -4,30 +4,19 @@
 
 import element from 'vdux/element'
 import reduce from '@f/reduce'
-import omit from '@f/omit'
 import Flex from './flex'
 import map from '@f/map'
-
-/**
- * Constants
- */
-
-const filterProps = omit([
-  'rowAlign',
-  'itemsPerRow',
-  'columnAlign'
-])
 
 /**
  * Grid
  */
 
 function render ({props, children}) {
-  const {itemsPerRow = 4, columnAlign, rowAlign} = props
+  const {itemsPerRow = 4, columnAlign, rowAlign, ...restProps} = props
   const columns = toColumns(children, itemsPerRow)
 
   return (
-    <Flex {...filterProps(props)} align={rowAlign}>
+    <Flex {...restProps} align={rowAlign}>
       {
         map(items => <Flex column align={columnAlign}>{items}</Flex>, columns)
       }

@@ -2,51 +2,41 @@
  * Imports
  */
 
-import {getThemeProps} from '../util'
+import Document from 'vdux/Document'
 import element from 'vdux/element'
-import Body from 'vdux/body'
+import {classes} from '../util'
 import noop from '@f/noop'
-import omit from '@f/omit'
 import Menu from './menu'
-
-/**
- * Constants
- */
-
-const getProps = getThemeProps(['menuShadow'])
-const filterProps = omit(['onDismiss', 'column', 'open', 'bgColor', 'color'])
 
 /**
  * Dropdown container component
  */
 
 function render ({props, children}) {
-  const {column = true, bgColor = 'white', color = 'text', open, onDismiss = noop} = props
+  const {onDismiss = noop, left, top, open, ...restProps} = props
 
   return (
-    <Menu hide={!open} {...filterProps(props)} bgColor={bgColor} color={color} class={[props.class, 'vui-dropdown-menu']} column={column} baseStyle={getStyle(props)}>
+    <Menu
+      boxSizing='border-box'
+      boxShadow='menu'
+      absolute={{
+        left: left ? 0 : 'auto',
+        right: left ? 'auto' : 0,
+        top: top ? 'auto' : '100%',
+        bottom: top ? '100%' : 'auto'
+      }}
+      hide={!open}
+      bgColor='white'
+      color='text'
+      column={true}
+      {...restProps}
+      class={classes(props.class, 'vui-dropdown-menu')}>
       {children}
       {
-        open && <Body onClick={onDismiss} onKeypress={{esc: onDismiss}} />
+        open && <Document onClick={onDismiss} onKeypress={{esc: onDismiss}} />
       }
     </Menu>
   )
-}
-
-/**
- * Compute style
- */
-
-function getStyle ({open, top, right, $theme}) {
-  return {
-    position: 'absolute',
-    boxSizing: 'border-box',
-    left: right ? 'auto' : 0,
-    right: right ? 0 : 'auto',
-    top: top ? 'auto' : '100%',
-    bottom: top ? '100%' : 'auto',
-    boxShadow: $theme.menuShadow
-  }
 }
 
 /**
@@ -54,6 +44,5 @@ function getStyle ({open, top, right, $theme}) {
  */
 
 export default {
-  getProps,
   render
 }

@@ -3,6 +3,7 @@
  */
 
 import element from 'vdux/element'
+import {classes} from '../util'
 import Button from './Button'
 import Block from './Block'
 import Icon from './Icon'
@@ -21,7 +22,7 @@ function render ({props, children}) {
     : <Icon name={icon} sq={iconSize} mr='6px' />
 
   return (
-    <Button class={[props.class, 'vui-icon-button']} rounded h={h} px='5px' {...btnProps}>
+    <Button class={classes(props.class, 'vui-icon-button')} rounded h={h} px='5px' {...btnProps}>
       <Flex align='start center' tall>
         {pic}
         {

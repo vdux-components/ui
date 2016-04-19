@@ -2,30 +2,21 @@
  * Imports
  */
 
-import {getThemeProps} from '../util'
 import element from 'vdux/element'
-import omit from '@f/omit'
+import {classes} from '../util'
 import Base from './Base'
-
-/**
- * Filter props
- */
-
-const getProps = getThemeProps(['colors'])
-const filterProps = omit([
-  'color'
-])
 
 /**
  * Divider component
  */
 
-function render ({props, children}) {
-  const {$theme, color = 'divider'} = props
-  const {colors} = $theme
-
+function render ({props}) {
   return (
-    <Base tag='hr' bgColor={colors[color] || color} class={[props.class, 'vui-divider']} {...filterProps(props)} />
+    <Base
+      tag='hr'
+      bgColor={props.color || 'divider'}
+      {...props}
+      class={classes(props.class, 'vui-divider')} />
   )
 }
 
@@ -34,6 +25,5 @@ function render ({props, children}) {
  */
 
 export default {
-  getProps,
   render
 }

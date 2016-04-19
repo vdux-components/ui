@@ -22,8 +22,8 @@ test('<DropdownMenu/> should work', t => {
   const off = subscribe(() => {})
 
   t.plan(3)
-  trigger(node, 'click')
-  trigger(node, 'keypress', {which: 27})
+  trigger(node, 'click', {bubbles: true})
+  trigger(node, 'keypress', {which: 27, bubbles: true})
 
   off()
 })

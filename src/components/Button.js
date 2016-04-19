@@ -2,33 +2,25 @@
  * Imports
  */
 
-import {highlightColor, getThemeProps} from '../util'
 import element from 'vdux/element'
 import Tooltip from './Tooltip'
+import {classes} from '../util'
 import Block from './Block'
-import omit from '@f/omit'
 import Icon from './icon'
-
-/**
- * Constants
- */
-
-const getProps = getThemeProps(['scale', 'colors'])
-const filterProps = omit(['bgColor', 'color', 'inverted', 'type', 'text', 'noselect', 'highlight'])
 
 /**
  * Button
  */
 
 function render ({props, children}) {
-  const {$theme, type = 'button', inverted = true, icon, highlight} = props
-  let {text, color = 'white', bgColor = 'primary'} = props
-
-  const {ttUi: TtUi = Tooltip, tooltip, ttPlacement = 'top', ttShown} = props
-  const {scale = {}, colors = {}} = $theme
+  let {
+    text, bgColor = 'primary', icon,
+    ttUi: TtUi = Tooltip, tooltip, ttPlacement = 'top', ttShown,
+    ...restProps
+  } = props
 
   if (icon) {
-    text = <Icon baseStyle={{fontSize: 'inherit'}} name={icon} />
+    text = <Icon fontSize='inherit' name={icon} />
     bgColor = 'transparent'
   }
 
@@ -41,14 +33,22 @@ function render ({props, children}) {
   return (
     <Block
       tag='button'
-      class={[props.class, 'vui-button']}
-      baseStyle={getStyle(props)}
-      color={color}
-      bgColor={highlight ? highlightColor(bgColor, colors) : bgColor}
-      type={type}
-      inverted={inverted}
+      type='button'
+      color='white'
+      relative
       pointer
-      {...filterProps(props)}>
+      overflow='visible'
+      textAlign='center'
+      padding={icon ? 0 : null}
+      m={0}
+      borderWidth={0}
+      userSelect='none'
+      textDecoration='none'
+
+      {...restProps}
+
+      bgColor={bgColor}
+      class={classes(props.class, 'vui-button')}>
       {text || children}
       {tt}
     </Block>
@@ -56,28 +56,9 @@ function render ({props, children}) {
 }
 
 /**
- * Compute base styles
- */
-
-function getStyle ({icon, noselect}) {
-  return {
-    position: 'relative',
-    overflow: 'visible',
-    cursor: 'pointer',
-    textAlign: 'center',
-    padding: icon ? 0 : null,
-    margin: 0,
-    border: 0,
-    userSelect: noselect ? 'none' : null,
-    textDecoration: 'none'
-  }
-}
-
-/**
  * Exports
  */
 
 export default {
-  getProps,
   render
 }

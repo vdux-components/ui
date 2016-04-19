@@ -2,7 +2,7 @@
  * Imports
  */
 
-import {highlightColor} from '../src/util'
+import {highlight} from '../src/util'
 import element from 'vdux/element'
 import {Button} from '../src'
 import vdux from 'vdux/dom'
@@ -34,10 +34,10 @@ test('<Button/> should highlight its background color', t => {
   const prev = render(<Button />).style.backgroundColor
   const next = render(<Button highlight />).style.backgroundColor
 
-  // Normalize the strings because highlightColor returns an 'rgba'
+  // Normalize the strings because highlight returns an 'rgba'
   // string whereas next.style.backgroundColor will be 'rgb' since we
   // aren't using opacity
-  t.equal(next.slice(3, -1) + ', 1)', highlightColor(prev).slice(4))
+  t.equal(next.slice(3, -1) + ', 1)', highlight(prev).slice(4))
   t.end()
 })
 

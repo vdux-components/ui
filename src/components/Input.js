@@ -2,9 +2,10 @@
  * Imports
  */
 
-import {getThemeProps} from '../util'
 import inputAttrs from '@f/input-attrs'
 import element from 'vdux/element'
+import {classes} from '../util'
+import Tooltip from './Tooltip'
 import Block from './block'
 import pick from '@f/pick'
 import omit from '@f/omit'
@@ -15,84 +16,63 @@ import Text from './text'
  * Constants
  */
 
-const getProps = getThemeProps(['colors', 'scale'])
-const inputProps = [
+const inputPropNames = [
   'invalid',
   'label',
   'type',
   'name',
   'rounded',
-  'inverted',
   'bgColor',
-  'theme',
   'labelStyle',
-  'border'
+  'border',
+  'inputProps',
+  'onInvalid'
 ].concat(inputAttrs)
-const filterProps = omit(inputProps)
+const filterProps = omit(inputPropNames)
 
 /**
  * Input component
  */
 
 function render ({props, children}) {
-  const {label, type = 'text', $theme, message, name, labelClass, inputClass, labelStyle, inputStyle = {}} = props
+  const {
+    message, name, label, labelClass,
+    labelProps = {}, inputClass, inputProps = {},
+    invalid, border, errorPlacement = 'left'
+  } = props
   const filteredProps = filterProps(props)
-  const restInputAttrs = pick(inputProps, props)
+  const restInputAttrs = pick(inputPropNames, props)
 
   return (
-    <Block baseStyle={getRootStyle(props, $theme)} class={[props.class, 'vui-input-container']} {...filteredProps}>
-      <label for={name} class={['label', labelClass]} style={labelStyle}>
+    <Block
+      mb='s'
+      relative
+      overflow='visible'
+      color={invalid ? 'error' : null}
+      {...filteredProps}
+      class={classes(props.class, 'vui-input-container')}>
+      <Base tag='label' for={name} class={classes(labelClass, 'vui-label')} {...labelProps}>
         {label || children}
-      </label>
+      </Base>
       <Base
+        boxSizing='border-box'
+        fontFamily='inherit'
+        display='block'
+        wide
+        m={0}
+        color='inherit'
+        fs='inherit'
         tag='input'
+        type='text'
+        border={border && (invalid ? 'error' : 'border')}
         {...restInputAttrs}
-        baseStyle={getStyle(props, props.$theme)}
-        style={inputStyle}
-        class={['vui-input', inputClass]}
-        type={type}
-        />
+        {...inputProps}
+        class={classes(inputClass, 'vui-input')}/>
         {
-          message && <Text fs='s'>{message}</Text>
+          message && <Tooltip fs='xxs' p='0px 20px' lh='30px' placement={errorPlacement} show={invalid} bgColor='error'>{message}</Tooltip>
         }
     </Block>
   )
-}
-
-/**
- * getRootStyle(props, $theme) -> Style object
- */
-
-function getRootStyle ({invalid}, {scale, colors}) {
-  return {
-    marginBottom: scale.s,
-    position: 'relative',
-    color: invalid ? colors.error : null
-  }
-}
-
-/**
- * getStyle(props, $theme) -> Style object
- */
-
-function getStyle ({invalid, border}, {scale, colors}) {
-  const result = {
-    fontFamily: 'inherit',
-    fontSize: 'inherit',
-    boxSizing: 'border-box',
-    display: 'block',
-    width: '100%',
-    margin: 0,
-    color: 'inherit'
-  }
-
-  if (border) {
-    result.borderWidth = 1
-    result.borderStyle = 'solid'
-    result.borderColor = invalid ? colors.error : colors.border
-  }
-
-  return result
 }
 
 /**
@@ -100,6 +80,5 @@ function getStyle ({invalid, border}, {scale, colors}) {
  */
 
 export default {
-  getProps,
   render
 }

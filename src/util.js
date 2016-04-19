@@ -3,127 +3,71 @@
  */
 
 import defaultTheme from './default-theme'
+import extend from '@f/extend'
 import pick from '@f/pick'
 import Color from 'color'
 import has from '@f/has'
 
 /**
- * Style computation utilities
+ * scaleSetter
+ *
+ * Set a style property from a given theme scale
  */
 
-function colorStyle (result, props, colors) {
-  const {color, bg, bgColor, inverted, theme} = props
+function scaleSetter (styleKey, themeScaleKey = 'scale') {
+  if (Array.isArray(styleKey)) {
+    return (style, val, theme) => {
+      const scale = theme[themeScaleKey]
 
-  if (color) {
-    setScaled(result, 'color', color, colors)
-  }
-
-  if (bgColor) {
-    setScaled(result, 'backgroundColor', bgColor, colors)
-  }
-
-  if (bg) {
-    // Set the color string from our palette if it
-    // exists
-    result.background = bg
-      .split(' ')
-      .map(p => has(p, colors) ? colors[p] : p)
-      .join(' ')
-  }
-
-  if (theme && colors[theme]) {
-    const invertedColor = props.inverted === true ? 'white' : invertedColor
-    if (inverted) {
-      setScaled(result, 'color', invertedColor, colors)
-      setScaled(result, 'backgroundColor', theme, colors)
-    } else {
-      setScaled(result, 'color', theme, colors)
+      for (let i = 0; i < styleKey.length; ++i) {
+        setScaled(style, styleKey[i], val, theme[themeScaleKey])
+      }
     }
-  }
-
-  return result
-}
-
-function radius (result, {circle, pill, rounded}, r) {
-  if (pill || circle) {
-    result.borderRadius = 99999
-  }
-
-  if (rounded === true) {
-    result.borderRadius = r
-  }
-
-  if (rounded === false) {
-    result.borderRadius = 0
-  }
-
-  if (typeof rounded === 'string') {
-    result.borderRadius = posString(rounded, r)
-  }
-
-  return result
-}
-
-function padding (result, props, scale) {
-  const {p, px, py, pt, pr, pb, pl} = props
-
-  // all padding props
-  setScaled(result, 'padding', p, scale)
-
-  // y-axis
-  setScaled(result, 'paddingTop', py, scale)
-  setScaled(result, 'paddingBottom', py, scale)
-
-  // x-axis
-  setScaled(result, 'paddingLeft', px, scale)
-  setScaled(result, 'paddingRight', px, scale)
-
-  // Individual sides
-  setScaled(result, 'paddingTop', pt, scale)
-  setScaled(result, 'paddingBottom', pb, scale)
-  setScaled(result, 'paddingLeft', pl, scale)
-  setScaled(result, 'paddingRight', pr, scale)
-
-  return result
-}
-
-function margin (result, props, scale) {
-  const {m, mx, my, mt, mr, mb, ml} = props
-
-  // all padding props
-  setScaled(result, 'margin', m, scale)
-
-  // y-axis
-  setScaled(result, 'marginTop', my, scale)
-  setScaled(result, 'marginBottom', my, scale)
-
-  // x-axis
-  setScaled(result, 'marginLeft', mx, scale)
-  setScaled(result, 'marginRight', mx, scale)
-
-  // Individual sides
-  setScaled(result, 'marginTop', mt, scale)
-  setScaled(result, 'marginBottom', mb, scale)
-  setScaled(result, 'marginLeft', ml, scale)
-  setScaled(result, 'marginRight', mr, scale)
-
-  return result
-}
-
-function setScaled (obj, key, val, scale) {
-  if (typeof val !== 'undefined') {
-    obj[key] = scale && has(val, scale)
-      ? scale[val]
-      : val
+  } else {
+    return (style, val, theme) => setScaled(style, styleKey, val, theme[themeScaleKey])
   }
 }
 
-function posString (pos, n) {
-  switch (pos) {
-    case 'top': return `${n}px 0 0 0`
-    case 'right': return `0 ${n}px 0 0`
-    case 'bottom': return `0 0 ${n}px 0`
-    case 'left': return `0 0 0 ${n}px`
+/**
+ * boolSetter
+ *
+ * Set a constant value if the property is true,
+ * do nothing otherwise.
+ */
+
+function boolSetter (styleKey, value) {
+  return (style, val) => val && (style[styleKey] = value)
+}
+
+/**
+ * borderSetter
+ *
+ * Set a 1px solid border. If you pass a string, that string
+ * is used as a color (indexed into your theme colors).
+ */
+
+function borderSetter (borderKey) {
+  const colorKey = borderKey + 'Color'
+  const styleKey = borderKey + 'Style'
+  const widthKey = borderKey + 'Width'
+
+  return (style, val, {colors}, {borderWidth = '1px'}) => {
+    if (val) {
+      if (typeof val === 'string') {
+        // If the string being set has spaces in it,
+        // assume it's a shorthand for specifying all
+        // the properties, rather than a named color
+        if (/\s/.test(val)) {
+          style[borderKey] = val
+          return
+        } else {
+          setScaled(style, colorKey, val, colors)
+        }
+      }
+
+      style[styleKey] = 'solid'
+      style[widthKey] = borderWidth
+    }
   }
 }
 
@@ -138,43 +82,71 @@ function posString (pos, n) {
  *            i.e. `(top|bottom) (n)? (left|right) (n)?`
  *  * scale - The scale from which to select sizes
  */
+
 const posRe = /^(top|bottom)(?:\s(\d+[a-zA-Z]+))?\s(left|right)(?:\s(\d+[a-zA-Z]+))?$/
 
-function position (obj, {absolute, relative, fixed}, scale) {
-  let str = false
+function positionSetter (styleKey) {
+  return (style, val, {scale}) => {
+    style.position = styleKey
 
-  if (absolute) {
-    str = absolute
-    obj.position = 'absolute'
-  } else if (relative) {
-    str = relative
-    obj.position = 'relative'
-  } else if (fixed) {
-    str = fixed
-    obj.position = 'fixed'
+    if (typeof val === 'string') {
+      const parts = posRe.exec(val)
+
+      setScaled(style, parts[1], parts[2] || 0, scale)
+      setScaled(style, parts[3], parts[4] || 0, scale)
+    } else if (typeof val === 'object') {
+      setScaled(style, 'top', val.top, scale)
+      setScaled(style, 'left', val.left, scale)
+      setScaled(style, 'right', val.right, scale)
+      setScaled(style, 'bottom', val.bottom, scale)
+    }
   }
-
-
-  if (typeof str === 'string') {
-    const parts = posRe.exec(str)
-
-    setScaled(obj, parts[1], parts[2] || 0, scale)
-    setScaled(obj, parts[3], parts[4] || 0, scale)
-  } else if (typeof str === 'object') {
-    const pos = str
-
-    setScaled(obj, 'top', pos.top, scale)
-    setScaled(obj, 'right', pos.right, scale)
-    setScaled(obj, 'bottom', pos.bottom, scale)
-    setScaled(obj, 'left', pos.left, scale)
-  }
-
-  return obj
 }
 
-function highlightColor (color, colors = {}, amount = 0.1) {
+/**
+ * setScaled
+ *
+ * Set a value from a scale if the scale has
+ * a corresponding key for that value
+ */
+
+function setScaled (obj, key, val, scale) {
+  if (typeof val !== 'undefined') {
+    obj[key] = scale && has(val, scale)
+      ? scale[val]
+      : val
+  }
+}
+
+/**
+ * posString
+ *
+ * Generate a position string
+ * given a position and a number
+ */
+
+function posString (pos, n) {
+  switch (pos) {
+    case 'top': return `${n}px 0 0 0`
+    case 'right': return `0 ${n}px 0 0`
+    case 'bottom': return `0 0 ${n}px 0`
+    case 'left': return `0 0 0 ${n}px`
+  }
+}
+
+/**
+ * highlight
+ *
+ * Takes in a color and if that color is dark, lightens it
+ * and if it is light, darkens it. This allows you to make
+ * nice rollover effects where an element appears to
+ * highlight when the mouse is over it.
+ */
+
+function highlight (color, amount = 0.1) {
   if (color === 'transparent') return color
-  const clr = Color(has(color, colors) ? colors[color] : color)
+
+  const clr = Color(color)
 
   return clr.light()
     ? clr.darken(amount).rgbaString()
@@ -190,16 +162,65 @@ function getThemeProps (themeProps) {
 }
 
 /**
+ * mergeTheme(ctxTheme)
+ *
+ * Merge the contextual theme with the default theme. Memoize this
+ * so that we allocate/extend every time we render any components,
+ * especially since the contextual theme should change only extremely
+ * rarely, if ever.
+ */
+
+let lastCtxTheme = null
+let lastMergedTheme = null
+
+function mergeTheme (ctxTheme) {
+  if (lastCtxTheme === ctxTheme && lastMergedTheme) return lastMergedTheme
+  lastCtxTheme = ctxTheme
+  lastMergedTheme = extend({}, defaultTheme, ctxTheme)
+  return lastMergedTheme
+}
+
+/**
+ * classes
+ *
+ * Takes two class arguments and if both are truthy,
+ * returns an array of both, otherwise just returns
+ * the truthy one
+ */
+
+function classes (a, b) {
+  return a && b
+    ? Array.isArray(a) ? a.concat(b) : [a, b]
+    : a ? a : b
+}
+
+/**
+ * flexify
+ *
+ * Just adds 'flex-' to 'start' or 'end' so we can use
+ * a nicer syntax with our elements
+ */
+
+function flexify (str) {
+  return str === 'start' || str === 'end'
+    ? 'flex-' + str
+    : str
+}
+
+/**
  * Exports
  */
 
 export {
-  colorStyle,
-  radius,
-  padding,
-  margin,
-  position,
+  scaleSetter,
+  positionSetter,
+  boolSetter,
+  borderSetter,
+
   setScaled,
-  highlightColor,
-  getThemeProps
+  flexify,
+  highlight,
+  getThemeProps,
+  mergeTheme,
+  classes
 }

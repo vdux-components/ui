@@ -2,7 +2,7 @@
  * Imports
  */
 
-import {highlightColor} from '../src/util'
+import {highlight} from '../src/util'
 import element from 'vdux/element'
 import {MenuItem} from '../src'
 import vdux from 'vdux/dom'
@@ -17,12 +17,9 @@ test('<MenuItem/> should work', t => {
   let node
 
   node = render(<MenuItem>test</MenuItem>)
-  t.equal(node.tagName, 'DIV')
-
-  node = render(<MenuItem icon='search' />)
-  t.equal(node.tagName, 'DIV')
-  t.equal(node.firstChild.tagName, 'MD-ICON')
-  t.equal(node.style.backgroundColor, 'transparent')
+  t.equal(node.tagName, 'DIV', 'tagName')
+  t.equal(node.style.margin, '0px', 'margin')
+  t.equal(node.style.textDecoration, 'none', 'textDecoration')
 
   t.end()
 })
@@ -33,9 +30,9 @@ test('<MenuItem/> should highlight its background color', t => {
   const prev = render(<MenuItem />).style.backgroundColor
   const next = render(<MenuItem highlight />).style.backgroundColor
 
-  // Normalize the strings because highlightColor returns an 'rgba'
+  // Normalize the strings because highlight returns an 'rgba'
   // string whereas next.style.backgroundColor will be 'rgb' since we
   // aren't using opacity
-  t.equal(next.slice(3, -1) + ', 1)', highlightColor(prev).slice(4))
+  t.equal(next.slice(3, -1) + ', 1)', highlight(prev).slice(4), 'highlight backgroundColor')
   t.end()
 })

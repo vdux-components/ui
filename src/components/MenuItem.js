@@ -2,59 +2,38 @@
  * Imports
  */
 
-import {highlightColor, getThemeProps} from '../util'
 import element from 'vdux/element'
+import {classes} from '../util'
 import Block from './Block'
-import omit from '@f/omit'
-import Icon from './icon'
 
 /**
- * Constants
+ * getProps
  */
 
-const getProps = getThemeProps(['scale', 'colors'])
-const filterProps = omit(['bgColor', 'color', 'inverted', 'text', 'noselect', 'highlight'])
+function getProps (props) {
+  if (!props.color) props.color = 'text'
+  if (!props.bgColor) props.bgColor = 'white'
+
+  return props
+}
 
 /**
  * MenuItem
  */
 
 function render ({props, children}) {
-  const {$theme, icon, highlight} = props
-  const {scale = {}, colors = {}} = $theme
-  let {text, color = 'text', bgColor = 'white'} = props
-
-  if (icon) {
-    text = <Icon baseStyle={{fontSize: 'inherit'}} name={icon} />
-    bgColor = 'transparent'
-  }
-
   return (
     <Block
-      class={[props.class, 'vui-menu-item']}
-      baseStyle={getStyle(props)}
-      color={color}
-      bgColor={highlight ? highlightColor(bgColor, colors) : bgColor}
+      px='m'
+      py='s'
       pointer
-      {...filterProps(props)}>
-      {text || children}
+      m={0}
+      textDecoration='none'
+      {...props}
+      class={classes(props.class, 'vui-menu-item')}>
+      {props.text || children}
     </Block>
   )
-}
-
-/**
- * Compute base styles
- */
-
-function getStyle ({icon}) {
-  return {
-    cursor: 'pointer',
-    textAlign: 'center',
-    padding: icon ? 0 : null,
-    margin: 0,
-    border: 0,
-    textDecoration: 'none'
-  }
 }
 
 /**

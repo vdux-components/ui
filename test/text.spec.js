@@ -15,14 +15,14 @@ test('<Text/> should work', t => {
   const {render} = vdux()
   let node
 
-  node = render(<Text bold={true} transform='capitalize'>test</Text>)
-  t.equal(node.innerText, 'Test')
-  t.equal(node.style.textTransform, 'capitalize')
-  t.equal(node.style.fontWeight, 'bold')
+  node = render(<Text bold capitalize>test</Text>)
+  t.equal(node.innerText, 'Test', 'innerText')
+  t.equal(node.style.textTransform, 'capitalize', 'textTransform')
+  t.equal(node.style.fontWeight, 'bold', 'bold')
 
   const uiTheme = {fonts: {code: 'monospace'}}
-  node = render(<Text font='code'>test</Text>, {uiTheme})
-  t.equal(node.style.fontFamily, 'monospace')
+  node = render(<Text fontFamily='code'>test</Text>, {uiTheme})
+  t.equal(node.style.fontFamily, 'monospace', 'fontFamily')
 
   t.end()
 })

@@ -16,14 +16,14 @@ test('<Avatar/> should work', t => {
   let node
 
   node = render(<Avatar src='/images/cat.jpg' />)
-  t.equal(node.tagName, 'IMG')
-  t.equal(node.getAttribute('src'), '/images/cat.jpg')
-  t.equal(node.style.width, '32px')
-  t.equal(node.style.height, '32px')
-  t.equal(node.style.borderRadius, '99999px')
+  t.equal(node.tagName, 'IMG', 'tagName')
+  t.equal(node.getAttribute('src'), '/images/cat.jpg', 'src')
+  t.equal(node.style.width, '32px', 'width')
+  t.equal(node.style.height, '32px', 'height')
+  t.equal(node.style.borderRadius, '99999px', 'borderRadius')
 
   node = render(<Avatar circle={false} src='/images/cat.jpg' />)
-  t.equal(node.style.borderRadius, '')
+  t.equal(node.style.borderRadius, '', 'borderRadius - (circle=false)')
 
   const uiTheme = {
     avatarScale: [
@@ -34,7 +34,7 @@ test('<Avatar/> should work', t => {
   }
 
   node = render(<Avatar size={1} src='/images/cat.jpg' />, {uiTheme})
-  t.equal(node.style.width, '20px')
+  t.equal(node.style.width, '20px', 'width - scaled')
 
   t.end()
 })

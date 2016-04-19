@@ -2,36 +2,51 @@
  * Imports
  */
 
-import {getThemeProps} from '../util'
 import Position from 'vdux-position'
 import element from 'vdux/element'
+import {classes} from '../util'
 import Block from './Block'
-import omit from '@f/omit'
-import has from '@f/has'
 
 /**
  * Constants
  */
 
-const getProps = getThemeProps(['colors'])
-const filterProps = omit(['placement', 'space', 'bgColor', 'color', 'show', 'class'])
+const width = '6px'
 
 /**
  * Tooltip
  */
 
 function render ({props, children}) {
-  const {placement = 'top', space = 0, color = 'white', show, $theme} = props
-  const {colors = {}} = $theme
-  let {bgColor = 'black'} = props
+  const {placement = 'top', space = 0, color = 'white', show, bgColor = 'black', ...restProps} = props
+  const margin = {}
 
-  bgColor = has(bgColor, colors) ? colors[bgColor] : bgColor
+  if (placement === 'top') margin.mt = '-3px'
+  else if (placement === 'bottom') margin.mb = '-3px'
+  else if (placement === 'right') margin.mr = '-3px'
+  else if (placement === 'left') margin.ml = '-3px'
 
   return (
     <Position placement={placement} space={space} disable={!show}>
-      <Block z='tooltip' baseStyle={getStyle(props)} class={['vui-tooltip', props.class]}>
-        <Block class='vui-tooltip-arrow' baseStyle={getBaseArrowStyle(props)} style={getArrowStyle(placement, bgColor)} />
-        <Block class='vui-tooltip-inner' fs='xxs' py={6} px={9} rounded {...filterProps(props)} bgColor={bgColor} color={color}>
+      <Block
+        absolute
+        userSelect='none'
+        {...margin}
+        py={width}
+        top='-10000px'
+        opacity={show ? 1 : 0}
+        transition='opacity .15s linear'
+        whiteSpace='nowrap'
+        z='tooltip'
+        class={classes(props.class, 'vui-tooltip')}>
+        <Block
+          absolute
+          sq={0}
+          borderColor='transparent'
+          borderStyle='solid'
+          {...getArrowStyle(placement, bgColor)}
+          class='vui-tooltip-arrow' />
+        <Block class='vui-tooltip-inner' fs='xxs' py={6} px={9} rounded bgColor={bgColor} color='white' {...restProps}>
           {children}
         </Block>
       </Block>
@@ -43,33 +58,6 @@ function render ({props, children}) {
 /**
  * Compute base styles
  */
-
-const width = '6px'
-
-function getStyle ({show}) {
-  return {
-    position: 'absolute',
-    pointerEvents: 'none',
-    '-webkit-user-select': 'none',
-    marginTop: '-3px',
-    padding: `${width} 0`,
-    top: -10000,
-    opacity: show ? 1 : 0,
-    transition: 'opacity .15s linear',
-    '-webkit-transition': 'opacity .15s linear',
-    whiteSpace: 'nowrap'
-  }
-}
-
-function getBaseArrowStyle () {
-  return {
-    position: 'absolute',
-    borderStyle: 'solid',
-    borderColor: 'transparent',
-    width: 0,
-    height: 0
-  }
-}
 
 function getArrowStyle (placement, color) {
   switch (placement) {
@@ -93,7 +81,7 @@ function getArrowStyle (placement, color) {
     case 'right':
       return {
         top: '50%',
-        left: 0,
+        right: '100%',
         marginTop: `-${width}`,
         borderWidth: `${width} ${width} ${width} 0`,
         borderRightColor: color
@@ -101,7 +89,7 @@ function getArrowStyle (placement, color) {
     case 'left':
       return {
         top: '50%',
-        right: 0,
+        left: '100%',
         marginTop: `-${width}`,
         borderWidth: `${width} 0 ${width} ${width}`,
         borderLeftColor: color
@@ -116,6 +104,5 @@ function getArrowStyle (placement, color) {
  */
 
 export default {
-  getProps,
   render
 }

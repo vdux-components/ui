@@ -3,6 +3,7 @@
  */
 
 import element from 'vdux/element'
+import {classes} from '../util'
 import Base from './Base'
 
 /**
@@ -11,7 +12,10 @@ import Base from './Base'
 
 function render ({props, children}) {
   return (
-    <Base {...props} class={[props.class, 'vui-dropdown']} baseStyle={{position: 'relative'}}>
+    <Base
+      relative
+      {...props}
+      class={classes(props.class, 'vui-dropdown')}>
       {children}
     </Base>
   )

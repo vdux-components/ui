@@ -2,17 +2,9 @@
  * Imports
  */
 
-import Base from './Base'
-import omit from '@f/omit'
 import element from 'vdux/element'
-
-/**
- * Filter props
- */
-
-const filterProps = omit([
-  'flex'
-])
+import {classes} from '../util'
+import Base from './Base'
 
 /**
  * Flexbox cell component
@@ -20,26 +12,10 @@ const filterProps = omit([
 
 function render ({props, children}) {
   return (
-    <Base class={[props.class, 'vui-box']} baseStyle={getStyle(props)} {...filterProps(props)}>
+    <Base {...props} class={classes(props.class, 'vui-box')}>
       {children}
     </Base>
   )
-}
-
-/**
- * Helpers
- */
-
-function getStyle ({flex, col}) {
-  const result = {}
-
-  if (flex) {
-    if (flex === true) flex = 'auto'
-    result.flex = `1 1 ${flex}`
-    result['max' + (col ? 'Height' : 'Width')] = flex
-  }
-
-  return result
 }
 
 /**

@@ -14,6 +14,8 @@ const baseColors = {
 }
 
 export default {
+  circularAvatars: true,
+
   colors: {
     ...baseColors,
     primary: baseColors.blue,
@@ -30,11 +32,12 @@ export default {
   iconTag: 'md-icon',
   iconClass: 'material-icons',
 
-  inverted: 'white',
-
   borderRadius: 2,
-  cardShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.2)',
-  menuShadow: '0 0 20px 0 rgba(52, 52, 52, 0.2)',
+
+  shadow: {
+    card: '0 1px 2px 0 rgba(0, 0, 0, 0.2)',
+    menu: '0 0 20px 0 rgba(52, 52, 52, 0.2)'
+  },
 
   scale: {
     z: 0,

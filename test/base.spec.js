@@ -11,59 +11,108 @@ import test from 'tape'
  * Tests
  */
 
-test('<Base/> should work', t => {
+test('<Base/> supports color props', t => {
   const {render} = vdux()
   let node
 
   node = render(<Base color='white'/>)
-  t.equal(node.style.color, 'rgb(255, 255, 255)')
+  t.equal(node.style.color, 'rgb(255, 255, 255)', 'color')
 
   node = render(<Base bgColor='black'/>)
-  t.equal(node.style.backgroundColor, 'rgb(17, 17, 17)')
+  t.equal(node.style.backgroundColor, 'rgb(17, 17, 17)', 'bgColor')
+
+  t.end()
+})
+
+test('<Base/> supports padding props', t => {
+  const {render} = vdux()
+  let node
 
   node = render(<Base px='s' />)
-  t.equal(node.style.paddingLeft, defaultTheme.scale.s + 'px')
-  t.equal(node.style.paddingRight, defaultTheme.scale.s + 'px')
+  t.equal(node.style.paddingLeft, defaultTheme.scale.s + 'px', 'px - paddingLeft')
+  t.equal(node.style.paddingRight, defaultTheme.scale.s + 'px', 'px - paddingRight')
+
+  node = render(<Base py='s' />)
+  t.equal(node.style.paddingTop, defaultTheme.scale.s + 'px', 'py - paddingTop')
+  t.equal(node.style.paddingBottom, defaultTheme.scale.s + 'px', 'py - paddingBottom')
+
+  t.end()
+})
+
+test('<Base/> supports margin props', t => {
+  const {render} = vdux()
+  let node
 
   node = render(<Base mt='s' />)
-  t.equal(node.style.marginTop, defaultTheme.scale.s + 'px')
-  t.equal(node.style.marginBottom, '')
+  t.equal(node.style.marginTop, defaultTheme.scale.s + 'px', 'mt - marginTop')
+  t.equal(node.style.marginBottom, '', 'mt - marginBottom (unset)')
+
+  t.end()
+})
+
+test('<Base/> supports rounding', t => {
+  const {render} = vdux()
+  let node
 
   node = render(<Base circle={true} />)
-  t.equal(node.style.borderRadius, '99999px')
+  t.equal(node.style.borderRadius, '99999px', 'circle prop')
 
   node = render(<Base rounded={true} />)
-  t.equal(node.style.borderRadius, defaultTheme.borderRadius + 'px')
+  t.equal(node.style.borderRadius, defaultTheme.borderRadius + 'px', 'rounded prop')
 
   node = render(<Base pill={true} />)
-  t.equal(node.style.borderRadius, '99999px')
+  t.equal(node.style.borderRadius, '99999px', 'pill prop')
+
+  t.end()
+})
+
+test('<Base/> supports alternate tags', t => {
+  const {render} = vdux()
+  let node
 
   node = render(<Base tag='a'/>)
-  t.equal(node.tagName, 'A')
+  t.equal(node.tagName, 'A', 'tag prop')
+
+  t.end()
+})
+
+test('<Base/> children', t => {
+  const {render} = vdux()
+  let node
 
   node = render(<Base>test</Base>)
-  t.equal(node.innerText, 'test')
+  t.equal(node.innerText, 'test', 'children')
+
+  t.end()
+})
+
+test('<Base/> size props', t => {
+  const {render} = vdux()
+  let node
 
   node = render(<Base wide />)
-  t.equal(node.style.width, '100%')
+  t.equal(node.style.width, '100%', 'wide')
 
   node = render(<Base tall />)
-  t.equal(node.style.height, '100%')
+  t.equal(node.style.height, '100%', 'tall')
+
+  t.end()
+})
+
+test('<Base/> font/text props', t => {
+  const {render} = vdux()
+  let node
 
   node = render(<Base fs='10px' />)
-  t.equal(node.style.fontSize, '10px')
+  t.equal(node.style.fontSize, '10px', 'fs (fontSize)')
 
   node = render(<Base fs={0} />, {uiTheme: {fontScale: [10]}})
-  t.equal(node.style.fontSize, '10px')
+  t.equal(node.style.fontSize, '10px', 'fs (fontSize - scaled)')
 
   node = render(<Base ellipsis />)
-  t.equal(node.style.textOverflow, 'ellipsis')
-  t.equal(node.style.whiteSpace, 'nowrap')
-  t.equal(node.style.overflow, 'hidden')
-
-  node = render(<Base inverted theme='blue' />)
-  t.equal(node.style.color, 'rgb(255, 255, 255)')
-  t.equal(node.style.backgroundColor, 'rgb(0, 136, 238)')
+  t.equal(node.style.textOverflow, 'ellipsis', 'textOverflow - ellipsis')
+  t.equal(node.style.whiteSpace, 'nowrap', 'whiteSpace - ellipsis')
+  t.equal(node.style.overflow, 'hidden', 'overflow - ellipsis')
 
   t.end()
 })
