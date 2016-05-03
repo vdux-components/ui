@@ -6,7 +6,7 @@ import element from 'vdux/element'
 import Tooltip from './Tooltip'
 import {classes} from '../util'
 import Block from './Block'
-import Icon from './icon'
+import Icon from './Icon'
 
 /**
  * Button

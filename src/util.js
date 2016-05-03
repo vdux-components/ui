@@ -55,9 +55,10 @@ function borderSetter (borderKey) {
     if (val) {
       if (typeof val === 'string') {
         // If the string being set has spaces in it,
+        // that are not inside of a color string,
         // assume it's a shorthand for specifying all
         // the properties, rather than a named color
-        if (/\s/.test(val)) {
+        if (/^[^\(]*\s/.test(val)) {
           style[borderKey] = val
           return
         } else {

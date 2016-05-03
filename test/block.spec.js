@@ -27,7 +27,7 @@ test('<Block/> should work', t => {
   node = render(<Block borderTop='#FCFCFC' />)
   t.equal(node.style.borderTopStyle, 'solid')
   t.equal(node.style.borderTopColor, 'rgb(252, 252, 252)')
-  t.equal(node.style.borderWidth, '1px')
+  t.equal(node.style.borderTopWidth, '1px')
 
   t.end()
 })

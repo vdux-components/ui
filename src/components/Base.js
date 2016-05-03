@@ -48,6 +48,7 @@ const fns = {
   bold: boolSetter('fontWeight', 'bold'),
   capitalize: boolSetter('textTransform', 'capitalize'),
   uppercase: boolSetter('textTransform', 'uppercase'),
+  underline: boolSetter('textDecoration', 'underline'),
   antialiased: boolSetter('-webkit-font-smoothing', 'antialiased'),
   weight: scaleSetter('fontWeight', 'weightScale'),
   fs: (style, val, theme, props) => {
@@ -138,6 +139,7 @@ const fns = {
     }
   },
 
+  wrap: boolSetter('flexWrap', 'wrap'),
   column: boolSetter('flexDirection', 'column'),
   align: (style, val) => {
     if (val) {
@@ -183,6 +185,8 @@ function computeProps (style, newProps, props) {
   // and apply shorthand functions
 
   for (let key in props) {
+    if (key === 'tag') continue
+
     const val = props[key]
 
     if (fns[key]) {
@@ -201,8 +205,8 @@ function computeProps (style, newProps, props) {
   }
 
   if (props.style) extend(style, props.style)
+  if (style) newProps.style = style
 
-  newProps.style = style
   newProps.tag = props.tag
 }
 

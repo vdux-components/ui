@@ -4,7 +4,7 @@
 
 import {mergeTheme} from '../util'
 import element from 'vdux/element'
-import Text from './text'
+import Text from './Text'
 
 /**
  * getProps

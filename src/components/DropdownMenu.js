@@ -6,7 +6,7 @@ import Document from 'vdux/Document'
 import element from 'vdux/element'
 import {classes} from '../util'
 import noop from '@f/noop'
-import Menu from './menu'
+import Menu from './Menu'
 
 /**
  * Dropdown container component

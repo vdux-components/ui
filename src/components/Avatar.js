@@ -25,7 +25,7 @@ function getProps (props, {uiTheme}) {
  */
 
 function render ({props}) {
-  let {$theme, size} = props
+  let {$theme, size, ...rest} = props
   const {avatarScale} = $theme
 
   if (avatarScale && avatarScale[size]) {
@@ -36,7 +36,7 @@ function render ({props}) {
     <Base
       tag='img'
       class={classes(props.class, 'vui-avatar')}
-      {...props}
+      {...rest}
       sq={size} />
   )
 }

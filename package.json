@@ -14,7 +14,7 @@
     "@f/defaults": "^1.0.1",
     "@f/extend": "^1.0.0",
     "@f/has": "^1.0.0",
-    "@f/html-attrs": "^1.0.0",
+    "@f/html-attrs": "^1.0.1",
     "@f/input-attrs": "^1.0.0",
     "@f/map": "^1.5.3",
     "@f/noop": "^1.2.0",
@@ -23,7 +23,7 @@
     "@f/reduce": "^1.0.0",
     "color": "^0.11.1",
     "vdux": "^2.4.5",
-    "vdux-css-emulator": "^2.0.4",
+    "vdux-css-emulator": "^2.0.5",
     "vdux-position": "^1.0.2"
   },
   "devDependencies": {

@@ -4,9 +4,9 @@
 
 import {getThemeProps} from '../util'
 import element from 'vdux/element'
-import Block from './block'
+import Block from './Block'
 import omit from '@f/omit'
-import Flex from './flex'
+import Flex from './Flex'
 import map from '@f/map'
 
 /**

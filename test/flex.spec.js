@@ -17,7 +17,7 @@ test('<Flex/> should work', t => {
 
   node = render(<Flex flex />)
   t.equal(node.style.display, 'flex')
-  t.equal(node.style.flex, '1 1 auto')
+  t.equal(node.style.flex, '1 1 0%')
 
   node = render(<Flex column align='start end' />)
   t.equal(node.style.flexDirection, 'column')

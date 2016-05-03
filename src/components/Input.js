@@ -6,11 +6,11 @@ import inputAttrs from '@f/input-attrs'
 import element from 'vdux/element'
 import {classes} from '../util'
 import Tooltip from './Tooltip'
-import Block from './block'
+import Block from './Block'
 import pick from '@f/pick'
 import omit from '@f/omit'
 import Base from './Base'
-import Text from './text'
+import Text from './Text'
 
 /**
  * Constants
@@ -22,11 +22,22 @@ const inputPropNames = [
   'type',
   'name',
   'rounded',
+  'h',
+  'height',
+  'width',
+  'w',
   'bgColor',
   'labelStyle',
   'border',
+  'borderWidth',
   'inputProps',
-  'onInvalid'
+  'onInvalid',
+  'pill',
+  'rounded',
+  'borderRadius',
+  'outline',
+  'defaultValue',
+  'defaultChecked'
 ].concat(inputAttrs)
 const filterProps = omit(inputPropNames)
 

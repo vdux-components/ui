@@ -4,7 +4,7 @@
 
 import element from 'vdux/element'
 import reduce from '@f/reduce'
-import Flex from './flex'
+import Flex from './Flex'
 import map from '@f/map'
 
 /**

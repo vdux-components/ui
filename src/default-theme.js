@@ -68,6 +68,7 @@ export default {
   },
 
   zIndexScale: {
-    tooltip: 99999
+    tooltip: 99999,
+    overlay: 99999
   }
 }
