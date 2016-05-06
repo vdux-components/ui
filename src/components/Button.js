@@ -21,7 +21,9 @@ function render ({props, children}) {
 
   if (icon) {
     text = <Icon fontSize='inherit' name={icon} />
-    bgColor = 'transparent'
+    if (props.bgColor === undefined) {
+      bgColor = 'transparent'
+    }
   }
 
   const tt = tooltip && (
