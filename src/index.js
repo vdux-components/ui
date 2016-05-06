@@ -4,26 +4,27 @@
 
 import DropdownMenu from './components/DropdownMenu'
 import IconButton from './components/IconButton'
+import DecoLine from './components/DecoLine'
 import Dropdown from './components/Dropdown'
 import MenuItem from './components/MenuItem'
-import DecoLine from './components/DecoLine'
 import Divider from './components/Divider'
-import Tooltip from './components/Tooltip'
 import Overlay from './components/Overlay'
+import Tooltip from './components/Tooltip'
 import defaultTheme from './default-theme'
-import Button from './components/Button'
 import Avatar from './components/Avatar'
-import Fixed from './components/Fixed'
+import Button from './components/Button'
 import Block from './components/Block'
+import Fixed from './components/Fixed'
+import Image from './components/Image'
 import Input from './components/Input'
 import Modal from './components/Modal'
 import Base from './components/Base'
-import Grid from './components/Grid'
 import Card from './components/Card'
-import Text from './components/Text'
 import Flex from './components/Flex'
+import Grid from './components/Grid'
 import Icon from './components/Icon'
 import Menu from './components/Menu'
+import Text from './components/Text'
 import Box from './components/Box'
 
 /**
@@ -54,6 +55,7 @@ export {
   Tooltip,
   Overlay,
   Modal,
+  Image,
 
   // Default theme
   defaultTheme

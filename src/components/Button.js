@@ -7,6 +7,7 @@ import Tooltip from './Tooltip'
 import {classes} from '../util'
 import Block from './Block'
 import Icon from './Icon'
+import Flex from './Flex'
 
 /**
  * Button
@@ -41,6 +42,7 @@ function render ({props, children}) {
       textAlign='center'
       padding={icon ? 0 : null}
       m={0}
+      rounded
       borderWidth={0}
       userSelect='none'
       textDecoration='none'

@@ -19,6 +19,8 @@ function render ({props, children}) {
     <Menu
       boxSizing='border-box'
       boxShadow='menu'
+      rounded
+      py='s'
       absolute={{
         left: left ? 0 : 'auto',
         right: left ? 'auto' : 0,

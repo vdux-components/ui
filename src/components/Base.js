@@ -50,7 +50,7 @@ const fns = {
   uppercase: boolSetter('textTransform', 'uppercase'),
   underline: boolSetter('textDecoration', 'underline'),
   antialiased: boolSetter('-webkit-font-smoothing', 'antialiased'),
-  weight: scaleSetter('fontWeight', 'weightScale'),
+  fw: scaleSetter('fontWeight', 'weightScale'),
   fs: (style, val, theme, props) => {
     setScaled(style, 'fontSize', val, theme.fontScale)
     if (has(val, theme.lineHeightScale) && !has('lh', props)) {
