@@ -36,8 +36,9 @@ function render ({props}) {
     <Base
       tag='img'
       class={classes(props.class, 'vui-avatar')}
+      sq={size}
       {...rest}
-      sq={size} />
+      />
   )
 }
 

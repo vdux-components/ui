@@ -6,7 +6,6 @@ import {
   mergeTheme, setScaled, scaleSetter, boolSetter,
   positionSetter, highlight, borderSetter, flexify
 } from '../util'
-import CSSEmulator from 'vdux-css-emulator'
 import htmlAttrs from '@f/html-attrs'
 import element from 'vdux/element'
 import extend from '@f/extend'
@@ -146,6 +145,7 @@ const fns = {
       const [justify, alignItems] = val.split(' ')
       style.justifyContent = flexify(justify)
       style.alignItems = flexify(alignItems)
+      style.display = 'flex'
     }
   },
   wrap: boolSetter('flexWrap', 'wrap'),
@@ -159,15 +159,16 @@ const fns = {
  */
 
 function render ({props, children}) {
+  const {tag: Tag = 'div'} = props
   const newProps = {}
   const style = {}
 
   computeProps(style, newProps, props)
 
   return (
-    <CSSEmulator {...newProps}>
+    <Tag {...newProps}>
       {children}
-    </CSSEmulator>
+    </Tag>
   )
 }
 
@@ -193,7 +194,7 @@ function computeProps (style, newProps, props) {
       fns[key](style, val, props.$theme, props)
     } else if (eventRegex.test(key) || htmlAttrs[key]) {
       newProps[key] = val
-    } else if (val !== undefined && typeof val !== 'object') {
+    } else if (val !== undefined && typeof val !== 'object' && key !== 'tag') {
       style[key] = val
     }
   }
