@@ -23,17 +23,33 @@ test('<Input/> should work', t => {
 
   node = render(<Input rounded />)
   input = node.firstChild.nextSibling
-  t.equal(input.style.borderRadius, '2px')
+  t.equal(input.style.borderRadius, '3px', 'borderRadius')
 
   node = render(<Input name='test' rounded label='some text' />)
   label = node.firstChild
-  t.equal(label.getAttribute('for'), 'test')
-  t.equal(label.textContent, 'some text')
+  t.equal(label.getAttribute('for'), 'test', 'label for')
+  t.equal(label.textContent, 'some text', 'label content')
 
   node = render(<Input class='cnt' inputClass='inpt' labelClass='lbl' />)
-  t.ok(node.classList.contains('cnt'))
-  t.ok(node.firstChild.classList.contains('lbl'))
-  t.ok(node.firstChild.nextSibling.classList.contains('inpt'))
+  t.ok(node.classList.contains('cnt'), 'classList - cnt')
+  t.ok(node.firstChild.classList.contains('lbl'), 'classList - labelClass')
+  t.ok(node.firstChild.nextSibling.classList.contains('inpt'), 'classList - inputClass')
+
+  t.end()
+})
+
+test('<Input/> should work with padding props', t => {
+  const {render} = vdux()
+  let node, input
+
+  node = render(<Input inputProps={{px: '1px', py: '2px'}} />)
+  input = node.firstChild.nextSibling
+
+  t.equal(input.tagName, 'INPUT')
+  t.equal(input.style.paddingLeft, '1px', 'paddingLeft')
+  t.equal(input.style.paddingRight, '1px', 'paddingRight')
+  t.equal(input.style.paddingTop, '2px', 'paddingTop')
+  t.equal(input.style.paddingBottom, '2px', 'paddingBottom')
 
   t.end()
 })

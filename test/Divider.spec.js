@@ -16,7 +16,7 @@ test('<Divider/> should work', t => {
   let node
 
   node = render(<Divider />)
-  t.equal(node.style.backgroundColor, 'rgb(17, 17, 17)')
+  t.equal(node.style.backgroundColor, 'rgb(136, 136, 136)')
 
   node = render(<Divider color='rgb(18, 18, 18)' w='36%' />)
   t.equal(node.style.backgroundColor, 'rgb(18, 18, 18)')

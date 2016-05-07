@@ -3,7 +3,9 @@
  */
 
 import DropdownMenu from './components/DropdownMenu'
+import ModalFooter from './components/ModalFooter'
 import IconButton from './components/IconButton'
+import ModalBody from './components/ModalBody'
 import DecoLine from './components/DecoLine'
 import Dropdown from './components/Dropdown'
 import MenuItem from './components/MenuItem'
@@ -55,6 +57,8 @@ export {
   Tooltip,
   Overlay,
   Modal,
+  ModalBody,
+  ModalFooter,
   Image,
 
   // Default theme

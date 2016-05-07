@@ -194,7 +194,7 @@ function computeProps (style, newProps, props) {
       fns[key](style, val, props.$theme, props)
     } else if (eventRegex.test(key) || htmlAttrs[key]) {
       newProps[key] = val
-    } else if (val !== undefined && typeof val !== 'object' && key !== 'tag') {
+    } else if (val !== undefined && typeof val !== 'object') {
       style[key] = val
     }
   }
@@ -207,8 +207,6 @@ function computeProps (style, newProps, props) {
 
   if (props.style) extend(style, props.style)
   if (style) newProps.style = style
-
-  newProps.tag = props.tag
 }
 
 /**

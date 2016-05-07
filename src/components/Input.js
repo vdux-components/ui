@@ -59,6 +59,8 @@ function render ({props, children}) {
       mb='s'
       relative
       overflow='visible'
+      onFocus={[props.onFocus, stopEvent]}
+      onBlur={[props.onBlur, stopEvent]}
       color={invalid ? 'error' : null}
       {...filteredProps}
       class={classes(props.class, 'vui-input-container')}>
@@ -66,6 +68,10 @@ function render ({props, children}) {
         {label || children}
       </Base>
       <Base
+        tag='input'
+        onBlur={handleEvent}
+        onFocus={handleEvent}
+        outline='none'
         boxSizing='border-box'
         fontFamily='inherit'
         display='block'
@@ -73,7 +79,6 @@ function render ({props, children}) {
         m={0}
         color='inherit'
         fs='inherit'
-        tag='input'
         type='text'
         border={border && (invalid ? 'error' : 'border')}
         {...restInputAttrs}
@@ -84,6 +89,21 @@ function render ({props, children}) {
         }
     </Block>
   )
+}
+
+/**
+ * Event simulation
+ */
+
+function handleEvent (e) {
+  if (!e.bubbles) {
+    e.target.dispatchEvent(new FocusEvent(e.type, {bubbles: true}))
+  }
+}
+
+function stopEvent (e) {
+  e.stopPropagation()
+  e._rawEvent.stopPropagation()
 }
 
 /**

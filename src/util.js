@@ -14,17 +14,21 @@ import has from '@f/has'
  * Set a style property from a given theme scale
  */
 
-function scaleSetter (styleKey, themeScaleKey = 'scale') {
+function scaleSetter (styleKey, themeScaleKey = 'scale', defaultValue = 'm') {
   if (Array.isArray(styleKey)) {
     return (style, val, theme) => {
       const scale = theme[themeScaleKey]
+
+      if (val === true) {
+        val = defaultValue
+      }
 
       for (let i = 0; i < styleKey.length; ++i) {
         setScaled(style, styleKey[i], val, theme[themeScaleKey])
       }
     }
   } else {
-    return (style, val, theme) => setScaled(style, styleKey, val, theme[themeScaleKey])
+    return (style, val, theme) => setScaled(style, styleKey, val === true ? defaultValue : val, theme[themeScaleKey])
   }
 }
 
