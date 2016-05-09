@@ -21,6 +21,9 @@ function getProps (props, context) {
   return props
 }
 
+const borderRadiusSetter = boolSetter('borderRadius', 9999)
+const squareSetter = scaleSetter(['width', 'height'])
+
 const eventRegex = /^on[A-Z]/
 const fns = {
   // Padding
@@ -61,7 +64,7 @@ const fns = {
   // Size
   wide: boolSetter('width', '100%'),
   tall: boolSetter('height', '100%'),
-  sq: scaleSetter(['width', 'height']),
+  sq: squareSetter,
   w: scaleSetter('width'),
   h: scaleSetter('height'),
 
@@ -101,8 +104,13 @@ const fns = {
   },
 
   // Rounding
-  pill: boolSetter('borderRadius', 99999),
-  circle: boolSetter('borderRadius', 99999),
+  pill: borderRadiusSetter,
+  circle: (style, val, theme, props) => {
+    borderRadiusSetter(style, val, theme, props)
+    if (typeof val !== 'boolean') {
+      squareSetter(style, val, theme, props)
+    }
+  },
   rounded: (style, val, {borderRadius}) => {
     if (val === true) style.borderRadius = borderRadius
     else if (val === false) style.borderRadius = 0

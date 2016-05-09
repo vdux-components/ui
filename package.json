@@ -13,6 +13,7 @@
   "dependencies": {
     "@f/defaults": "^1.0.1",
     "@f/extend": "^1.0.0",
+    "@f/foreach": "^1.2.2",
     "@f/has": "^1.0.0",
     "@f/html-attrs": "^1.0.1",
     "@f/input-attrs": "^1.0.0",
