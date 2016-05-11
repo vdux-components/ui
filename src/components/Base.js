@@ -83,6 +83,9 @@ const fns = {
   // Color/Background
   color: scaleSetter('color', 'colors'),
   bgColor: scaleSetter('backgroundColor', 'colors'),
+  bgImg: (style, val) => style.backgroundImage = `url(${val})`,
+  bgSize: (style, val) => style.backgroundSize = val,
+  bgPos: (style, val) => style.backgroundPosition= val,
   bg: (style, val, {colors}) => style.background = val
     .split(' ')
     .map(p => has(p, colors) ? colors[p] : p)
@@ -210,7 +213,7 @@ function computeProps (style, newProps, props) {
   // Post processing transformations
 
   if (props.highlight && style.backgroundColor) {
-    style.backgroundColor = highlight(style.backgroundColor)
+    style.backgroundColor = highlight(style.backgroundColor, props.highlight === true ? 0.1 : props.highlight)
   }
 
   if (props.style) extend(style, props.style)

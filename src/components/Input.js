@@ -18,24 +18,11 @@ import Text from './Text'
 
 const inputPropNames = [
   'invalid',
-  'label',
   'type',
   'name',
-  'rounded',
-  'h',
-  'height',
-  'width',
-  'w',
   'bgColor',
-  'labelStyle',
-  'border',
-  'borderWidth',
   'inputProps',
   'onInvalid',
-  'pill',
-  'rounded',
-  'borderRadius',
-  'outline',
   'defaultValue',
   'defaultChecked'
 ].concat(inputAttrs)
@@ -80,7 +67,7 @@ function render ({props, children}) {
         color='inherit'
         fs='inherit'
         type='text'
-        border={border && (invalid ? 'error' : 'border')}
+        border={inputProps.border && (invalid ? 'error' : 'border')}
         {...restInputAttrs}
         {...inputProps}
         class={classes(inputClass, 'vui-input')}/>

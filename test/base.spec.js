@@ -55,13 +55,13 @@ test('<Base/> supports rounding', t => {
   let node
 
   node = render(<Base circle={true} />)
-  t.equal(node.style.borderRadius, '99999px', 'circle prop')
+  t.equal(node.style.borderRadius, '9999px', 'circle prop')
 
   node = render(<Base rounded={true} />)
   t.equal(node.style.borderRadius, defaultTheme.borderRadius + 'px', 'rounded prop')
 
   node = render(<Base pill={true} />)
-  t.equal(node.style.borderRadius, '99999px', 'pill prop')
+  t.equal(node.style.borderRadius, '9999px', 'pill prop')
 
   t.end()
 })

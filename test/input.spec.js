@@ -22,8 +22,7 @@ test('<Input/> should work', t => {
   t.equal(input.getAttribute('type'), 'text')
 
   node = render(<Input rounded />)
-  input = node.firstChild.nextSibling
-  t.equal(input.style.borderRadius, '3px', 'borderRadius')
+  t.equal(node.style.borderRadius, '3px', 'borderRadius')
 
   node = render(<Input name='test' rounded label='some text' />)
   label = node.firstChild

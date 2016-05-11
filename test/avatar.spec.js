@@ -20,7 +20,7 @@ test('<Avatar/> should work', t => {
   t.equal(node.getAttribute('src'), '/images/cat.jpg', 'src')
   t.equal(node.style.width, '32px', 'width')
   t.equal(node.style.height, '32px', 'height')
-  t.equal(node.style.borderRadius, '99999px', 'borderRadius')
+  t.equal(node.style.borderRadius, '9999px', 'borderRadius')
 
   node = render(<Avatar circle={false} src='/images/cat.jpg' />)
   t.equal(node.style.borderRadius, '', 'borderRadius - (circle=false)')
