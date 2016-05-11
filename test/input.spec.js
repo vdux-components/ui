@@ -52,3 +52,14 @@ test('<Input/> should work with padding props', t => {
 
   t.end()
 })
+
+test('<Input/> should work with rounding', t => {
+  const {render} = vdux()
+  let node, input
+
+  node = render(<Input inputProps={{pill: true}} />)
+  input = node.firstChild.nextSibling
+  t.equal(input.style.borderRadius, '9999px')
+
+  t.end()
+})
