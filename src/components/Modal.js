@@ -17,7 +17,7 @@ function render ({props, children}) {
   return (
     <Overlay onClick={dismissOnClick && onDismiss} onKeypress={{esc: dismissOnEsc && onDismiss}}>
       <Flex wide tall align='center center'>
-        <Base onClick={e => e.stopPropagation()} tag='div' bgColor='white' w={520} minHeight={200} {...rest}>
+        <Base onClick={e => e.stopPropagation()} tag='div' bgColor='white' w={520} {...rest} boxShadow='card'>
           {children}
         </Base>
       </Flex>

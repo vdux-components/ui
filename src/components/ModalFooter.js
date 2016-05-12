@@ -11,7 +11,7 @@ import Base from './Base'
 
 function render ({props, children}) {
   return (
-    <Base tag='div' wide color='#939597' h='25%' bgColor='grey' align='end center' pr {...props}>
+    <Base tag='div' wide color='#939597' bgColor='grey' align='end center' p mt {...props}>
       {children}
     </Base>
   )
