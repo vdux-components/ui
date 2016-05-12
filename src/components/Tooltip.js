@@ -36,7 +36,6 @@ function render ({props, children}) {
         top='-10000px'
         opacity={show ? 1 : 0}
         transition='opacity .15s linear'
-        whiteSpace='nowrap'
         z='tooltip'
         class={classes(props.class, 'vui-tooltip')}>
         <Block
@@ -46,7 +45,7 @@ function render ({props, children}) {
           borderStyle='solid'
           {...getArrowStyle(placement, bgColor)}
           class='vui-tooltip-arrow' />
-        <Block class='vui-tooltip-inner' fs='xxs' py={6} px={9} rounded bgColor={bgColor} color='white' {...restProps}>
+        <Block class='vui-tooltip-inner' fs='xxs' py={6} px={9} maxWidth={200} rounded bgColor={bgColor} whiteSpace='nowrap' color='white' {...restProps}>
           {children}
         </Block>
       </Block>
