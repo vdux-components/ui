@@ -11,6 +11,7 @@ import pick from '@f/pick'
 import omit from '@f/omit'
 import Base from './Base'
 import Text from './Text'
+import Icon from './Icon'
 
 /**
  * Constants
@@ -20,7 +21,6 @@ const inputPropNames = [
   'invalid',
   'type',
   'name',
-  'bgColor',
   'inputProps',
   'onInvalid',
   'defaultValue',
@@ -36,13 +36,15 @@ function render ({props, children}) {
   const {
     message, name, label, labelClass,
     labelProps = {}, inputClass, inputProps = {},
-    invalid, border, errorPlacement = 'left'
+    invalid, border, errorPlacement = 'left', icon
   } = props
   const filteredProps = filterProps(props)
   const restInputAttrs = pick(inputPropNames, props)
 
   return (
     <Block
+      tag='label'
+      align='start center'
       mb='s'
       relative
       overflow='visible'
@@ -54,6 +56,7 @@ function render ({props, children}) {
       <Base tag='label' for={name} class={classes(labelClass, 'vui-label')} {...labelProps}>
         {label || children}
       </Base>
+      <Icon name={icon} hide={!icon} fs='s' lh='inherit'/>
       <Base
         tag='input'
         onBlur={handleEvent}
