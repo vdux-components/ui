@@ -16,8 +16,9 @@ import Flex from './Flex'
 function render ({props, children}) {
   let {
     text, bgColor = 'primary', icon,
-    ttUi: TtUi = Tooltip, tooltip, ttPlacement = 'top', ttShown,
-    ...restProps
+    ttUi: TtUi = Tooltip, tooltip,
+    ttPlacement = 'top', ttShown,
+    ttSpace, ...restProps
   } = props
 
   if (icon) {
@@ -28,7 +29,7 @@ function render ({props, children}) {
   }
 
   const tt = tooltip && (
-    <TtUi show={ttShown} placement={ttPlacement}>
+    <TtUi show={ttShown} placement={ttPlacement} space={ttSpace}>
       {tooltip}
     </TtUi>
   )
@@ -38,7 +39,6 @@ function render ({props, children}) {
       tag='button'
       type='button'
       color='white'
-      relative
       pointer
       overflow='visible'
       textAlign='center'
