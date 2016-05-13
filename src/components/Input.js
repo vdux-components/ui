@@ -46,7 +46,6 @@ function render ({props, children}) {
       tag='label'
       align='start center'
       mb='s'
-      relative
       overflow='visible'
       onFocus={[props.onFocus, stopEvent]}
       onBlur={[props.onBlur, stopEvent]}
@@ -75,7 +74,7 @@ function render ({props, children}) {
         {...inputProps}
         class={classes(inputClass, 'vui-input')}/>
         {
-          message && <Tooltip fs='xxs' p='0px 20px' lh='30px' placement={errorPlacement} show={invalid} bgColor='error'>{message}</Tooltip>
+          message && <Tooltip fs='xxs' p='0px 20px' lh='30px' placement={errorPlacement} show={invalid} bgColor='error' space={10}>{message}</Tooltip>
         }
     </Block>
   )
