@@ -86,7 +86,7 @@ const fns = {
   bgImg: (style, val) => style.backgroundImage = `url(${val})`,
   bgSize: (style, val) => style.backgroundSize = val,
   bgPos: (style, val) => style.backgroundPosition= val,
-  bg: (style, val, {colors}) => style.background = val
+  bg: (style, val = '', {colors}) => style.background = val
     .split(' ')
     .map(p => has(p, colors) ? colors[p] : p)
     .join(' '),
