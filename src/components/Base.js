@@ -4,7 +4,8 @@
 
 import {
   mergeTheme, setScaled, scaleSetter, boolSetter,
-  positionSetter, highlight, borderSetter, flexify
+  positionSetter, highlight, borderSetter, flexify,
+  rgbaify
 } from '../util'
 import htmlAttrs from '@f/html-attrs'
 import element from 'vdux/element'
@@ -15,11 +16,27 @@ import has from '@f/has'
  * Constants
  */
 
-
-function getProps (props, context) {
-  props.$theme = mergeTheme(context.uiTheme)
-  return props
-}
+const canContainRgba = [
+  'color',
+  'bgColor',
+  'background',
+  'bg',
+  'outline',
+  'boxShadow',
+  'border',
+  'borderTop',
+  'borderBottom',
+  'borderLeft',
+  'borderRight',
+  'borderColor',
+  'borderTopColor',
+  'borderLeftColor',
+  'borderRightColor',
+  'borderBottomColor'
+].reduce((acc, key) => {
+  acc[key] = true
+  return acc
+}, {})
 
 const borderRadiusSetter = boolSetter('borderRadius', 9999)
 const squareSetter = scaleSetter(['width', 'height'])
@@ -166,6 +183,16 @@ const fns = {
 }
 
 /**
+ * getProps
+ */
+
+function getProps (props, context) {
+  props.$theme = mergeTheme(context.uiTheme)
+  return props
+}
+
+
+/**
  * Base Component
  */
 
@@ -199,7 +226,9 @@ function computeProps (style, newProps, props) {
   for (let key in props) {
     if (key === 'tag') continue
 
-    const val = props[key]
+    const val = canContainRgba[key]
+      ? rgbaify(props[key], props.$theme.colors)
+      : props[key]
 
     if (fns[key]) {
       fns[key](style, val, props.$theme, props)

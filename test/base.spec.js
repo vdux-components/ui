@@ -215,3 +215,16 @@ test('<Base/> transition/cursor/pointer', t => {
 
   t.end()
 })
+
+test('<Base/> supports rgba() colors', t => {
+  const {render} = vdux()
+  let node
+
+  node = render(<Base color='rgba(blue, 0.5)' />)
+  t.equal(node.style.color, 'rgba(0, 136, 238, 0.498039)', 'rgba() color')
+
+  node = render(<Base border='1px solid rgba(blue, 0.5)' />)
+  t.equal(node.style.border, '1px solid rgba(0, 136, 238, 0.498039)', 'rgba() within border')
+
+  t.end()
+})

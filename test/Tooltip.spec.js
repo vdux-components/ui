@@ -21,7 +21,7 @@ test('<Tooltip/> should work', t => {
 
   node = render(<Tooltip show={true} />)
   t.equal(node.style.position, 'absolute')
-  t.equal(node.style.top, '-24px')
+  t.equal(node.style.top, '-16px')
 
   t.end()
 })

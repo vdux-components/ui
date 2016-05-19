@@ -28,7 +28,12 @@ function scaleSetter (styleKey, themeScaleKey = 'scale', defaultValue = 'm') {
       }
     }
   } else {
-    return (style, val, theme) => setScaled(style, styleKey, val === true ? defaultValue : val, theme[themeScaleKey])
+    return (style, val, theme) => setScaled(
+      style,
+      styleKey,
+      val === true ? defaultValue : val,
+      theme[themeScaleKey]
+    )
   }
 }
 
@@ -212,6 +217,20 @@ function flexify (str) {
     : str
 }
 
+function rgbaify (str, colors) {
+  const parts = /rgba\(([^,]+),([^,]+)\)/.exec(str)
+  if (!parts) return str
+
+  let [replace, color, alpha] = parts
+
+  if (has(color, colors)) {
+    color = colors[color]
+  }
+
+  const newStr = Color(color).alpha(Number(alpha)).rgbaString()
+  return str.replace(replace, newStr)
+}
+
 /**
  * Exports
  */
@@ -227,5 +246,6 @@ export {
   highlight,
   getThemeProps,
   mergeTheme,
-  classes
+  classes,
+  rgbaify
 }

@@ -16,7 +16,7 @@ test('<Input/> should work', t => {
   let node, label, input
 
   node = render(<Input />)
-  input = node.firstChild.nextSibling
+  input = node.firstChild.nextSibling.nextSibling
 
   t.equal(input.tagName, 'INPUT')
   t.equal(input.getAttribute('type'), 'text')
@@ -32,7 +32,7 @@ test('<Input/> should work', t => {
   node = render(<Input class='cnt' inputClass='inpt' labelClass='lbl' />)
   t.ok(node.classList.contains('cnt'), 'classList - cnt')
   t.ok(node.firstChild.classList.contains('lbl'), 'classList - labelClass')
-  t.ok(node.firstChild.nextSibling.classList.contains('inpt'), 'classList - inputClass')
+  t.ok(node.firstChild.nextSibling.nextSibling.classList.contains('inpt'), 'classList - inputClass')
 
   t.end()
 })
@@ -42,7 +42,7 @@ test('<Input/> should work with padding props', t => {
   let node, input
 
   node = render(<Input inputProps={{px: '1px', py: '2px'}} />)
-  input = node.firstChild.nextSibling
+  input = node.firstChild.nextSibling.nextSibling
 
   t.equal(input.tagName, 'INPUT')
   t.equal(input.style.paddingLeft, '1px', 'paddingLeft')
@@ -58,7 +58,7 @@ test('<Input/> should work with rounding', t => {
   let node, input
 
   node = render(<Input inputProps={{pill: true}} />)
-  input = node.firstChild.nextSibling
+  input = node.firstChild.nextSibling.nextSibling
   t.equal(input.style.borderRadius, '9999px')
 
   t.end()
