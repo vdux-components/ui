@@ -68,7 +68,16 @@ function borderSetter (borderKey) {
         // assume it's a shorthand for specifying all
         // the properties, rather than a named color
         if (/^[^\(]*\s/.test(val)) {
-          style[borderKey] = val
+          const parts = val.split(' ')
+
+          for (let i = 0; i < parts.length; i++) {
+            const part = parts[i]
+            if (has(part, colors)) {
+              parts[i] = colors[part]
+            }
+          }
+
+          style[borderKey] = parts.join(' ')
           return
         } else {
           setScaled(style, colorKey, val, colors)

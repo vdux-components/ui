@@ -9,6 +9,7 @@ import ModalBody from './components/ModalBody'
 import DecoLine from './components/DecoLine'
 import Dropdown from './components/Dropdown'
 import MenuItem from './components/MenuItem'
+import Checkbox from './components/Checkbox'
 import Divider from './components/Divider'
 import Overlay from './components/Overlay'
 import Tooltip from './components/Tooltip'
@@ -42,6 +43,7 @@ export {
   Card,
   Flex,
   Grid,
+  Checkbox,
   Input,
   Text,
   Fixed,
