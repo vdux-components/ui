@@ -12,15 +12,13 @@ import Base from './Base'
  */
 
 function render ({props, children}) {
-  const {dismissOnClick = true, dismissOnEsc = true, onDismiss, ...rest} = props
+  const {dismissOnClick = true, dismissOnEsc = true, onDismiss, overlayProps, ...rest} = props
 
   return (
-    <Overlay onClick={dismissOnClick && onDismiss} onKeypress={{esc: dismissOnEsc && onDismiss}}>
-      <Flex wide tall align='center center'>
-        <Base onClick={e => e.stopPropagation()} tag='div' bgColor='white' w={520} {...rest} boxShadow='card'>
-          {children}
-        </Base>
-      </Flex>
+    <Overlay onClick={dismissOnClick && onDismiss} onKeypress={{esc: dismissOnEsc && onDismiss}} {...overlayProps}>
+      <Base onClick={e => e.stopPropagation()} tag='div' bgColor='white' w={520} boxShadow='card' margin='50px auto 0' {...rest}>
+        {children}
+      </Base>
     </Overlay>
   )
 }

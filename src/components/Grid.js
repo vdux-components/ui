@@ -16,7 +16,7 @@ function render ({props, children}) {
   const columns = toColumns(children, itemsPerRow)
 
   return (
-    <Flex {...restProps} align={rowAlign}>
+    <Flex align={rowAlign} {...restProps}>
       {
         map(items => <Flex column align={columnAlign}>{items}</Flex>, columns)
       }

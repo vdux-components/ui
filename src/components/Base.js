@@ -22,6 +22,7 @@ const canContainRgba = [
   'background',
   'bg',
   'outline',
+  'outlineColor',
   'boxShadow',
   'border',
   'borderTop',
@@ -32,7 +33,7 @@ const canContainRgba = [
   'borderTopColor',
   'borderLeftColor',
   'borderRightColor',
-  'borderBottomColor'
+  'borderBottomColor',
 ].reduce((acc, key) => {
   acc[key] = true
   return acc
@@ -98,6 +99,8 @@ const fns = {
   bottom: (style, val) => style.bottom = val === true ? 0 : val,
 
   // Color/Background
+  outline: scaleSetter('outline', 'colors'),
+  outlineColor: scaleSetter('outlineColor', 'colors'),
   color: scaleSetter('color', 'colors'),
   bgColor: scaleSetter('backgroundColor', 'colors'),
   bgImg: (style, val) => style.backgroundImage = `url(${val})`,

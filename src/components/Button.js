@@ -22,7 +22,7 @@ function render ({props, children}) {
   } = props
 
   if (icon) {
-    text = <Icon fontSize='inherit' name={icon} />
+    text = <Flex align='center center'><Icon fontSize='inherit' name={icon} /></Flex>
     if (props.bgColor === undefined) {
       bgColor = 'transparent'
     }
