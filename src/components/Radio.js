@@ -10,24 +10,24 @@ import Icon from './Icon'
 import Base from './Base'
 
 /**
- * <Checkbox/>
+ * <Radio/>
  */
 
 function render ({props, children}) {
   const {
     name, label, checked, disabled,
-    checkedValue, onChange, ...rest,
-    btn: Btn = CheckboxUi, uiProps = {}
+    value, onChange, ...rest,
+    btn: Btn = RadioUi, uiProps = {}
   } = props
 
   return (
     <Flex tag='label' {...rest} align='start center'>
       <Base
         tag='input'
-        type='checkbox'
+        type='radio'
         hide
         name={name}
-        checkedValue={checkedValue}
+        value={value}
         checked={checked}
         disabled={disabled}
         onChange={onChange} />
@@ -36,13 +36,12 @@ function render ({props, children}) {
   )
 }
 
-function CheckboxUi ({props}) {
+function RadioUi ({props}) {
   const {checked, label} = props
 
   return (
     <Flex align='start center'>
-      <Flex rounded align='center center' sq={16} border borderColor={checked ? 'green' : '#bbb' } bgColor={checked ? 'green' : 'white'} mr='s'>
-        <Icon fs={11} hide={!checked} color='white' name='check' />
+      <Flex circle align='center center' sq={16} border borderColor={checked ? 'green' : '#bbb' } bgColor={checked ? 'green' : 'white'} mr='s'>
       </Flex>
       {label}
     </Flex>

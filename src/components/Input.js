@@ -4,8 +4,8 @@
 
 import inputAttrs from '@f/input-attrs'
 import element from 'vdux/element'
+import ErrorTip from './ErrorTip'
 import {classes} from '../util'
-import Tooltip from './Tooltip'
 import Block from './Block'
 import pick from '@f/pick'
 import omit from '@f/omit'
@@ -74,7 +74,7 @@ function render ({props, children}) {
         {...inputProps}
         class={classes(inputClass, 'vui-input')}/>
         {
-          message && <Tooltip fs='xxs' p='0px 20px' lh='30px' placement={errorPlacement} show={invalid} bgColor='error' space={10}>{message}</Tooltip>
+          message && <ErrorTip placement={errorPlacement} show={invalid} message={message} />
         }
     </Block>
   )
