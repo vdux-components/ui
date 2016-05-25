@@ -226,8 +226,10 @@ function flexify (str) {
     : str
 }
 
+const rgbaRe = /rgba\(([^,]+),([^,]+)\)/g
+
 function rgbaify (str, colors) {
-  const parts = /rgba\(([^,]+),([^,]+)\)/g.exec(str)
+  let parts = rgbaRe.exec(str)
 
   while (parts) {
     let [replace, color, alpha] = parts
@@ -238,6 +240,7 @@ function rgbaify (str, colors) {
 
     const newStr = Color(color).alpha(Number(alpha)).rgbaString()
     str = str.replace(replace, newStr)
+    parts = rgbaRe.exec(str)
   }
 
   return str

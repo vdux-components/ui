@@ -18,6 +18,7 @@ import Tooltip from './components/Tooltip'
 import defaultTheme from './default-theme'
 import Avatar from './components/Avatar'
 import Button from './components/Button'
+import Toggle from './components/Toggle'
 import Block from './components/Block'
 import Fixed from './components/Fixed'
 import Image from './components/Image'
@@ -68,6 +69,7 @@ export {
   ModalFooter,
   ProgressBar,
   Image,
+  Toggle,
 
   // Default theme
   defaultTheme
