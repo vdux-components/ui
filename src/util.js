@@ -227,17 +227,20 @@ function flexify (str) {
 }
 
 function rgbaify (str, colors) {
-  const parts = /rgba\(([^,]+),([^,]+)\)/.exec(str)
-  if (!parts) return str
+  const parts = /rgba\(([^,]+),([^,]+)\)/g.exec(str)
 
-  let [replace, color, alpha] = parts
+  while (parts) {
+    let [replace, color, alpha] = parts
 
-  if (has(color, colors)) {
-    color = colors[color]
+    if (has(color, colors)) {
+      color = colors[color]
+    }
+
+    const newStr = Color(color).alpha(Number(alpha)).rgbaString()
+    str = str.replace(replace, newStr)
   }
 
-  const newStr = Color(color).alpha(Number(alpha)).rgbaString()
-  return str.replace(replace, newStr)
+  return str
 }
 
 /**
