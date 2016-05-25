@@ -19,7 +19,7 @@ function render ({props, children}) {
 }
 
 function ToggleUi ({props}) {
-  const {checked, label, contWidth = '15%', tWidth = 40} = props
+  const {checked, label, contWidth = '15%', tWidth = 40, squished} = props
   const tHeight = tWidth * .55
 
   return (
@@ -34,9 +34,15 @@ function ToggleUi ({props}) {
           relative
           pill>
           <Block
-            circle={tHeight + 2}
+            circle
+            w={squished ? tHeight + 6 : tHeight + 2}
+            h={tHeight + 2}
             absolute
-            left={checked ? -2 : (tWidth - tHeight - 4)}
+            left={
+                squished
+                  ? checked ? (tWidth - tHeight - 4) : -1
+                  : checked ? (tWidth - tHeight) : -2
+              }
             top='-1'
             bg='white'
             boxShadow='0 0 5px rgba(#000, .3), 0 8px 6px rgba(#000, .1)'
