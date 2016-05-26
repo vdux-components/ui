@@ -19,7 +19,9 @@ function render ({props}) {
       lh='30px'
       bgColor='error'
       space={10}
-      {...rest}>{message}</Tooltip>
+      maxWidth='none'
+      {...rest}>
+      {message}</Tooltip>
   )
 }
 
