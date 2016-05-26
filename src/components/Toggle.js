@@ -9,7 +9,7 @@ import Flex from './Flex'
 import Base from './Base'
 
 /**
- * <Checkbox/>
+ * <Toggle/>
  */
 
 function render ({props, children}) {
