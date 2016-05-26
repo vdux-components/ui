@@ -19,35 +19,38 @@ function render ({props, children}) {
 }
 
 function ToggleUi ({props}) {
-  const {checked, label, contWidth = '15%', tWidth = 40, squished} = props
+  const {checked, label, contWidth = '15%', tWidth = 42, squished} = props
   const tHeight = tWidth * .55
+  const delta = 5
 
   return (
     <Flex align='start center' wide>
       <Block flex={contWidth}>
         <Block
-          boxShadow='inset 4px 4px 10px rgba(#000, 0.2), inset 1px 1px 0 rgba(#000, 0.25), 1px 1px 0 rgba(#FFF, 0.5)'
-          bg={checked ? 'green' : 'red'}
+          bg={checked ? 'green' : 'rgba(0,0,0,.2)'}
           transition='background-color .2s'
           w={tWidth}
           h={tHeight}
           relative
+          boxSizing='content-box'
+          border='2px solid transparent'
+          borderColor={checked && 'green'}
           pill>
           <Block
-            circle
-            w={squished ? tHeight + 6 : tHeight + 2}
-            h={tHeight + 2}
+            boxShadow='0px 1px 5px rgba(#000, .3)'
+            w={squished ? tHeight + delta : tHeight}
+            transition='all .2s'
+            h={tHeight}
             absolute
-            left={
-                squished
-                  ? checked ? (tWidth - tHeight - 4) : -1
-                  : checked ? (tWidth - tHeight) : -2
-              }
-            top='-1'
             bg='white'
-            boxShadow='0 0 5px rgba(#000, .3), 0 8px 6px rgba(#000, .1)'
             pointer
-            transition='all .2s'/>
+            circle
+            left={
+                checked
+                  ? squished ? tWidth - tHeight - delta :  tWidth - tHeight
+                  : 0
+              }
+            />
         </Block>
       </Block>
       {label}
