@@ -18,6 +18,7 @@ import Icon from './Icon'
  */
 
 const inputPropNames = [
+  'tag',
   'invalid',
   'type',
   'name',
