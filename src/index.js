@@ -5,8 +5,11 @@
 import DropdownMenu from './components/DropdownMenu'
 import ModalFooter from './components/ModalFooter'
 import ProgressBar from './components/ProgressBar'
+import TableHeader from './components/TableHeader'
 import IconButton from './components/IconButton'
 import ModalBody from './components/ModalBody'
+import TableCell from './components/TableCell'
+import TableRow from './components/TableRow'
 import DecoLine from './components/DecoLine'
 import Dropdown from './components/Dropdown'
 import MenuItem from './components/MenuItem'
@@ -19,6 +22,7 @@ import defaultTheme from './default-theme'
 import Avatar from './components/Avatar'
 import Button from './components/Button'
 import Toggle from './components/Toggle'
+import Table from './components/Table'
 import Block from './components/Block'
 import Fixed from './components/Fixed'
 import Image from './components/Image'
@@ -70,6 +74,10 @@ export {
   ProgressBar,
   Image,
   Toggle,
+  Table,
+  TableRow,
+  TableCell,
+  TableHeader,
 
   // Default theme
   defaultTheme
