@@ -15,13 +15,20 @@ function render ({props, children}) {
   const {dismissOnClick = true, dismissOnEsc = true, onDismiss, overlayProps, ...rest} = props
 
   return (
-    <Overlay onClick={dismissOnClick && onDismiss} onKeypress={{esc: dismissOnEsc && onDismiss}} {...overlayProps}>
-      <Base onClick={e => e.stopPropagation()} tag='div' bgColor='white' w={520} boxShadow='card' margin='50px auto 0' {...rest}>
+    <Overlay onClick={dismissOnClick && maybeDismiss} onKeypress={{esc: dismissOnEsc && onDismiss}} {...overlayProps}>
+      <Base tag='div' bgColor='white' w={520} boxShadow='card' margin='50px auto 0' {...rest}>
         {children}
       </Base>
     </Overlay>
   )
+
+  function maybeDismiss (e) {
+    if (e.target === e.currentTarget) {
+      return onDismiss()
+    }
+  }
 }
+
 
 /**
  * Exports
