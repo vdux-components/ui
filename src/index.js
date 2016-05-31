@@ -3,6 +3,7 @@
  */
 
 import DropdownMenu from './components/DropdownMenu'
+import ModalHeader from './components/ModalHeader'
 import ModalFooter from './components/ModalFooter'
 import ProgressBar from './components/ProgressBar'
 import TableHeader from './components/TableHeader'
@@ -70,6 +71,7 @@ export {
   Overlay,
   Modal,
   ModalBody,
+  ModalHeader,
   ModalFooter,
   ProgressBar,
   Image,

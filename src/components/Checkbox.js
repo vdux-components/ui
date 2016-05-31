@@ -37,14 +37,21 @@ function render ({props, children}) {
 }
 
 function CheckboxUi ({props}) {
-  const {checked, label} = props
+  const {checked, label, ...rest} = props
 
   return (
-    <Flex align='start center'>
-      <Flex rounded align='center center' sq={16} border borderColor={checked ? 'green' : '#bbb' } bgColor={checked ? 'green' : 'white'} mr='s'>
+    <Flex align='start center' {...rest}>
+      <Flex rounded align='center center' sq={16} border borderColor={checked ? 'green' : '#bbb' } bgColor={checked ? 'green' : 'white'}>
         <Icon fs={11} hide={!checked} color='white' name='check' />
       </Flex>
-      {label}
+      {
+        // Put space in the middle so the order can
+        // be reversed while still maintaining proper spacing
+        label && <Block mr='s'/>
+      }
+      <Block>
+        {label}
+      </Block>
     </Flex>
   )
 }
