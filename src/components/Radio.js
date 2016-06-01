@@ -15,7 +15,7 @@ import Base from './Base'
 
 function render ({props, children}) {
   const {
-    name, label, checked, disabled,
+    name, label = children, checked, disabled,
     value, onChange, ...rest,
     btn: Btn = RadioUi, uiProps = {}
   } = props
