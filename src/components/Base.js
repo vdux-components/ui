@@ -66,6 +66,8 @@ const fns = {
   fontFamily: scaleSetter('fontFamily', 'fonts'),
   italic: boolSetter('fontStyle', 'italic'),
   bold: boolSetter('fontWeight', 'bold'),
+  bolder: boolSetter('fontWeight', 'bolder'),
+  lighter: boolSetter('fontWeight', 'lighter'),
   capitalize: boolSetter('textTransform', 'capitalize'),
   uppercase: boolSetter('textTransform', 'uppercase'),
   underline: boolSetter('textDecoration', 'underline'),
