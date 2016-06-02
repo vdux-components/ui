@@ -4,6 +4,7 @@
 
 import element from 'vdux/element'
 import Overlay from './Overlay'
+import noop from '@f/noop'
 import Flex from './Flex'
 import Base from './Base'
 
@@ -12,7 +13,7 @@ import Base from './Base'
  */
 
 function render ({props, children}) {
-  const {dismissOnClick = true, dismissOnEsc = true, onDismiss, overlayProps, ...rest} = props
+  const {dismissOnClick = true, dismissOnEsc = true, onDismiss = noop, overlayProps, ...rest} = props
 
   return (
     <Overlay onClick={dismissOnClick && maybeDismiss} onKeypress={{esc: dismissOnEsc && onDismiss}} {...overlayProps}>
