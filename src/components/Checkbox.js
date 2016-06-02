@@ -16,7 +16,7 @@ import Base from './Base'
 function render ({props, children}) {
   const {
     name, label = children, checked, disabled,
-    checkedValue, onChange, ...rest,
+    value, onChange, indeterminate, ...rest,
     btn: Btn = CheckboxUi, uiProps = {}
   } = props
 
@@ -27,22 +27,24 @@ function render ({props, children}) {
         type='checkbox'
         hide
         name={name}
-        checkedValue={checkedValue}
+        value={value}
         checked={checked}
         disabled={disabled}
         onChange={onChange} />
-        <Btn checked={checked} label={label} {...uiProps} />
+        <Btn checked={checked} indeterminate={indeterminate} label={label} {...uiProps} />
     </Flex>
   )
 }
 
 function CheckboxUi ({props}) {
-  const {checked, label, ...rest} = props
+  const {checked, label, indeterminate, ...rest} = props
+  const isGreen = checked || indeterminate
 
   return (
     <Flex align='start center' {...rest}>
-      <Flex rounded align='center center' sq={16} border borderColor={checked ? 'green' : '#bbb' } bgColor={checked ? 'green' : 'white'}>
+      <Flex rounded align='center center' sq={16} border borderColor={isGreen ? 'green' : '#bbb' } bgColor={isGreen ? 'green' : 'white'}>
         <Icon fs={11} hide={!checked} color='white' name='check' />
+        <Icon fs={11} hide={checked || !indeterminate} color='white' name='remove' />
       </Flex>
       {
         // Put space in the middle so the order can
