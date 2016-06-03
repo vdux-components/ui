@@ -17,11 +17,11 @@ function render ({props, children}) {
   const {
     name, label = children, checked, disabled,
     checkedValue, onChange, ...rest,
-    btn: Btn = CheckboxUi, uiProps = {}
+    btn: Btn = CheckboxUi
   } = props
 
   return (
-    <Flex tag='label' {...rest} align='start center'>
+    <Base tag='label'>
       <Base
         tag='input'
         type='checkbox'
@@ -31,17 +31,17 @@ function render ({props, children}) {
         checked={checked}
         disabled={disabled}
         onChange={onChange} />
-        <Btn checked={checked} label={label} {...uiProps} />
-    </Flex>
+        <Btn checked={checked} label={label} { ...rest}/>
+    </Base>
   )
 }
 
 function CheckboxUi ({props}) {
-  const {checked, label, ...rest} = props
+  const {checked, label, uiProps, ...rest} = props
 
   return (
     <Flex align='start center' {...rest}>
-      <Flex rounded align='center center' sq={16} border borderColor={checked ? 'green' : '#bbb' } bgColor={checked ? 'green' : 'white'}>
+      <Flex rounded align='center center' sq={16} border borderColor={checked ? 'green' : '#bbb' } bgColor={checked ? 'green' : 'white'} {...uiProps}>
         <Icon fs={11} hide={!checked} color='white' name='check' />
       </Flex>
       {
