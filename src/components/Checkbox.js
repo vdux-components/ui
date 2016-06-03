@@ -15,13 +15,14 @@ import Base from './Base'
 
 function render ({props, children}) {
   const {
-    name, label = children, checked, disabled,
+    name, label, checked, disabled,
     checkedValue, onChange, ...rest,
-    btn: Btn = CheckboxUi
+    btn: Btn = CheckboxUi, uiProps = {},
+    checkProps = {}
   } = props
 
   return (
-    <Base tag='label'>
+    <Flex tag='label' {...rest} align='start center'>
       <Base
         tag='input'
         type='checkbox'
@@ -31,22 +32,22 @@ function render ({props, children}) {
         checked={checked}
         disabled={disabled}
         onChange={onChange} />
-        <Btn checked={checked} label={label} { ...rest}/>
-    </Base>
+        <Btn checked={checked} label={label} checkProps={checkProps} {...uiProps} />
+    </Flex>
   )
 }
 
 function CheckboxUi ({props}) {
-  const {checked, label, uiProps, ...rest} = props
+  const {checked, label, checkProps, ...rest} = props
 
   return (
     <Flex align='start center' {...rest}>
-      <Flex rounded align='center center' sq={16} border borderColor={checked ? 'green' : '#bbb' } bgColor={checked ? 'green' : 'white'} {...uiProps}>
-        <Icon fs={11} hide={!checked} color='white' name='check' />
+      <Flex rounded align='center center' fs={11} sq={16} border borderColor={checked ? 'green' : '#bbb' } bgColor={checked ? 'green' : 'white'} {...checkProps}>
+        <Icon fs='inherit' hide={!checked} color='white' name='check' />
       </Flex>
       {
         // Put space in the middle so the order can
-        // be reversed while still maintaining proper spacing
+        // be reversed while maintaining proper spacing
         label && <Block mr='s'/>
       }
       <Block>
