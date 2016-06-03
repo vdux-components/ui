@@ -15,8 +15,8 @@ import Base from './Base'
 
 function render ({props, children}) {
   const {
-    name, label, checked, disabled,
-    checkedValue, onChange, ...rest,
+    name, label = children, checked, disabled,
+    value, onChange, indeterminate, ...rest,
     btn: Btn = CheckboxUi, uiProps = {},
     checkProps = {}
   } = props
@@ -28,22 +28,24 @@ function render ({props, children}) {
         type='checkbox'
         hide
         name={name}
-        checkedValue={checkedValue}
+        value={value}
         checked={checked}
         disabled={disabled}
         onChange={onChange} />
-        <Btn checked={checked} label={label} checkProps={checkProps} {...uiProps} />
+        <Btn checked={checked} indeterminate={indeterminate} label={label} checkProps={checkProps} {...uiProps} />
     </Flex>
   )
 }
 
 function CheckboxUi ({props}) {
-  const {checked, label, checkProps, ...rest} = props
+  const {checked, label, indeterminate, checkProps, ...rest} = props
+  const isGreen = checked || indeterminate
 
   return (
     <Flex align='start center' {...rest}>
-      <Flex rounded align='center center' fs={11} sq={16} border borderColor={checked ? 'green' : '#bbb' } bgColor={checked ? 'green' : 'white'} {...checkProps}>
+      <Flex rounded align='center center' fs={11} sq={16} border borderColor={isGreen ? 'green' : '#bbb' } bgColor={isGreen ? 'green' : 'white'} {...checkProps} >
         <Icon fs='inherit' hide={!checked} color='white' name='check' />
+        <Icon fs='inherit' hide={checked || !indeterminate} color='white' name='remove' />
       </Flex>
       {
         // Put space in the middle so the order can

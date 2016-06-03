@@ -16,6 +16,7 @@ import Dropdown from './components/Dropdown'
 import MenuItem from './components/MenuItem'
 import Checkbox from './components/Checkbox'
 import ErrorTip from './components/ErrorTip'
+import Textarea from './components/Textarea'
 import Divider from './components/Divider'
 import Overlay from './components/Overlay'
 import Tooltip from './components/Tooltip'
@@ -80,6 +81,7 @@ export {
   TableRow,
   TableCell,
   TableHeader,
+  Textarea,
 
   // Default theme
   defaultTheme
