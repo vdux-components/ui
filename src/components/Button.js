@@ -22,7 +22,7 @@ function render ({props, children}) {
   } = props
 
   if (icon) {
-    text = <Flex align='center center'><Icon fontSize='inherit' name={icon} /></Flex>
+    text = <Icon fontSize='inherit' name={icon} />
     if (props.bgColor === undefined) {
       bgColor = 'transparent'
     }
@@ -53,7 +53,9 @@ function render ({props, children}) {
 
       bgColor={bgColor}
       class={classes(props.class, 'vui-button')}>
-      {text || children}
+      <Flex align='center center'>
+        {text || children}
+      </Flex>
       {tt}
     </Block>
   )
