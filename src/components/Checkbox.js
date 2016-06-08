@@ -46,6 +46,7 @@ function CheckboxUi ({props}) {
       <Flex rounded align='center center' fs={11} sq={16} border borderColor={isGreen ? 'green' : '#bbb' } bgColor={isGreen ? 'green' : 'white'} {...checkProps} >
         <Icon fs='inherit' hide={!checked} color='white' name='check' />
         <Icon fs='inherit' hide={checked || !indeterminate} color='white' name='remove' />
+        <Icon fs='inherit' visibility='hidden' hide={checked || indeterminate} color='white' name='check' />
       </Flex>
       {
         // Put space in the middle so the order can
