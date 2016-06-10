@@ -193,6 +193,7 @@ const fns = {
 
 function getProps (props, context) {
   props.$theme = mergeTheme(context.uiTheme)
+  props.$media = context.uiMedia
   return props
 }
 
@@ -206,7 +207,7 @@ function render ({props, children}) {
   const newProps = {}
   const style = {}
 
-  computeProps(style, newProps, props)
+  computeProps(style, newProps, props, props.$media)
 
   return (
     <Tag {...newProps}>
@@ -221,9 +222,11 @@ function render ({props, children}) {
  * Decide which props to forward, and process style properties
  */
 
-function computeProps (style, newProps, props) {
+function computeProps (style, newProps, props, media) {
   // Apply base styles
   if (props.baseStyle) extend(style, props.baseStyle)
+  const mediaProps = props[media + 'Props']
+  if (media && mediaProps) extend(props, mediaProps)
 
   // Separate styles and props (attributes to be placed on the element)
   // and apply shorthand functions
@@ -239,13 +242,12 @@ function computeProps (style, newProps, props) {
       fns[key](style, val, props.$theme, props)
     } else if (eventRegex.test(key) || htmlAttrs[key]) {
       newProps[key] = val
-    } else if (val !== undefined && typeof val !== 'object') {
+    } else if (val !== undefined && typeof val !== 'object' && key[0] !== '$') {
       style[key] = val
     }
   }
 
   // Post processing transformations
-
   if (props.highlight && style.backgroundColor) {
     style.backgroundColor = highlight(style.backgroundColor, props.highlight === true ? 0.1 : props.highlight)
   }
