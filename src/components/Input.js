@@ -47,6 +47,7 @@ function render ({props, children}) {
       tag='label'
       align='start center'
       mb='s'
+      relative
       overflow='visible'
       onFocus={[props.onFocus, stopEvent]}
       onBlur={[props.onBlur, stopEvent]}
