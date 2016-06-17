@@ -16,7 +16,7 @@ function render ({props, children}) {
   const {dismissOnClick = true, dismissOnEsc = true, onDismiss = noop, overlayProps, ...rest} = props
 
   return (
-    <Overlay overflowY='auto' onClick={dismissOnClick && maybeDismiss} onKeyup={{esc: dismissOnEsc && onDismiss}} {...overlayProps}>
+    <Overlay overflowY='scroll' onClick={dismissOnClick && maybeDismiss} onKeyup={{esc: dismissOnEsc && onDismiss}} {...overlayProps}>
       <Base tag='div' bgColor='white' w={520} boxShadow='card' margin='50px auto 0' {...rest}>
         {children}
       </Base>
