@@ -43,7 +43,7 @@ function CheckboxUi ({props}) {
 
   return (
     <Flex align='start center' {...rest}>
-      <Flex rounded align='center center' fs={11} sq={16} border borderColor={isGreen ? 'green' : '#bbb' } bgColor={isGreen ? 'green' : 'white'} {...checkProps} >
+      <Flex rounded align='center center' fs={11} sq={17} border borderColor={isGreen ? 'green' : '#bbb' } bgColor={isGreen ? 'green' : 'white'} {...checkProps} >
         <Icon fs='inherit' hide={!checked} color='white' name='check' />
         <Icon fs='inherit' hide={checked || !indeterminate} color='white' name='remove' />
         <Icon fs='inherit' visibility='hidden' hide={checked || indeterminate} color='white' name='check' />
