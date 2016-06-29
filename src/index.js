@@ -24,6 +24,7 @@ import defaultTheme from './default-theme'
 import Avatar from './components/Avatar'
 import Button from './components/Button'
 import Toggle from './components/Toggle'
+import Toast from './components/Toast'
 import Table from './components/Table'
 import Block from './components/Block'
 import Fixed from './components/Fixed'
@@ -82,6 +83,7 @@ export {
   TableCell,
   TableHeader,
   Textarea,
+  Toast,
 
   // Default theme
   defaultTheme
