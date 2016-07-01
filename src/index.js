@@ -19,6 +19,7 @@ import ErrorTip from './components/ErrorTip'
 import Textarea from './components/Textarea'
 import Divider from './components/Divider'
 import Overlay from './components/Overlay'
+import Spinner from './components/Spinner'
 import Tooltip from './components/Tooltip'
 import defaultTheme from './default-theme'
 import Avatar from './components/Avatar'
@@ -76,6 +77,7 @@ export {
   ModalHeader,
   ModalFooter,
   ProgressBar,
+  Spinner,
   Image,
   Toggle,
   Table,

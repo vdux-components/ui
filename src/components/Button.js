@@ -5,7 +5,9 @@
 import element from 'vdux/element'
 import Tooltip from './Tooltip'
 import {classes} from '../util'
+import Spinner from './Spinner'
 import Block from './Block'
+import Text from './Text'
 import Icon from './Icon'
 import Flex from './Flex'
 
@@ -18,7 +20,8 @@ function render ({props, children}) {
     text, bgColor = 'primary', icon,
     ttUi: TtUi = Tooltip, tooltip,
     ttPlacement = 'top', ttShown,
-    ttSpace, ...restProps
+    busy, ttSpace, darkSpinner,
+    ...restProps
   } = props
 
   if (icon) {
@@ -26,6 +29,10 @@ function render ({props, children}) {
     if (props.bgColor === undefined) {
       bgColor = 'transparent'
     }
+  }
+
+  if (busy && restProps.disabled === undefined) {
+    restProps.disabled = true
   }
 
   const tt = tooltip && (
@@ -53,9 +60,10 @@ function render ({props, children}) {
 
       bgColor={bgColor}
       class={classes(props.class, 'vui-button')}>
-      <Flex align='center center'>
-        {text || children}
-      </Flex>
+      <Block relative>
+        <Text hidden={busy} align='center center'>{text || children}</Text>
+        <Spinner dark={darkSpinner} absolute={{top: 0, bottom: 0, left: 0, right: 0}} m='auto' hide={!busy} />
+      </Block>
       {tt}
     </Block>
   )
