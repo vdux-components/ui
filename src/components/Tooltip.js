@@ -33,7 +33,9 @@ function render ({props, children}) {
         userSelect='none'
         {...margin}
         py={width}
-        top='-10000px'
+        // Ensure a rerender when it changes back to hidden
+        top={-10000}
+        left={0}
         opacity={show ? 1 : 0}
         transition='opacity .15s linear'
         z='tooltip'
