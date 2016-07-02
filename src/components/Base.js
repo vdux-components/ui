@@ -240,7 +240,7 @@ function computeProps (style, newProps, props, media) {
 
     if (fns[key]) {
       fns[key](style, val, props.$theme, props)
-    } else if (eventRegex.test(key) || htmlAttrs[key]) {
+    } else if (eventRegex.test(key) || htmlAttrs[key] || key === 'innerHTML') {
       newProps[key] = val
     } else if (val !== undefined && typeof val !== 'object' && key[0] !== '$') {
       style[key] = val
