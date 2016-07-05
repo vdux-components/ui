@@ -36,13 +36,17 @@ function render ({props, children}) {
       right='0px'
       w='400px'
       mx='auto'
+      fw='normal'
       {...rest}>
       <Icon
         border='2px solid white'
+        boxShadow='z2'
         name='close'
         hide={!onDismiss}
-        circle
+        circle='27'
         pointer
+        fs='s'
+        textAlign='center'
         onClick={onDismiss}
         absolute={{top: -15, right: -15}}
         bgColor='black'
