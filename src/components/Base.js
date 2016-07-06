@@ -140,7 +140,7 @@ const fns = {
     if (val === true) style.borderRadius = borderRadius
     else if (val === false) style.borderRadius = 0
     else if (typeof val === 'string') {
-      style.borderRadius = posString(val, borderRadius)
+      style.borderRadius = val
     }
   },
 
@@ -162,11 +162,13 @@ const fns = {
   flex: (style, val, theme, props) => {
     if (val) {
       if (val === true) style.flex = '1'
-      else {
+      else if (!/\s/.test(val)) {
         style.flex = `1 1 ${val}`
         if (typeof val === 'string' && val.indexOf('%') !== -1) {
           style['max' + (props.col ? 'Height' : 'Width')] = val
         }
+      } else {
+        style.flex = val
       }
     }
   },

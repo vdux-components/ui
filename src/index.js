@@ -25,6 +25,7 @@ import defaultTheme from './default-theme'
 import Avatar from './components/Avatar'
 import Button from './components/Button'
 import Toggle from './components/Toggle'
+import Badge from './components/Badge'
 import Toast from './components/Toast'
 import Table from './components/Table'
 import Block from './components/Block'
@@ -50,6 +51,7 @@ export {
   // Components
   Avatar,
   Base,
+  Badge,
   Block,
   Box,
   Card,

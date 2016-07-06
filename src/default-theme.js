@@ -5,8 +5,8 @@
 const baseColors = {
   black: '#111',
   white: '#fff',
-  gray: '#ddd',
-  midgray: '#888',
+  grey: '#ddd',
+  grey_medium: '#888',
   blue: '#08e',
   red: '#f52',
   orange: '#f70',
@@ -19,13 +19,13 @@ export default {
   colors: {
     ...baseColors,
     primary: baseColors.blue,
-    secondary: baseColors.midgray,
+    secondary: baseColors.grey_medium,
     default: baseColors.black,
     info: baseColors.blue,
     success: baseColors.green,
     warning: baseColors.orange,
     error: baseColors.red,
-    divider: baseColors.midgray,
+    divider: baseColors.grey_medium,
     text: baseColors.black
   },
 
