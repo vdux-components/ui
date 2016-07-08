@@ -27,10 +27,10 @@ function render ({props, children}) {
         top: top ? 'auto' : '100%',
         bottom: top ? '100%' : 'auto'
       }}
-      hide={!open}
       bgColor='white'
       color='text'
       column={true}
+      hide={!open}
       {...restProps}
       class={classes(props.class, 'vui-dropdown-menu')}>
       {children}

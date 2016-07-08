@@ -174,7 +174,10 @@ const fns = {
   },
 
   wrap: boolSetter('flexWrap', 'wrap'),
-  column: boolSetter('flexDirection', 'column'),
+  column: (style, val) => {
+    style.display = 'flex'
+    style.flexDirection = val ? 'column' : 'row'
+  },
   align: (style, val) => {
     if (val) {
       const [justify, alignItems] = val.split(' ')
