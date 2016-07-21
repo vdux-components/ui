@@ -102,7 +102,7 @@ function borderSetter (borderKey) {
  *  * scale - The scale from which to select sizes
  */
 
-const posRe = /^(top|bottom)(?:\s(\d+[a-zA-Z]+))?\s(left|right)(?:\s(\d+[a-zA-Z]+))?$/
+const posRe = /^(top|bottom)(?:\s(\-?\d+[a-zA-Z]+))?\s(left|right)(?:\s(\-?\d+[a-zA-Z]+))?$/
 
 function positionSetter (styleKey) {
   return (style, val, {scale}) => {
