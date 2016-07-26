@@ -6,6 +6,7 @@ import element from 'vdux/element'
 import Tooltip from './Tooltip'
 import {classes} from '../util'
 import Spinner from './Spinner'
+import Color from 'color'
 import Block from './Block'
 import Text from './Text'
 import Icon from './Icon'
@@ -50,9 +51,9 @@ function render ({props, children}) {
       overflow='visible'
       textAlign='center'
       padding={icon ? 0 : null}
+      border={icon ? '0px solid' : '1px solid rgba(0,0,0,0.09)'}
       m={0}
       rounded
-      borderWidth={0}
       userSelect='none'
       textDecoration='none'
 
@@ -60,7 +61,7 @@ function render ({props, children}) {
 
       bgColor={bgColor}
       class={classes(props.class, 'vui-button')}>
-      <Block relative>
+      <Block relative wide>
         <Text hidden={busy} align='center center'>{text || children}</Text>
         <Spinner dark={darkSpinner} absolute={{top: 0, bottom: 0, left: 0, right: 0}} m='auto' hide={!busy} />
       </Block>
