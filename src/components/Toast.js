@@ -39,19 +39,19 @@ function render ({props, children}) {
       top
       {...rest}>
       <Icon
+        absolute={{top: -9, right: -9}}
         border='2px solid white'
-        boxShadow='z2'
-        name='close'
-        hide={!onDismiss}
-        circle='27'
-        pointer
-        fs='s'
-        textAlign='center'
+        align='center center'
         onClick={onDismiss}
-        absolute={{top: -15, right: -15}}
+        hide={!onDismiss}
         bgColor='black'
-        color='white' />
-      <Block m={9}>
+        boxShadow='z2'
+        circle='21px'
+        color='white'
+        name='close'
+        pointer
+        fs='xs' />
+      <Block m='10px 12px' bold>
         {children}
       </Block>
     </Block>
