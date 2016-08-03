@@ -21,22 +21,22 @@ function render ({props, children}) {
 
   return (
     <Block
-      fixed
-      rounded
+      transform={`translate3d(0, ${entering || leaving ? '-105% ' : '12px'}, 0)`}
+      transition='transform .3s cubic-bezier(0.55, 0, 0.55, 0.2)'
       class={classes(props.class, 'vui-toast')}
+      onTransitionEnd={leaving && didLeave}
+      minHeight='48px'
+      bgColor='white'
       boxShadow='z3'
       z='overlay'
-      bgColor='white'
-      minHeight='48px'
-      top='-24px'
-      transform={`translateY(+${entering || leaving ? 0 : 48}px)`}
-      onTransitionEnd={leaving && didLeave}
-      transition='transform .25s ease-in'
-      left='0px'
-      right='0px'
+      fw='normal'
       w='400px'
       mx='auto'
-      fw='normal'
+      rounded
+      fixed
+      right
+      left
+      top
       {...rest}>
       <Icon
         border='2px solid white'
