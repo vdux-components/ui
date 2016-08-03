@@ -25,7 +25,7 @@ function render ({props, children}) {
       transition='transform .3s cubic-bezier(0.55, 0, 0.55, 0.2)'
       class={classes(props.class, 'vui-toast')}
       onTransitionEnd={leaving && didLeave}
-      minHeight='48px'
+      minHeight='46px'
       bgColor='white'
       boxShadow='z3'
       z='overlay'
@@ -51,7 +51,7 @@ function render ({props, children}) {
         absolute={{top: -15, right: -15}}
         bgColor='black'
         color='white' />
-      <Block m>
+      <Block m={9}>
         {children}
       </Block>
     </Block>
