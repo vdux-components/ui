@@ -33,11 +33,7 @@ function render ({props, children}) {
         userSelect='none'
         {...margin}
         py={width}
-        // Ensure a rerender when it changes back to hidden
-        top={-10000}
-        left={0}
-        opacity={show ? 1 : 0}
-        transition='opacity .15s linear'
+        display={show ? 'block' : 'none'}
         z='tooltip'
         class={classes(props.class, 'vui-tooltip')}>
         <Block
@@ -54,7 +50,6 @@ function render ({props, children}) {
     </Position>
   )
 }
-
 
 /**
  * Compute base styles
