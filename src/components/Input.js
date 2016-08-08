@@ -42,6 +42,8 @@ function render ({props, children}) {
   const filteredProps = filterProps(props)
   const restInputAttrs = pick(inputPropNames, props)
 
+  const hasLabel = !!(label || children.length)
+
   return (
     <Block
       tag='label'
@@ -54,10 +56,14 @@ function render ({props, children}) {
       color={invalid ? 'error' : null}
       {...filteredProps}
       class={classes(props.class, 'vui-input-container')}>
-      <Base tag='label' for={name} class={classes(labelClass, 'vui-label')} {...labelProps}>
-        {label || children}
-      </Base>
-      <Icon name={icon} hide={!icon} fs='s' lh='inherit'/>
+      {
+        hasLabel && (
+          <Base tag='label' for={name} class={classes(labelClass, 'vui-label')} {...labelProps}>
+            {label || children}
+          </Base>
+        )
+      }
+      {icon && <Icon name={icon} fs='s' lh='inherit'/>}
       <Base
         tag='input'
         onBlur={handleEvent}
@@ -74,7 +80,7 @@ function render ({props, children}) {
         border={inputProps.border && (invalid ? 'error' : 'border')}
         {...restInputAttrs}
         {...inputProps}
-        class={classes(inputClass, 'vui-input')}/>
+        class={classes(inputClass, 'vui-input')} />
         {
           message && <ErrorTip placement={errorPlacement} show={invalid} message={message} />
         }
