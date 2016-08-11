@@ -29,10 +29,10 @@ function render ({props, children}) {
         hide
         name={name}
         value={value}
-        checked={checked}
-        disabled={disabled}
+        checked={!!checked}
+        disabled={!!disabled}
         onChange={onChange} />
-        <Btn checked={checked} indeterminate={indeterminate} label={label} checkProps={checkProps} {...uiProps} />
+        <Btn checked={!!checked} indeterminate={!!indeterminate} label={label} checkProps={checkProps} {...uiProps} />
     </Flex>
   )
 }
