@@ -22,6 +22,7 @@ import Overlay from './components/Overlay'
 import Spinner from './components/Spinner'
 import Tooltip from './components/Tooltip'
 import defaultTheme from './default-theme'
+import {setupStylePrefixer} from './util'
 import Avatar from './components/Avatar'
 import Button from './components/Button'
 import Toggle from './components/Toggle'
@@ -88,6 +89,8 @@ export {
   TableHeader,
   Textarea,
   Toast,
+
+  setupStylePrefixer,
 
   // Default theme
   defaultTheme

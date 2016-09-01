@@ -5,7 +5,7 @@
 import {
   mergeTheme, setScaled, scaleSetter, boolSetter,
   positionSetter, highlight, borderSetter, flexify,
-  rgbaify
+  rgbaify, autoprefix
 } from '../util'
 import htmlAttrs from '@f/html-attrs'
 import element from 'vdux/element'
@@ -249,6 +249,7 @@ function computeProps (style, newProps, props, media) {
       newProps[key] = val
     } else if (val !== undefined && typeof val !== 'object' && key[0] !== '$') {
       style[key] = val
+      autoprefix(style, key, val)
     }
   }
 
@@ -259,6 +260,8 @@ function computeProps (style, newProps, props, media) {
 
   if (props.style) extend(style, props.style)
   if (style) newProps.style = style
+
+  autoprefix(style)
 }
 
 /**

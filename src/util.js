@@ -2,11 +2,26 @@
  * Imports
  */
 
+import Prefixer from 'inline-style-prefixer'
 import defaultTheme from './default-theme'
 import extend from '@f/extend'
 import pick from '@f/pick'
 import Color from 'color'
 import has from '@f/has'
+
+/**
+ * Prefixer
+ */
+
+let prefixer = {prefix: style => style}
+
+function setupStylePrefixer (userAgent) {
+  prefixer = new Prefixer({userAgent})
+}
+
+function autoprefix (styles) {
+  return prefixer.prefix(styles)
+}
 
 /**
  * scaleSetter
@@ -255,6 +270,9 @@ export {
   positionSetter,
   boolSetter,
   borderSetter,
+
+  autoprefix,
+  setupStylePrefixer,
 
   setScaled,
   flexify,
