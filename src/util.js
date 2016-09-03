@@ -2,9 +2,11 @@
  * Imports
  */
 
-import Prefixer from 'inline-style-prefixer'
+import normalizeBowser from '@f/normalize-bowser'
 import defaultTheme from './default-theme'
+import prefixStyle from '@f/prefix-style'
 import extend from '@f/extend'
+import bowser from 'bowser'
 import pick from '@f/pick'
 import Color from 'color'
 import has from '@f/has'
@@ -13,14 +15,15 @@ import has from '@f/has'
  * Prefixer
  */
 
-let prefixer = {prefix: style => style}
+let prefixer = style => style
 
 function setupStylePrefixer (userAgent) {
-  prefixer = new Prefixer({userAgent})
+  const {browser, version} = normalizeBowser(bowser._detect(userAgent))
+  prefixer = prefixStyle(browser, version)
 }
 
 function autoprefix (styles) {
-  return prefixer.prefix(styles)
+  return prefixer(styles)
 }
 
 /**
