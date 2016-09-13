@@ -2,7 +2,7 @@
  * Imports
  */
 
-import Document from 'vdux/Document'
+import Document from 'vdux/document'
 import element from 'vdux/element'
 import {classes} from '../util'
 import noop from '@f/noop'
