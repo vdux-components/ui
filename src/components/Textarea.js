@@ -15,19 +15,34 @@ import Base from './Base'
  */
 
 function onCreate (model) {
-  if (typeof window === 'undefined') return
-  if (!model.props.defaultValue) return
+  if (typeof window !== 'undefined') {
+    return () => {
+      setTimeout(() => {
+        // Emulate the defaultValue prop for browsers that don't support
+        // it on Textareas
+        const node = findDOMNode(model)
+        if (node) {
+          const ta = node.querySelector('textarea')
+          if (ta) ta.value = model.props.defaultValue
+        }
+      })
+    }
+  }
+}
 
-  return () => {
-    setTimeout(() => {
-      // Emulate the defaultValue prop for browsers that don't support
-      // it on Textareas
-      const node = findDOMNode(model)
-      if (node) {
-        const ta = node.querySelector('textarea')
-        if (ta) ta.value = model.props.defaultValue
-      }
-    })
+function onUpdate (prev, next) {
+  if (typeof window !== 'undefined' && prev.props.defaultValue !== next.props.defaultValue) {
+    return () => {
+      setTimeout(() => {
+        const node = findDOMNode(next)
+        if (node) {
+          const ta = node.querySelector('textarea')
+          if (ta && !ta.__dirty) {
+            ta.value = next.props.defaultValue
+          }
+        }
+      })
+    }
   }
 }
 
@@ -78,6 +93,7 @@ function render ({props, children}) {
     //
     // http://stackoverflow.com/questions/21406138/input-event-triggered-on-internet-explorer-when-placeholder-changed
     if (onInput && e.target === document.activeElement) {
+      e.target.__dirty = true
       return onInput(e)
     }
   }
@@ -105,5 +121,6 @@ function stopEvent (e) {
 
 export default {
   onCreate,
+  onUpdate,
   render
 }
