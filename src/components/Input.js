@@ -2,10 +2,10 @@
  * Imports
  */
 
+import {classes, createEvent} from '../util'
 import inputAttrs from '@f/input-attrs'
 import element from 'vdux/element'
 import ErrorTip from './ErrorTip'
-import {classes} from '../util'
 import Block from './Block'
 import pick from '@f/pick'
 import omit from '@f/omit'
@@ -94,7 +94,8 @@ function render ({props, children}) {
 
 function handleEvent (e) {
   if (!e.bubbles) {
-    e.target.dispatchEvent(new FocusEvent(e.type, {bubbles: true}))
+    const newEvent = createEvent(e.type, true)
+    e.target.dispatchEvent(newEvent)
   }
 }
 

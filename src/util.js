@@ -265,6 +265,22 @@ function rgbaify (str, colors) {
 }
 
 /**
+ * createEvent
+ *
+ * Cross-browser way to create events
+ */
+
+function createEvent (type, bubbles) {
+  try {
+    return new FocusEvent(type, {bubbles})
+  } catch (err) {
+    const e = document.createEvent('CustomEvent')
+    e.initCustomEvent(type, bubbles, true, {})
+    return e
+  }
+}
+
+/**
  * Exports
  */
 
@@ -283,5 +299,6 @@ export {
   getThemeProps,
   mergeTheme,
   classes,
-  rgbaify
+  rgbaify,
+  createEvent
 }

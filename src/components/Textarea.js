@@ -2,19 +2,41 @@
  * Imports
  */
 
+import {classes, createEvent} from '../util'
+import {findDOMNode} from 'vdux/dom'
 import element from 'vdux/element'
 import ErrorTip from './ErrorTip'
-import {classes} from '../util'
 import Block from './Block'
 import Icon from './Icon'
 import Base from './Base'
+
+/**
+ * onCreate
+ */
+
+function onCreate (model) {
+  if (typeof window === 'undefined') return
+  if (!model.props.defaultValue) return
+
+  return () => {
+    setTimeout(() => {
+      // Emulate the defaultValue prop for browsers that don't support
+      // it on Textareas
+      const node = findDOMNode(model)
+      if (node) {
+        const ta = node.querySelector('textarea')
+        if (ta) ta.value = model.props.defaultValue
+      }
+    })
+  }
+}
 
 /**
  * <Textarea/> component
  */
 
 function render ({props, children}) {
-  const {onBlur, onFocus, errorPlacement, message, invalid, label, icon, ...rest} = props
+  const {onBlur, onFocus, errorPlacement, onInput, message, invalid, label, icon, ...rest} = props
 
   return (
     <Block
@@ -31,6 +53,7 @@ function render ({props, children}) {
         tag='textarea'
         onBlur={handleEvent}
         onFocus={handleEvent}
+        onInput={handleInput}
         outline='none'
         boxSizing='border-box'
         fontFamily='inherit'
@@ -47,6 +70,17 @@ function render ({props, children}) {
         }
     </Block>
   )
+
+  function handleInput (e) {
+    // *sigh*, we have to do this because IE11 likes to submit
+    // input events when the placeholder is set, or when the
+    // element is focused.
+    //
+    // http://stackoverflow.com/questions/21406138/input-event-triggered-on-internet-explorer-when-placeholder-changed
+    if (onInput && e.target === document.activeElement) {
+      return onInput(e)
+    }
+  }
 }
 
 /**
@@ -55,7 +89,8 @@ function render ({props, children}) {
 
 function handleEvent (e) {
   if (!e.bubbles) {
-    e.target.dispatchEvent(new FocusEvent(e.type, {bubbles: true}))
+    const newEvent = createEvent(e.type, true)
+    e.target.dispatchEvent(newEvent)
   }
 }
 
@@ -69,5 +104,6 @@ function stopEvent (e) {
  */
 
 export default {
+  onCreate,
   render
 }
