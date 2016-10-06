@@ -15,7 +15,7 @@ import Base from './Base'
  */
 
 function onCreate (model) {
-  if (typeof window !== 'undefined') {
+  if (typeof window !== 'undefined' && model.props.defaultValue) {
     return () => {
       setTimeout(() => {
         // Emulate the defaultValue prop for browsers that don't support
