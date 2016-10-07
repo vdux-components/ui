@@ -14,34 +14,25 @@ import map from '@f/map'
  */
 
 const getProps = getThemeProps(['scale'])
-const filterProps = omit(['spacing', 'itemStyle', 'itemProps', 'class'])
+const filterProps = omit(['spacing', 'itemProps', 'class'])
 
 /**
  * Menu component
  */
 
 function render ({props, children}) {
-  const {itemStyle, itemProps = {}, $theme} = props
+  const {itemStyle, itemProps = {}, $theme, spacing, column} = props
+  const {scale = []} = $theme
+  const margin = scale[spacing] ? scale[spacing] : spacing
+  const baseItemStyle = {[column ? 'marginBottom' : 'marginRight']: margin}
 
   return (
     <Flex {...filterProps(props)} class={[props.class, 'vui-menu']}>
       {
-        map(child => <Block {...itemProps} baseStyle={getBaseItemStyle(props, $theme)} style={itemStyle}>{child}</Block>, children)
+        map(child => <Block {...baseItemStyle} {...itemProps}>{child}</Block>, children)
       }
     </Flex>
   )
-}
-
-/**
- * Child item styles
- */
-
-function getBaseItemStyle ({spacing, column}, {scale = []}) {
-  const margin = scale[spacing] ? scale[spacing] : spacing
-
-  return column
-    ? {marginBottom: margin}
-    : {marginRight: margin}
 }
 
 /**

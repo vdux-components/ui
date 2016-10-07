@@ -228,10 +228,10 @@ function render ({props, children}) {
  */
 
 function computeProps (style, newProps, props, media) {
-  // Apply base styles
-  if (props.baseStyle) extend(style, props.baseStyle)
-  const mediaProps = props[media + 'Props']
-  if (media && mediaProps) extend(props, mediaProps)
+  if (media) {
+    const mediaProps = props[media + 'Props']
+    if (mediaProps) extend(props, mediaProps)
+  }
 
   // Separate styles and props (attributes to be placed on the element)
   // and apply shorthand functions
@@ -249,7 +249,6 @@ function computeProps (style, newProps, props, media) {
       newProps[key] = val
     } else if (val !== undefined && typeof val !== 'object' && key[0] !== '$') {
       style[key] = val
-      autoprefix(style, key, val)
     }
   }
 
@@ -258,10 +257,10 @@ function computeProps (style, newProps, props, media) {
     style.backgroundColor = highlight(style.backgroundColor, props.highlight === true ? 0.1 : props.highlight)
   }
 
-  if (props.style) extend(style, props.style)
-  if (style) newProps.style = style
-
-  autoprefix(style)
+  if (style) {
+    newProps.style = style
+    autoprefix(style)
+  }
 }
 
 /**
