@@ -94,7 +94,7 @@ function render ({props, children}) {
     // http://stackoverflow.com/questions/21406138/input-event-triggered-on-internet-explorer-when-placeholder-changed
     if (onInput && e.target === document.activeElement) {
       e.target.__dirty = true
-      return onInput(e)
+      return runHandler(onInput, e)
     }
   }
 }
@@ -113,6 +113,12 @@ function handleEvent (e) {
 function stopEvent (e) {
   e.stopPropagation()
   e._rawEvent.stopPropagation()
+}
+
+function runHandler (handler = () => {}, e) {
+  return Array.isArray(handler)
+    ? handler.map(handler => runHandler(handler, e))
+    : handler(e)
 }
 
 /**
