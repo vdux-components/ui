@@ -2,7 +2,7 @@
   "name": "vdux-ui",
   "description": "Collection of presentational vdux components",
   "repository": "git://github.com/vdux-components/ui.git",
-  "version": "1.2.35",
+  "version": "1.2.36",
   "license": "MIT",
   "main": "lib/index.js",
   "scripts": {
