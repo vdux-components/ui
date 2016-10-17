@@ -43,7 +43,7 @@ function render ({props, children}) {
           borderStyle='solid'
           {...getArrowStyle(placement, bgColor)}
           class='vui-tooltip-arrow' />
-        <Block class='vui-tooltip-inner' fs='xxs' py={6} px={9} maxWidth={200} rounded bgColor={bgColor} whiteSpace='nowrap' color='white' {...restProps}>
+        <Block class='vui-tooltip-inner' fs='xxs' py={6} px={9} maxWidth={200} rounded bgColor={bgColor} whiteSpace='nowrap' color={color} {...restProps}>
           {children}
         </Block>
       </Block>
