@@ -30,7 +30,6 @@
     "@f/times": "^1.0.0",
     "bowser": "^1.4.5",
     "color": "^0.11.1",
-    "vdux": "^2.4.9",
     "vdux-css-emulator": "^2.0.5",
     "vdux-position": "^1.0.5"
   },
@@ -47,6 +46,6 @@
     "hihat": "^2.6.4",
     "tap-dev-tool": "^1.3.0",
     "tape": "^4.2.0",
-    "vdux": "^2.4.5"
+    "vdux": "^3.0.0"
   }
 }
