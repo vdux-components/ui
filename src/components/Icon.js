@@ -2,50 +2,34 @@
  * Imports
  */
 
+import {component, element} from 'vdux'
 import {mergeTheme} from '../util'
-import element from 'vdux/element'
 import Text from './Text'
 
 /**
- * getProps
+ * <Icon/>
  */
 
-function getProps (props, {uiTheme = {}}) {
-  props.$theme = mergeTheme(uiTheme)
-  return props
-}
+export default component({
+  render ({props, context}) {
+    const theme = mergeTheme(context.uiTheme)
+    const {
+      name,
+      iconTag = theme.iconTag,
+      iconClass = theme.iconClass,
+      ...restProps
+    } = props
 
-/**
- * Icon
- */
+    let cls = [iconClass, 'vui-icon']
+    if (props.class) {
+      if (Array.isArray(props.class)) cls = cls.concat(props.class)
+      else cls.push(props.class)
+    }
 
-function render ({props}) {
-  const {
-    $theme,
-    name,
-    iconTag = $theme.iconTag,
-    iconClass = $theme.iconClass,
-    ...restProps
-  } = props
-
-  let cls = [iconClass, 'vui-icon']
-  if (props.class) {
-    if (Array.isArray(props.class)) cls = cls.concat(props.class)
-    else cls.push(props.class)
+    return (
+      <Text tag={iconTag} {...restProps} class={cls}>
+        {name}
+      </Text>
+    )
   }
-
-  return (
-    <Text tag={iconTag} {...restProps} class={cls}>
-      {props.name}
-    </Text>
-  )
-}
-
-/**
- * Exports
- */
-
-export default {
-  getProps,
-  render
-}
+})

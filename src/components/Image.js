@@ -2,24 +2,18 @@
  * Imports
  */
 
-import element from 'vdux/element'
+import {component, element} from 'vdux'
 import {classes} from '../util'
 import Base from './Base'
 
 /**
- * Image
+ * <Image/>
  */
 
-function render ({props, children}) {
-  return (
-    <Base tag='img' {...props} class={classes(props.class, 'vui-image')}/>
-  )
-}
-
-/**
- * Exports
- */
-
-export default {
-  render
-}
+export default component({
+  render ({props, children}) {
+    return (
+      <Base tag='img' {...props} class={classes(props.class, 'vui-image')}/>
+    )
+  }
+})

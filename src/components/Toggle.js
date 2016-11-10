@@ -2,25 +2,30 @@
  * Imports
  */
 
-import element from 'vdux/element'
+import {component, element} from 'vdux'
 import Checkbox from './Checkbox'
 import Block from './Block'
 import Flex from './Flex'
-import Base from './Base'
 
 /**
  * <Toggle/>
  */
 
-function render ({props, children}) {
-  return (
-    <Checkbox btn={ToggleUi} {...props} />
-  )
-}
+export default component({
+  render ({props, children}) {
+    return (
+      <Checkbox btn={ToggleUi} {...props} />
+    )
+  }
+})
+
+/**
+ * <ToggleUi/>
+ */
 
 function ToggleUi ({props}) {
   const {checked, label, tWidth = 42, squished, labelProps = {}, toggleProps = {}} = props
-  const tHeight = tWidth * .55
+  const tHeight = tWidth * 0.55
   const delta = 5
 
   return (
@@ -49,7 +54,7 @@ function ToggleUi ({props}) {
             circle
             left={
                 checked
-                  ? squished ? tWidth - tHeight - delta :  tWidth - tHeight
+                  ? squished ? tWidth - tHeight - delta : tWidth - tHeight
                   : 0
               }
             />
@@ -60,12 +65,4 @@ function ToggleUi ({props}) {
       </Block>
     </Flex>
   )
-}
-
-/**
- * Exports
- */
-
-export default {
-  render
 }

@@ -3,7 +3,7 @@
  */
 
 import {Base, defaultTheme} from '../src'
-import element from 'vdux/element'
+import {element} from 'vdux'
 import vdux from 'vdux/dom'
 import test from 'tape'
 

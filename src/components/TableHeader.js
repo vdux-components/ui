@@ -2,26 +2,20 @@
  * Imports
  */
 
-import element from 'vdux/element'
+import {component, element} from 'vdux'
 import {classes} from '../util'
 import Base from './Base'
 
 /**
- * <TableHeader/> component
+ * <TableHeader/>
  */
 
-function render ({props, children}) {
-  return (
-    <Base tag='th' {...props} class={classes(props.class, 'vui-table-header')}>
-      {children}
-    </Base>
-  )
-}
-
-/**
- * Exports
- */
-
-export default {
-  render
-}
+export default component({
+  render ({props, children}) {
+    return (
+      <Base tag='th' {...props} class={classes(props.class, 'vui-table-header')}>
+        {children}
+      </Base>
+    )
+  }
+})

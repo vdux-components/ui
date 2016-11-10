@@ -2,7 +2,7 @@
  * Imports
  */
 
-import element from 'vdux/element'
+import {element} from 'vdux'
 import vdux from 'vdux/dom'
 import {Text} from '../src'
 import test from 'tape'

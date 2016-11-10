@@ -5,6 +5,8 @@
 import normalizeBowser from '@f/normalize-bowser'
 import defaultTheme from './default-theme'
 import prefixStyle from '@f/prefix-style'
+import identity from '@f/identity'
+import memoize from '@f/memoize'
 import extend from '@f/extend'
 import bowser from 'bowser'
 import pick from '@f/pick'
@@ -15,16 +17,12 @@ import has from '@f/has'
  * Prefixer
  */
 
-let prefixer = style => style
+const createStylePrefixer = memoize(userAgent => {
+  if (!userAgent) return identity
 
-function setupStylePrefixer (userAgent) {
   const {browser, version} = normalizeBowser(bowser._detect(userAgent))
-  prefixer = prefixStyle(browser, version)
-}
-
-function autoprefix (styles) {
-  return prefixer(styles)
-}
+  return prefixStyle(browser, version)
+})
 
 /**
  * scaleSetter
@@ -35,8 +33,6 @@ function autoprefix (styles) {
 function scaleSetter (styleKey, themeScaleKey = 'scale', defaultValue = 'm') {
   if (Array.isArray(styleKey)) {
     return (style, val, theme) => {
-      const scale = theme[themeScaleKey]
-
       if (val === true) {
         val = defaultValue
       }
@@ -152,22 +148,6 @@ function setScaled (obj, key, val, scale) {
     obj[key] = scale && has(val, scale)
       ? scale[val]
       : val
-  }
-}
-
-/**
- * posString
- *
- * Generate a position string
- * given a position and a number
- */
-
-function posString (pos, n) {
-  switch (pos) {
-    case 'top': return `${n}px 0 0 0`
-    case 'right': return `0 ${n}px 0 0`
-    case 'bottom': return `0 0 ${n}px 0`
-    case 'left': return `0 0 0 ${n}px`
   }
 }
 
@@ -290,8 +270,7 @@ export {
   boolSetter,
   borderSetter,
 
-  autoprefix,
-  setupStylePrefixer,
+  createStylePrefixer,
 
   setScaled,
   flexify,

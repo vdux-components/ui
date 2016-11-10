@@ -2,29 +2,23 @@
  * Imports
  */
 
-import element from 'vdux/element'
+import {component, element} from 'vdux'
 import {classes} from '../util'
 import Base from './Base'
 
 /**
- * Text
+ * <Text/>
  */
 
-function render ({props, children}) {
-  return (
-    <Base
-      tag='span'
-      {...props}
-      class={classes(props.class, 'vui-text')}>
-      {children}
-    </Base>
-  )
-}
-
-/**
- * Exports
- */
-
-export default {
-  render
-}
+export default component({
+  render ({props, children}) {
+    return (
+      <Base
+        tag='span'
+        {...props}
+        class={classes(props.class, 'vui-text')}>
+        {children}
+      </Base>
+    )
+  }
+})

@@ -2,7 +2,7 @@
  * Imports
  */
 
-import element from 'vdux/element'
+import {component, element} from 'vdux'
 import {classes} from '../util'
 import Button from './Button'
 import Block from './Block'
@@ -12,36 +12,30 @@ import Base from './Base'
 import Text from './Text'
 
 /**
- * IconButton component
+ * <IconButton/>
  */
 
-function render ({props, children}) {
-  const {divider = true, img, icon, iconSize = '25px', h = '43px', ...btnProps} = props
-  const pic = img
-    ? <Base tag='img' sq={iconSize} mr='6px' src={img} />
-    : <Icon name={icon} sq={iconSize} mr='6px' />
+export default component({
+  render ({props, children}) {
+    const {divider = true, img, icon, iconSize = '25px', h = '43px', ...btnProps} = props
+    const pic = img
+      ? <Base tag='img' sq={iconSize} mr='6px' src={img} />
+      : <Icon name={icon} sq={iconSize} mr='6px' />
 
-  return (
-    <Button class={classes(props.class, 'vui-icon-button')} rounded h={h} px='5px' {...btnProps}>
-      <Flex align='start center' tall>
-        {pic}
-        {
-          divider === true
-            ? <Block h='100%' borderLeft='rgba(52, 52, 52, 0.08)' />
-            : divider
-        }
-        <Text mx='auto'>
-          {children}
-        </Text>
-      </Flex>
-    </Button>
-  )
-}
-
-/**
- * Exports
- */
-
-export default {
-  render
-}
+    return (
+      <Button class={classes(props.class, 'vui-icon-button')} rounded h={h} px='5px' {...btnProps}>
+        <Flex align='start center' tall>
+          {pic}
+          {
+            divider === true
+              ? <Block h='100%' borderLeft='rgba(52, 52, 52, 0.08)' />
+              : divider
+          }
+          <Text mx='auto'>
+            {children}
+          </Text>
+        </Flex>
+      </Button>
+    )
+  }
+})

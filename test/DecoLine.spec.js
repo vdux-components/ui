@@ -2,7 +2,7 @@
  * Imports
  */
 
-import element from 'vdux/element'
+import {element} from 'vdux'
 import {DecoLine} from '../src'
 import vdux from 'vdux/dom'
 import test from 'tape'

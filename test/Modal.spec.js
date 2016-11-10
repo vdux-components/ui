@@ -3,7 +3,7 @@
  */
 
 import trigger from '@f/trigger-event'
-import element from 'vdux/element'
+import {element} from 'vdux'
 import {Modal} from '../src'
 import vdux from 'vdux/dom'
 import test from 'tape'

@@ -3,50 +3,30 @@
  */
 
 import {classes, mergeTheme} from '../util'
-import element from 'vdux/element'
+import {component, element} from 'vdux'
 import Base from './Base'
 
 /**
- * getProps
+ * <Avatar/>
  */
 
-function getProps (props, {uiTheme}) {
-  props.$theme = mergeTheme(uiTheme)
+export default component({
+  render ({props, context}) {
+    const {avatarScale, circularAvatars} = mergeTheme(context.uiTheme)
+    const {size = 32, circle = circularAvatars, ...rest} = props
 
-  const {circle = props.$theme.circularAvatars, size = 32} = props
-  props.circle = circle
-  props.size = size
+    const scaledSize = avatarScale && avatarScale[size]
+      ? avatarScale[size]
+      : size
 
-  return props
-}
-
-/**
- * Avatar component
- */
-
-function render ({props}) {
-  let {$theme, size, ...rest} = props
-  const {avatarScale} = $theme
-
-  if (avatarScale && avatarScale[size]) {
-    size = avatarScale[size]
+    return (
+      <Base
+        tag='img'
+        class={classes(props.class, 'vui-avatar')}
+        sq={scaledSize}
+        circle={circle}
+        {...rest}
+        />
+    )
   }
-
-  return (
-    <Base
-      tag='img'
-      class={classes(props.class, 'vui-avatar')}
-      sq={size}
-      {...rest}
-      />
-  )
-}
-
-/**
- * Exports
- */
-
-export default {
-  getProps,
-  render
-}
+})

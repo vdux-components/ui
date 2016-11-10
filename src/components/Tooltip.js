@@ -2,8 +2,8 @@
  * Imports
  */
 
+import {component, element} from 'vdux'
 import Position from 'vdux-position'
-import element from 'vdux/element'
 import {classes} from '../util'
 import Block from './Block'
 
@@ -14,42 +14,44 @@ import Block from './Block'
 const width = '6px'
 
 /**
- * Tooltip
+ * <Tooltip/>
  */
 
-function render ({props, children}) {
-  const {placement = 'top', space = 0, color = 'white', show, bgColor = 'black', ...restProps} = props
-  const margin = {}
+export default component({
+  render ({props, children}) {
+    const {placement = 'top', space = 0, color = 'white', show, bgColor = 'black', ...restProps} = props
+    const margin = {}
 
-  if (placement === 'top') margin.mt = '-3px'
-  else if (placement === 'bottom') margin.mb = '-3px'
-  else if (placement === 'right') margin.mr = '-3px'
-  else if (placement === 'left') margin.ml = '-3px'
+    if (placement === 'top') margin.mt = '-3px'
+    else if (placement === 'bottom') margin.mb = '-3px'
+    else if (placement === 'right') margin.mr = '-3px'
+    else if (placement === 'left') margin.ml = '-3px'
 
-  return (
-    <Position placement={placement} space={space} disable={!show}>
-      <Block
-        absolute
-        userSelect='none'
-        {...margin}
-        py={width}
-        display={show ? 'block' : 'none'}
-        z='tooltip'
-        class={classes(props.class, 'vui-tooltip')}>
+    return (
+      <Position placement={placement} space={space} disable={!show}>
         <Block
           absolute
-          sq={0}
-          borderColor='transparent'
-          borderStyle='solid'
-          {...getArrowStyle(placement, bgColor)}
-          class='vui-tooltip-arrow' />
-        <Block class='vui-tooltip-inner' fs='xxs' py={6} px={9} maxWidth={200} rounded bgColor={bgColor} whiteSpace='nowrap' color={color} {...restProps}>
-          {children}
+          userSelect='none'
+          {...margin}
+          py={width}
+          display={show ? 'block' : 'none'}
+          z='tooltip'
+          class={classes(props.class, 'vui-tooltip')}>
+          <Block
+            absolute
+            sq={0}
+            borderColor='transparent'
+            borderStyle='solid'
+            {...getArrowStyle(placement, bgColor)}
+            class='vui-tooltip-arrow' />
+          <Block class='vui-tooltip-inner' fs='xxs' py={6} px={9} maxWidth={200} rounded bgColor={bgColor} whiteSpace='nowrap' color={color} {...restProps}>
+            {children}
+          </Block>
         </Block>
-      </Block>
-    </Position>
-  )
-}
+      </Position>
+    )
+  }
+})
 
 /**
  * Compute base styles
@@ -93,12 +95,4 @@ function getArrowStyle (placement, color) {
     default:
       throw new Error('Unknown tooltip placement: "' + placement + '"')
   }
-}
-
-/**
- * Exports
- */
-
-export default {
-  render
 }

@@ -2,31 +2,25 @@
  * Imports
  */
 
-import element from 'vdux/element'
+import {component, element} from 'vdux'
 import {classes} from '../util'
 import Base from './Base'
 
 /**
- * Card component
+ * <Card/>
  */
 
-function render ({props, children}) {
-  return (
-    <Base
-      color='text'
-      bgColor='white'
-      boxShadow='card'
-      {...props}
-      class={classes(props.class, 'vui-card')}>
-      {children}
-    </Base>
-  )
-}
-
-/**
- * Exports
- */
-
-export default {
-  render
-}
+export default component({
+  render ({props, children}) {
+    return (
+      <Base
+        color='text'
+        bgColor='white'
+        boxShadow='card'
+        {...props}
+        class={classes(props.class, 'vui-card')}>
+        {children}
+      </Base>
+    )
+  }
+})

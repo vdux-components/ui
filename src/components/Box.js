@@ -2,26 +2,20 @@
  * Imports
  */
 
-import element from 'vdux/element'
+import {component, element} from 'vdux'
 import {classes} from '../util'
 import Base from './Base'
 
 /**
- * Flexbox cell component
+ * <Box/> - Flexbox cell component
  */
 
-function render ({props, children}) {
-  return (
-    <Base {...props} class={classes(props.class, 'vui-box')}>
-      {children}
-    </Base>
-  )
-}
-
-/**
- * Exports
- */
-
-export default {
-  render
-}
+export default component({
+  render ({props, children}) {
+    return (
+      <Base {...props} class={classes(props.class, 'vui-box')}>
+        {children}
+      </Base>
+    )
+  }
+})

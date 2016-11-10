@@ -2,28 +2,29 @@
  * Imports
  */
 
-import element from 'vdux/element'
+import {component, element} from 'vdux'
 import reduce from '@f/reduce'
-import times from '@f/times'
 import Flex from './Flex'
 import map from '@f/map'
 
 /**
- * Grid
+ * <Grid/>
  */
 
-function render ({props, children}) {
-  const {itemsPerRow = 4, columnAlign, rowAlign, ...restProps} = props
-  const columns = toColumns(children, itemsPerRow)
+export default component({
+  render ({props, children}) {
+    const {itemsPerRow = 4, columnAlign, rowAlign, ...restProps} = props
+    const columns = toColumns(children, itemsPerRow)
 
-  return (
-    <Flex align={rowAlign} {...restProps}>
-      {
-        map(items => <Flex column align={columnAlign}>{items}</Flex>, columns)
-      }
-    </Flex>
-  )
-}
+    return (
+      <Flex align={rowAlign} {...restProps}>
+        {
+          map(items => <Flex column align={columnAlign}>{items}</Flex>, columns)
+        }
+      </Flex>
+    )
+  }
+})
 
 /**
  * Helpers
@@ -36,12 +37,3 @@ function toColumns (items, n) {
     return memo
   }, [], items)
 }
-
-/**
- * Exports
- */
-
-export default {
-  render
-}
-

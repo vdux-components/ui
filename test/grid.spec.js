@@ -2,7 +2,7 @@
  * Imports
  */
 
-import element from 'vdux/element'
+import {element} from 'vdux'
 import times from '@f/times'
 import {Grid} from '../src'
 import vdux from 'vdux/dom'

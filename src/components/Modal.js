@@ -2,39 +2,35 @@
  * Imports
  */
 
-import element from 'vdux/element'
+import {decodeRaw, component, element} from 'vdux'
 import Overlay from './Overlay'
 import noop from '@f/noop'
-import Flex from './Flex'
 import Base from './Base'
 
 /**
- * <Overlay/> component
+ * <Overlay/>
  */
 
-function render ({props, children}) {
-  const {dismissOnClick = true, dismissOnEsc = true, onDismiss = noop, overlayProps, ...rest} = props
+export default component({
+  render ({props, children, actions}) {
+    const {dismissOnClick = true, dismissOnEsc = true, onDismiss = noop, overlayProps, ...rest} = props
 
-  return (
-    <Overlay overflowY='auto' onClick={dismissOnClick && maybeDismiss} onKeyup={{esc: dismissOnEsc && onDismiss}} {...overlayProps}>
-      <Base tag='div' bgColor='white' w={520} boxShadow='card' margin='50px auto 0' {...rest}>
-        {children}
-      </Base>
-    </Overlay>
-  )
+    return (
+      <Overlay overflowY='auto' onClick={dismissOnClick && decodeRaw(actions.maybeDismiss)} onKeyup={{esc: dismissOnEsc && onDismiss}} {...overlayProps}>
+        <Base tag='div' bgColor='white' w={520} boxShadow='card' margin='50px auto 0' {...rest}>
+          {children}
+        </Base>
+      </Overlay>
+    )
+  },
 
-  function maybeDismiss (e) {
-    if (e.target === e.currentTarget) {
-      return onDismiss()
+  controller: {
+    * maybeDismiss ({props}, e) {
+      const {onDismiss = noop} = props
+
+      if (e.target === e.currentTarget) {
+        yield onDismiss()
+      }
     }
   }
-}
-
-
-/**
- * Exports
- */
-
-export default {
-  render
-}
+})

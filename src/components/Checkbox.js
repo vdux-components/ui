@@ -2,8 +2,7 @@
  * Imports
  */
 
-import element from 'vdux/element'
-import {classes} from '../util'
+import {component, element} from 'vdux'
 import Block from './Block'
 import Flex from './Flex'
 import Icon from './Icon'
@@ -13,29 +12,35 @@ import Base from './Base'
  * <Checkbox/>
  */
 
-function render ({props, children}) {
-  const {
-    name, label = children, checked, disabled,
-    value, onChange, indeterminate, ...rest,
-    btn: Btn = CheckboxUi, uiProps = {},
-    checkProps = {}
-  } = props
+export default component({
+  render ({props, children}) {
+    const {
+      name, label = children, checked, disabled,
+      value, onChange, indeterminate,
+      btn: Btn = CheckboxUi, uiProps = {},
+      checkProps = {}, ...rest
+    } = props
 
-  return (
-    <Flex tag='label' {...rest} align='start center'>
-      <Base
-        tag='input'
-        type='checkbox'
-        hide
-        name={name}
-        value={value}
-        checked={!!checked}
-        disabled={!!disabled}
-        onChange={onChange} />
+    return (
+      <Flex tag='label' {...rest} align='start center'>
+        <Base
+          tag='input'
+          type='checkbox'
+          hide
+          name={name}
+          value={value}
+          checked={!!checked}
+          disabled={!!disabled}
+          onChange={onChange} />
         <Btn checked={!!checked} indeterminate={!!indeterminate} label={label} checkProps={checkProps} {...uiProps} />
-    </Flex>
-  )
-}
+      </Flex>
+    )
+  }
+})
+
+/**
+ * <CheckboxUi/>
+ */
 
 function CheckboxUi ({props}) {
   const {checked, label, indeterminate, checkProps, ...rest} = props
@@ -58,12 +63,4 @@ function CheckboxUi ({props}) {
       </Block>
     </Flex>
   )
-}
-
-/**
- * Exports
- */
-
-export default {
-  render
 }

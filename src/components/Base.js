@@ -5,12 +5,32 @@
 import {
   mergeTheme, setScaled, scaleSetter, boolSetter,
   positionSetter, highlight, borderSetter, flexify,
-  rgbaify, autoprefix
+  rgbaify, createStylePrefixer
 } from '../util'
+import {component, element} from 'vdux'
 import htmlAttrs from '@f/html-attrs'
-import element from 'vdux/element'
 import extend from '@f/extend'
 import has from '@f/has'
+
+/**
+ * <Base/>
+ */
+
+export default component({
+  render ({props, children, context}) {
+    const {tag: Tag = 'div'} = props
+    const newProps = {}
+    const style = {}
+
+    computeProps(style, newProps, props, context.uiMedia, mergeTheme(context.uiTheme), createStylePrefixer(context.uiPrefixUserAgent))
+
+    return (
+      <Tag {...newProps}>
+        {children}
+      </Tag>
+    )
+  }
+})
 
 /**
  * Constants
@@ -33,7 +53,7 @@ const canContainRgba = [
   'borderTopColor',
   'borderLeftColor',
   'borderRightColor',
-  'borderBottomColor',
+  'borderBottomColor'
 ].reduce((acc, key) => {
   acc[key] = true
   return acc
@@ -107,7 +127,7 @@ const fns = {
   bgColor: scaleSetter('backgroundColor', 'colors'),
   bgImg: (style, val) => style.backgroundImage = `url(${val})`,
   bgSize: (style, val) => style.backgroundSize = val,
-  bgPos: (style, val) => style.backgroundPosition= val,
+  bgPos: (style, val) => style.backgroundPosition = val,
   bg: (style, val = '', {colors}) => style.background = val
     .split(' ')
     .map(p => has(p, colors) ? colors[p] : p)
@@ -173,7 +193,6 @@ const fns = {
     }
   },
 
-  wrap: boolSetter('flexWrap', 'wrap'),
   column: (style, val) => {
     style.display = 'flex'
     style.flexDirection = val ? 'column' : 'row'
@@ -193,41 +212,12 @@ const fns = {
 }
 
 /**
- * getProps
- */
-
-function getProps (props, context) {
-  props.$theme = mergeTheme(context.uiTheme)
-  props.$media = context.uiMedia
-  return props
-}
-
-
-/**
- * Base Component
- */
-
-function render ({props, children}) {
-  const {tag: Tag = 'div'} = props
-  const newProps = {}
-  const style = {}
-
-  computeProps(style, newProps, props, props.$media)
-
-  return (
-    <Tag {...newProps}>
-      {children}
-    </Tag>
-  )
-}
-
-/**
  * computeProps
  *
  * Decide which props to forward, and process style properties
  */
 
-function computeProps (style, newProps, props, media) {
+function computeProps (style, newProps, props, media, theme, autoprefix) {
   if (media) {
     const mediaProps = props[media + 'Props']
     if (mediaProps) extend(props, mediaProps)
@@ -240,11 +230,11 @@ function computeProps (style, newProps, props, media) {
     if (key === 'tag') continue
 
     const val = canContainRgba[key]
-      ? rgbaify(props[key], props.$theme.colors)
+      ? rgbaify(props[key], theme.colors)
       : props[key]
 
     if (fns[key]) {
-      fns[key](style, val, props.$theme, props)
+      fns[key](style, val, theme, props)
     } else if (eventRegex.test(key) || htmlAttrs[key] || key === 'innerHTML') {
       newProps[key] = val
     } else if (val !== undefined && typeof val !== 'object' && key[0] !== '$') {
@@ -261,13 +251,4 @@ function computeProps (style, newProps, props, media) {
     newProps.style = style
     autoprefix(style)
   }
-}
-
-/**
- * Exports
- */
-
-export default {
-  getProps,
-  render
 }

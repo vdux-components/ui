@@ -5,7 +5,7 @@
 import test from 'tape'
 import vdux from 'vdux/dom'
 import {Overlay} from '../src'
-import element from 'vdux/element'
+import {element} from 'vdux'
 
 /**
  * Tests
