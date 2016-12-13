@@ -48,7 +48,10 @@ export default component({
   },
 
   render ({props, children, actions}) {
-    const {onBlur, onFocus, errorPlacement, message, invalid, label, icon, ...rest} = props
+    // Note: We have to destructure onBlur/onInput/onFocus here to ensure
+    // they do not get included in '...rest', because otherwise
+    // rest could wipe out our special event handlers
+    const {onBlur, onInput, onFocus, errorPlacement, message, invalid, label, icon, ...rest} = props
 
     return (
       <Block
