@@ -23,6 +23,7 @@ import Spinner from './components/Spinner'
 import Tooltip from './components/Tooltip'
 import defaultTheme from './default-theme'
 import Avatar from './components/Avatar'
+import Slider from './components/Slider'
 import Button from './components/Button'
 import Toggle from './components/Toggle'
 import Badge from './components/Badge'
@@ -73,6 +74,7 @@ export {
   Divider,
   Tooltip,
   ErrorTip,
+  Slider,
   Overlay,
   Modal,
   ModalBody,
