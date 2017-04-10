@@ -28,7 +28,6 @@ export default component ({
 
 		return (
 			<Block id={path} w={'100%'} relative py={handleHeight / 2} my='s' {...rest}>
-				<Window onMouseUp={actions.setActive(false)} onMouseMove={active && decodeRaw(actions.drag)} />
 				<Block 
 					onMouseDown={actions.setActive(true)}
 					borderRadius={9999} 
@@ -56,6 +55,9 @@ export default component ({
 					pointer
 					{...handleRest}
 					/>
+				{
+					active &&	<Window onMouseUp={[decodeRaw(actions.drag), actions.setActive(false)]} onMouseMove={decodeRaw(actions.drag)} />
+				}
 			</Block>
 		)
 	},
