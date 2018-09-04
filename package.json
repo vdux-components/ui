@@ -8,7 +8,8 @@
   "scripts": {
     "prepublish": "make build",
     "postpublish": "make clean",
-    "postversion": "git push && git push --tags && npm publish --access=public"
+    "postversion": "git push && git push --tags && npm publish --access=public",
+    "watch": "babel src --out-dir lib --watch"
   },
   "dependencies": {
     "@f/defaults": "^1.0.1",
